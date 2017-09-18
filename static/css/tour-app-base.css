@@ -155,44 +155,6 @@ table {
 }
 
 /*
-* 底部导航
-*/
-
-.footer-wraper {
-	display: flex;
-	flex-flow: row nowrap;
-	position: fixed;
-	z-index: 9999;
-	bottom: 0;
-	width: 100%;
-	max-width: 640px;
-	height: 50px;
-	background-color: #fff;
-}
-
-.footer-wraper .nav-tag {
-	flex: 1;
-	text-align: center;
-	color: #7c8592;
-}
-
-.footer-wraper a.this-tag {
-	color: #2577e3;
-}
-
-.tag-ico {
-	margin-top: 3px;
-	width: 30px;
-	height: 26px;
-}
-
-.tag-name {
-	margin-top: -5px;
-	height: 18px;
-	line-height: 18px;
-}
-
-/*
 * 遮罩层
 */
 .mask {
@@ -209,11 +171,4 @@ table {
 .wechat {
 	margin: 0 auto;
 	text-align: center;
-}
-
-@media only screen and (min-width: 640px) {
-	.footer-wraper {
-		left: 50%;
-		margin-left: -320px;
-	}
 }

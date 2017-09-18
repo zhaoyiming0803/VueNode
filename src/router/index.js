@@ -8,6 +8,10 @@ import regist from '@/components/account/regist.vue';
 import forgetPwdFirstStep from '@/components/account/forgetpwd-firststep.vue';
 import forgetPwdSecondStep from '@/components/account/forgetpwd-secondstep.vue';
 
+import personal from '@/components/personal/index.vue';
+
+import globalCouponIndex from '@/components/global-coupon/index.vue';
+
 Vue.use(Router);
 Vue.use(Resource);
 
@@ -15,7 +19,7 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			redirect: '/login'
+			redirect: '/personal'
 		},
 
 		{
@@ -45,7 +49,18 @@ export default new Router({
 			path: '/forgetPwdSecondStep',
 			name: 'ForgetPwdSecondStep',
 			component: forgetPwdSecondStep
-		 }
+		 },
+
+		{
+			path: '/personal',
+			name: 'Personal',
+			component: personal
+		},
 		
+		{
+			path: '/globalCouponIndex',
+			name: 'GlobalCouponIndex',
+			component: globalCouponIndex
+		}
 	]
 })
