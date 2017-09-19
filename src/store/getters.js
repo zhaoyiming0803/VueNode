@@ -7,7 +7,10 @@
 import state from './state.js'
 
 export default {
-    count : function(state){
-        return state.count;
-    }
+    countryId (state) {
+		return state.countryId;
+	},
+	countryName (state) {
+		return state.countryName;
+	}
 }

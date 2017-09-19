@@ -8,10 +8,10 @@
 import mutations from './mutations.js'
 
 export default {
-    increment : function({commit}){
-        commit('increment');
-    },
-    decrement : function({commit}){
-        commit('decrement');
-    }
+	changeCountryId ({commit}) {
+		commit('changeCountryId');
+	},
+	changeCountryName ({commit}) {
+		commit('changeCountryName');
+	}
 }

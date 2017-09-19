@@ -20,15 +20,3 @@ export default new VueX.Store({
     getters,
     state
 });
-
-
-	/*
-	
-	computed: mapGetters([
-		'count'
-	]),
-
-	increment () {
-		this.$store.commit('increment');
-	},
-	*/

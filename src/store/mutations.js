@@ -7,10 +7,10 @@
 import getters from './getters.js'
 
 export default {
-    increment : function(state){
-        state.count += 1;
-    },
-    decrement : function(state){
-        state.count -= 1;
-    }
+	changeCountryId (state, countryId) {
+		state.countryId = countryId;
+	},
+	changeCountryName (state, countryName) {
+		state.countryName = countryName;
+	}
 }

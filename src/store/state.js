@@ -5,5 +5,6 @@
 */
 
 export default {
-    count : 0
+    countryId: 1,
+	countryName: '全球'
 }
