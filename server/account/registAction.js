@@ -16,7 +16,7 @@ router.post('/registForm', (req, res) => {
 	const pwd = md5.update(registMsg.pwd).digest('hex');
 
 	let p = new Promise((resolve, reject) => {
-		db('select id from tour_user where phone="'+ phone +'"', (error, data) => {
+		db('select id from tour_user where user_phone="'+ phone +'"', (error, data) => {
 			data ? resolve(data) : reject(error);
 		});
 	});
@@ -28,7 +28,7 @@ router.post('/registForm', (req, res) => {
                 backInfo: '0'
             });
 		} else {
-			db('insert into tour_user set phone="'+ phone +'", pwd="'+ pwd +'"', (error, data) => {
+			db('insert into tour_user set user_phone="'+ phone +'", user_pwd="'+ pwd +'"', (error, data) => {
 				data ? res.json({backInfo: '1'}) : res.json({backInfo: '2'});
 			});
 		}

@@ -16,7 +16,7 @@ router.post('/loginForm', (req, res) => {
 	const pwd = md5.update(loginMsg.pwd).digest('hex');
 
 	let p = new Promise((resolve, reject) => {
-		db('select id,name from tour_user where phone="'+ phone +'" and pwd="'+pwd +'"', (error, data) => {
+		db('select id,user_name from tour_user where user_phone="'+ phone +'" and user_pwd="'+pwd +'"', (error, data) => {
 			data ? resolve(data) : reject(error);
 		});
 	});

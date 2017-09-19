@@ -17,7 +17,7 @@ router.post('/firstStep', (req, res) => {
 	const phone = msg.phone;
 
 	let p = new Promise((resolve, reject) => {
-		db('select id from tour_user where phone="'+ phone +'"', (error, data) => {
+		db('select id from tour_user where user_phone="'+ phone +'"', (error, data) => {
 			data ? resolve(data) : reject(error);
 		});
 	});
@@ -49,7 +49,7 @@ router.post('/secondStep', (req, res) => {
 	const phone = msg.phone;
 	const pwd = md5.update(msg.pwd).digest('hex');
 
-	db('update tour_user set pwd="'+ pwd +'" where phone="'+ phone +'"', (error, data) => {
+	db('update tour_user set user_pwd="'+ pwd +'" where user_phone="'+ phone +'"', (error, data) => {
 		data ? res.json({backInfo: '1'}) : res.json({backInfo: '0'});
 	});
 });
