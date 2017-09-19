@@ -55,7 +55,7 @@
 				});
 			}
 		},
-		mounted: function () {
+		mounted () {
 			if (!window.sessionStorage) {
 				alert('为保证您可以正常使用我们的产品，请关闭浏览器的无痕浏览模式！');
 			}
