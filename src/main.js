@@ -3,13 +3,13 @@
 import Vue from 'vue';
 import router from './router';
 import App from './App';
-// import store from './store/index.js';
+import store from './store/index.js';
 
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
-	// store,
+	store,
 	el: '#app',
 	template: '<App/>',
 	components: { App },
