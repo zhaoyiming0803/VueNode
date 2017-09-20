@@ -1,6 +1,9 @@
 <template>
 	<div class="global-coupon-wraper">
 
+		<!-- 遮罩层 -->
+		<div class="mask" v-bind:class="{'dis-block': isMask, 'dis-none': !isMask}" v-on:click="handleMask();"></div>
+
 		<!-- 顶部 -->
 		<div class="fixed-header">
 			<div class="fixed-header-nav">
@@ -33,7 +36,8 @@
 			return {
 				navName: 'appIndex',
 				countryList: null,
-				isCountryList: false
+				isCountryList: false,
+				isMask: false
 			}
 		},
 		components: {
@@ -44,24 +48,36 @@
 			'countryName'
 		]),
 		mounted () {
-			console.log(this.$store.state.countryName);
-			console.log(this.$store.state.countryId);
+			this.$http.post('/globalCoupon/chooseCountry', {countryId: 1}, {emulateJSON: true}).then((result) => {
+				console.log('--------------------');
+				console.log(JSON.parse(result.bodyText));
+			});
 		},
 		methods: {
+			handleMask () {
+				this.isMask = this.isCountryList = false;
+			},
 			showCountryList () {
 				if (!this.countryList) {
-					this.$http.post('/globalCoupon/index', {emulateJSON: true}).then((result) => {
-						this.countryList = JSON.parse(result.bodyText).backInfo;
+					this.$http.post('/globalCoupon/countryList', {emulateJSON: true}).then((result) => {
+						console.log(JSON.parse(result.bodyText));
+						this.countryList = JSON.parse(result.bodyText).countryList;
 						this.currentCountry = this.countryList[0].country_name;
 					});
 				}
 				this.isCountryList = !this.isCountryList;
+				this.isMask = true;
 			},
 			chooseCountry (countryId) {
+				console.log(countryId);
+				this.$http.post('/globalCoupon/chooseCountry', {countryId: countryId}, {emulateJSON: true}).then((result) => {
+					console.log('--------------------');
+					console.log(JSON.parse(result.bodyText));
+				});
 				this.currentCountry = this.countryList[countryId-1].country_name;
 				this.$store.commit('changeCountryId', countryId);
 				this.$store.commit('changeCountryName', this.currentCountry);
-				this.isCountryList = false;
+				this.handleMask();
 			}
 		}
 	}

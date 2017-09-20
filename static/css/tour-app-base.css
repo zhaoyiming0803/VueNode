@@ -162,7 +162,6 @@ table {
 * 遮罩层
 */
 .mask {
-	display: none;
 	position: fixed;
 	bottom: 0;
 	right: 0;
