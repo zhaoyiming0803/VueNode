@@ -2,7 +2,7 @@
   "name": "tour-app",
   "version": "1.0.0",
   "description": "a vue.js project of tour-app",
-  "author": "zym <1047832475@qq.com>",
+  "author": "zym <1047832475@qq.com>(https://github.com/zymseo)",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
