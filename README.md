@@ -14,13 +14,27 @@
 
 #### 注：前端使用ES6的很多新特性，所以NodeJs 必须是6.0稳定版本，我使用的版本是6.2.0
 
-git clone git@github.com:zymseo/tour-app.git  
+（1）git clone git@github.com:zymseo/tour-app.git  
 
-npm install
+（2）npm install
 
-npm run dev
+（3）npm run dev
 
-浏览器访问：localhost:8080
+（4）安装mysql数据库，新建数据库tour，然后导入全部数据（此项目根目录下的tour.sql）
+
+（5）浏览器访问：localhost:8080
+
+### 使用PHP或JAVA等后端语言替换NodeJs的方法
+
+此项目作为前后端分离开发的测试，后端只是提供增删改查的数据接口，所有的路由及控制器方法都由前端来完成，所以可以将Node替换为你想要的任何后端开发语言，具体方法如下：
+
+（1）将项目下载到本地，并执行npm install之后，继续执行npm run build；
+
+（2）build完成之后，会在项目根目录下生成dist目录，将dist目录下所有的文件拷贝到服务器根目录下，主域一般是localhost:80或127.0.0.1:80；
+
+（3）在你的根目录下构建服务端，注意服务端接口要和前端接口保持一致；
+
+（4）举个栗子，我的项目构建成功之后，使用PHP作为后端接口，实现了查找国家和地区的功能，完整Demo是此项目根目录下的php_test文件夹。
 
 ### 说明
 
