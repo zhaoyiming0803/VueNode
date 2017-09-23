@@ -15,6 +15,7 @@ let hotCoupon = null;
 * 查询首页数据公用方法
 */
 let getData = (countryId = 1) => {
+
 	// 查询banner
 	bannerData = new Promise((resolve, reject) => {
 		db('select banner_path from tour_banner where banner_belong_country=' + countryId, (error, data) => {
@@ -24,7 +25,7 @@ let getData = (countryId = 1) => {
 
 	// 查询热门优惠
 	hotCoupon = new Promise((resolve, reject) => {
-		db('select coupon_name, coupon_explain, coupon_ico_path from tour_coupon where coupon_belong_country=' + countryId, (error, data) => {
+		db('select coupon_name, coupon_explain, coupon_ico_path from tour_coupon where coupon_belong_country="'+countryId+'" limit 0, 4', (error, data) => {
 			data ? resolve(data) : reject(error);
 		});
 	});
