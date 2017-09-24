@@ -51,12 +51,22 @@
 			</a>
 		</div>
 
+		<!-- 广告 -->
+		<a href="javascript:;" class="advertising m-distance">
+			<img src="./images/advertising.png" width="100%" />
+			<span class="ico"></span>
+		</a>
+
+		<!-- 文章 -->
+		<feature v-bind:featureArticle="featureArticle"></feature>
+
 		<footer-nav v-bind:navName="navName"></footer-nav>
 	</div>
 </template>
 
 <script type="text/ecmascript-6">
 	import {mapActions, mapGetters} from 'vuex';
+	import feature from '../feature/index.vue';
 	import footerNav from '../footer-nav/index.vue';
 	import Swiper from 'static/js/swiper.min.js';
 
@@ -68,10 +78,12 @@
 				isCountryList: false,
 				isMask: false,
 				bannerData: null,
-				hotCoupon: null
+				hotCoupon: null,
+				featureArticle: null
 			}
 		},
 		components: {
+			feature,
 			footerNav
 		},
 		computed: mapGetters([
@@ -84,6 +96,7 @@
 				let data = JSON.parse(result.bodyText);
 				this.bannerData = data.bannerData;
 				this.hotCoupon = data.hotCoupon;
+				this.featureArticle = data.featureArticle;
 			});
 
 			// 轮播图
@@ -114,6 +127,7 @@
 					let data = JSON.parse(result.bodyText);
 					this.bannerData = data.bannerData;
 					this.hotCoupon = data.hotCoupon;
+					this.featureArticle = data.featureArticle;
 				});
 				this.currentCountry = this.countryList[countryId-1].country_name;
 				this.$store.commit('changeCountryId', countryId);
@@ -269,6 +283,22 @@
 				background-repeat: no-repeat;
 				background-size: 12px 12px;
 			}
+		}
+	}
+
+	.advertising {
+		display: block;
+		position: relative;
+		.ico {
+			display: block;
+			position: absolute;
+			bottom: 6px;
+			left: 0;
+			width: 22px;
+			height: 11px;
+			background-image: url("./images/advertisingico.png");
+			background-repeat: no-repeat;
+			background-size: 22px 11px;
 		}
 	}
 </style>
