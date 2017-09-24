@@ -64,7 +64,14 @@
 
 ### 项目部分截图
 
-待更新。。。。。。
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/login.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/regist.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/forget_password.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_1.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_2.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_1.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_2.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_3.png)
 
 ### 写在最后
 
