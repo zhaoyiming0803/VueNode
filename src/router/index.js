@@ -19,7 +19,13 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
-			redirect: '/personal'
+			redirect: '/globalCouponIndex'
+		},
+
+		{
+			path: '/globalCouponIndex',
+			name: 'GlobalCouponIndex',
+			component: globalCouponIndex
 		},
 
 		{
@@ -55,12 +61,6 @@ export default new Router({
 			path: '/personal',
 			name: 'Personal',
 			component: personal
-		},
-		
-		{
-			path: '/globalCouponIndex',
-			name: 'GlobalCouponIndex',
-			component: globalCouponIndex
 		}
 	]
 })

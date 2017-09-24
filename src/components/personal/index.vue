@@ -85,6 +85,13 @@
 			couponList,
 			footerNav
 		},
+		mounted () {
+			try {
+				const userMsg = JSON.parse(window.sessionStorage.userMsg);
+			} catch (e) {
+				this.$router.push({name: 'Login'});
+			}
+		},
 		methods: {
 			showUnion () {
 				this.isUnionpay = !this.isUnionpay;
