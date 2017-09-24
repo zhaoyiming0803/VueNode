@@ -10,7 +10,7 @@
 			</div>
 			<div class="phone">
 				<img src="./images/phone.png" width="30" height="30" class="phone-ico" alt="手机" />
-				<span class="phone-num">18600588707</span>
+				<span class="phone-num">13126919251</span>
 			</div>
 			<a href="javascript:;" class="setting"></a>
 		</div>

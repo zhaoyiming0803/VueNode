@@ -20,7 +20,7 @@
 		data () {
 			return {
 				isAccount: true,
-				explainName: '欢迎来到tour-app'
+				explainName: '欢迎来到锦囊团'
 			}
 		},
 		components: {

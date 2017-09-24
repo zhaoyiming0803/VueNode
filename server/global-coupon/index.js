@@ -77,7 +77,6 @@ router.post('/chooseCountry', (req, res) => {
 	getData(parseInt(countryId, 10));
 
 	Promise.all([bannerData, hotCoupon, featureArticle]).then((result) => {
-		console.log(result[2]);
 		res.json({
 			bannerData: result[0],
 			hotCoupon: result[1],
