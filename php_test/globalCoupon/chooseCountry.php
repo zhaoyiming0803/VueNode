@@ -31,10 +31,19 @@
 	}
 	
 	$hot_coupon = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+
+	if ($country_id == 1) {
+		$query = 'select feature_title, feature_ico_path, feature_url, feature_classify from tour_feature limit 0, 4';
+	} else {
+		$query = 'select feature_title, feature_ico_path, feature_url, feature_classify from tour_feature where feature_belong_country="'. $country_id .'" limit 0, 4';
+	}
+
+	$feature_article = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
 	
 	echo json_encode(
 		array(
 			'bannerData' => $banner_data,
-			'hotCoupon' => $hot_coupon
+			'hotCoupon' => $hot_coupon,
+			'featureArticle' => $feature_article
 		)
 	);

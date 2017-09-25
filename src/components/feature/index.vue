@@ -6,7 +6,7 @@
 		</div>
 		<!-- 购物栏目具体内容 -->
 		<div class="feature-item" v-bind:class="{'feature-item-show': isShopping, 'feature-item-hide': !isShopping}">
-			<a v-bind:href=v.feature_url class="feature-list" v-for="(v, k) in featureArticle" :key="k" v-if="v.feature_classify===1">
+			<a v-bind:href=v.feature_url class="feature-list" v-for="(v, k) in featureArticle" :key="k" v-if="v.feature_classify==1">
 				<p class="shop-title">{{v.feature_title}}</p>
 				<img v-bind:src=v.feature_ico_path width="100%" />
 			</a>
@@ -14,7 +14,7 @@
 
 		<!-- 退税栏目具体内容 -->
 		<div class="feature-item" v-bind:class="{'feature-item-show': isRebate, 'feature-item-hide': !isRebate}">
-			<a v-bind:href=v.feature_url class="feature-list" v-for="(v, k) in featureArticle" :key="k" v-if="v.feature_classify===2">
+			<a v-bind:href=v.feature_url class="feature-list" v-for="(v, k) in featureArticle" :key="k" v-if="v.feature_classify==2">
 				<p class="shop-title">{{v.feature_title}}</p>
 				<img v-bind:src=v.feature_ico_path width="100%" />
 			</a>
