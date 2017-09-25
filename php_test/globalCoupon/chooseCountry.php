@@ -12,14 +12,24 @@
 	$dsc = 'mysql:host=localhost; dbname=tour';
 	$user = 'tour';
 	$pwd = 'tour';
-	$pdo = new PDO($dsc, $user, $pwd);
 
+	$pdo = new PDO($dsc, $user, $pwd);
 	$pdo->query("set names utf8");
 
-	$query = 'select banner_path from tour_banner where banner_belong_country = ' . $country_id;
+	
+	if ($country_id == 1) {
+		$query = 'select banner_path from tour_banner limit 0, 4';
+	} else {
+		$query = 'select banner_path from tour_banner where banner_belong_country = "'. $country_id .'" limit 0, 4';
+	}
 	$banner_data = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
 
-	$query = 'select coupon_name, coupon_explain, coupon_ico_path from tour_coupon where coupon_belong_country =' . $country_id;
+	if ($country_id == 1) {
+		$query = 'select coupon_name, coupon_explain, coupon_ico_path from tour_coupon limit 0, 4';
+	} else {
+		$query = 'select coupon_name, coupon_explain, coupon_ico_path from tour_coupon where coupon_belong_country ="'. $country_id .'" limit 0, 4';
+	}
+	
 	$hot_coupon = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
 	
 	echo json_encode(
