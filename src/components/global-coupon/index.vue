@@ -92,7 +92,7 @@
 		]),
 		mounted () {
 			// 请求首页数据
-			this.$http.post('/globalCoupon/chooseCountry', {countryId: 1}, {emulateJSON: true}).then((result) => {
+			this.$http.post('/globalCoupon/chooseCountry', {countryId: this.countryId}, {emulateJSON: true}).then((result) => {
 				let data = JSON.parse(result.bodyText);
 				this.bannerData = data.bannerData;
 				this.hotCoupon = data.hotCoupon;
