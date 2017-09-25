@@ -6,5 +6,7 @@
 
 export default {
     countryId: 1,
-	countryName: '全球'
+	countryName: '全球',
+	classifyId: 1,
+	classifyName: '购物'
 }

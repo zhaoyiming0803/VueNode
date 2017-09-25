@@ -12,5 +12,11 @@ export default {
 	},
 	changeCountryName (state, countryName) {
 		state.countryName = countryName;
+	},
+	changeClassifyId (state, classifyId) {
+		state.classifyId = classifyId;
+	},
+	changeClassifyName (state, classifyName) {
+		state.classifyName = classifyName;
 	}
 }

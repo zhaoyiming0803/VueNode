@@ -19,4 +19,7 @@ router.use('/forgetPwd', require(__dirname + '/account/forgetPwdAction'));
 // 首页
 router.use('/globalCoupon', require(__dirname + '/global-coupon/index'));
 
+// 全球优惠列表页
+router.use('/globalCouponList', require(__dirname + '/global-coupon-list/index'));
+
 module.exports = router;

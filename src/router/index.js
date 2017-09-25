@@ -11,6 +11,7 @@ import forgetPwdSecondStep from '@/components/account/forgetpwd-secondstep.vue';
 import personal from '@/components/personal/index.vue';
 
 import globalCouponIndex from '@/components/global-coupon/index.vue';
+import globalCouponList from '@/components/global-coupon-list/index.vue';
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -26,6 +27,12 @@ export default new Router({
 			path: '/globalCouponIndex',
 			name: 'GlobalCouponIndex',
 			component: globalCouponIndex
+		},
+
+		{
+			path: '/globalCouponList',
+			name: 'GlobalCouponList',
+			component: globalCouponList
 		},
 
 		{

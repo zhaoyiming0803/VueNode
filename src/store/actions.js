@@ -13,5 +13,11 @@ export default {
 	},
 	changeCountryName ({commit}) {
 		commit('changeCountryName');
+	},
+	changeClassifyId ({commit}) {
+		commit('changeClassifyId');
+	},
+	changeClassifyName ({commit}) {
+		commit('changeClassifyName');
 	}
 }

@@ -12,5 +12,11 @@ export default {
 	},
 	countryName (state) {
 		return state.countryName;
+	},
+	classifyId (state) {
+		return state.classifyId;
+	},
+	classifyName (state) {
+		return state.classifyName;
 	}
 }

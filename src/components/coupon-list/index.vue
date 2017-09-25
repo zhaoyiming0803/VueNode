@@ -1,20 +1,20 @@
 <template>
 	<div class="coupon-list-wraper">
 		<!-- 可使用 -->
-		<a href="javascript:;" class="use-discount-bg">
+		<a href="javascript:;" v-for="(v, k) in couponList" :key="k" v-bind:class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}">
 			<div class="shop-ico">
-				<img src="./images/taizilogo.png" width="100%" height="100%" alt="优惠商品" />
+				<img v-bind:src=v.coupon_ico_path width="100%" height="100%" v-bind:alt=v.coupon_name />
 			</div>
 			<div class="shop-intro">
-				<div class="shop-title">太子珠宝钟表</div>
+				<div class="shop-title">{{v.coupon_name}}</div>
 				<div class="shop-price">
-					<span class="condition">满10万减1万满10万减1万</span>
+					<span class="condition">{{v.coupon_explain}}</span>
 				</div>
 			</div>
 			<div class="shop-active shop-active-canuse">
 				<p>已抢</p>
-				<p>2837</p>
-				<span class="use-discount"></span>
+				<p>{{v.coupon_recived_num}}</p>
+				<span class="" v-bind:class="{'use-discount': v.coupon_status==0, 'used': v.coupon_status==1, 'past': v.coupon_status==2}"></span>
 			</div>
 		</a>
 
@@ -54,6 +54,7 @@
 
 <script type="text/ecmascript-6">
 	export default {
+		props: ['couponList'],
 		data () {
 			return {
 

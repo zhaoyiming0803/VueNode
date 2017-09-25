@@ -40,11 +40,11 @@ let getData = (countryId = 1) => {
 	// 专题文章
 	featureArticle = new Promise((resolve, reject) => {
 		if (countryId === 1) {
-			db('select feature_title, feature_ico_path, feature_url, feature_type from tour_feature limit 0, 4', (error, data) => {
+			db('select feature_title, feature_ico_path, feature_url, feature_classify from tour_feature limit 0, 4', (error, data) => {
 				data ? resolve(data) : reject(error);
 			});
 		} else {
-			db('select feature_title, feature_ico_path, feature_url, feature_type from tour_feature where feature_belong_country="'+ countryId +'" limit 0, 4', (error, data) => {
+			db('select feature_title, feature_ico_path, feature_url, feature_classify from tour_feature where feature_belong_country="'+ countryId +'" limit 0, 4', (error, data) => {
 				data ? resolve(data) : reject(error);
 			});
 		}
