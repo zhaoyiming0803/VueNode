@@ -1,7 +1,7 @@
 {
-  "name": "tour-app",
+  "name": "VueNode",
   "version": "1.0.0",
-  "description": "a vue.js project of tour-app",
+  "description": "a vue.js project of VueNode",
   "author": "zym <1047832475@qq.com>(https://github.com/zymseo)",
   "private": true,
   "scripts": {
