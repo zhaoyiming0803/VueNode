@@ -36,11 +36,11 @@ router.post('/showCoupons', (req, res) => {
 	let classifyId = data.classifyId;
 
 	if (parseInt(countryId, 10) === 1) {
-		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status from tour_coupon where coupon_classify="'+ classifyId +'"', (error, data) => {
+		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_classify="'+ classifyId +'"', (error, data) => {
 			data && res.json({couponList: data});
 		});
 	} else {
-		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status from tour_coupon where coupon_belong_country="'+ countryId +'" and coupon_classify="'+ classifyId +'"', (error, data) => {
+		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_belong_country="'+ countryId +'" and coupon_classify="'+ classifyId +'"', (error, data) => {
 			data && res.json({couponList: data});
 		});
 	}
