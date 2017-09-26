@@ -45,10 +45,10 @@
 					<p class="hot-discounts">{{v.coupon_explain}}</p>
 				</a>
 			</div>
-			<a href="javascript:;" class="show-more-wraper">
-				<router-link tag="span" :to="{name: 'GlobalCouponList'}" class="show-more-text">查看更多</router-link>
+			<router-link tag="a" :to="{name: 'GlobalCouponList'}" class="show-more-wraper">
+				<span class="show-more-text">查看更多</span>
 				<span class="show-more-btn"></span>
-			</a>
+			</router-link>
 		</div>
 
 		<!-- 广告 -->
