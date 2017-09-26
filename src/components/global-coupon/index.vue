@@ -46,7 +46,7 @@
 				</a>
 			</div>
 			<a href="javascript:;" class="show-more-wraper">
-				<span class="show-more-text">查看更多</span>
+				<router-link tag="span" :to="{name: 'GlobalCouponList'}" class="show-more-text">查看更多</router-link>
 				<span class="show-more-btn"></span>
 			</a>
 		</div>
