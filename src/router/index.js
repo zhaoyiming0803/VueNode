@@ -2,16 +2,21 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Resource from 'vue-resource';
 
-import accountIndex from '@/components/account/index.vue';
-import login from '@/components/account/login.vue';
-import regist from '@/components/account/regist.vue';
-import forgetPwdFirstStep from '@/components/account/forgetpwd-firststep.vue';
-import forgetPwdSecondStep from '@/components/account/forgetpwd-secondstep.vue';
+// 登录、注册、找回密码等
+const accountIndex = () => import('@/components/account/index.vue');
+const login = () => import('@/components/account/login.vue');
+const regist = () => import('@/components/account/regist.vue');
+const forgetPwdFirstStep = () => import('@/components/account/forgetpwd-firststep.vue');
+const forgetPwdSecondStep = () => import('@/components/account/forgetpwd-secondstep.vue');
 
-import personal from '@/components/personal/index.vue';
+// 个人中心
+const personal = () => import('@/components/personal/index.vue');
 
-import globalCouponIndex from '@/components/global-coupon/index.vue';
-import globalCouponList from '@/components/global-coupon-list/index.vue';
+// 首页
+const globalCouponIndex = () => import('@/components/global-coupon/index.vue');
+
+//全球优惠券列表页
+const globalCouponList = () => import('@/components/global-coupon-list/index.vue');
 
 Vue.use(Router);
 Vue.use(Resource);
