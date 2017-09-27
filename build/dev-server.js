@@ -64,7 +64,7 @@ var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsS
 app.use(staticPath, express.static('./static'));
 
 /*
-* 自己新增 开始
+* 自己新增 开始 
 */
 
 let bodyParse = require('body-parser'); // 接收post数据
