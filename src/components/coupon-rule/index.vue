@@ -1,10 +1,6 @@
 <template>
 	<div class="coupon-rule-wraper" id="coupon-rule">
-		<div class="item-title">
-			<span class="item-title-left"></span>
-			<span class="item-title-center">优惠详情</span>
-			<span class="item-title-right"></span>
-		</div>
+		<column-divide v-bind:columnName="columnName"></column-divide>
 		<div class="content" id="content" v-bind:class="{'constant-height': isRuleShow}">
 			<div class="coupon-rule-title">【优惠券有效期】</div>
 			<div class="coupon-rule-detail"><font color="#f00">自领取日起5天内有效</font></div>
@@ -33,11 +29,17 @@
 </template>
 
 <script type="text/ecmascript-6">
+	import columnDivide from '../column-divide/index.vue';
+
 	export default {
 		data () {
 			return {
-				isRuleShow: true
+				isRuleShow: true,
+				columnName: '优惠详情'
 			}
+		},
+		components: {
+			columnDivide
 		},
 		methods: {
 			showMore () {
@@ -51,34 +53,6 @@
 	.coupon-rule-wraper {
 		margin: 0 5%;
 		line-height: 25px;
-		.item-title {
-			position: relative;
-			margin: 5px 0;
-			height: 30px;
-			.item-title-left,
-			.item-title-right {
-				display: inline-block;
-				position: absolute;
-				top: 14px;
-				width: 35%;
-				border-bottom: 1px solid #cecece;
-			}
-			.item-title-left {
-				left: 0;
-			}
-			.item-title-right {
-				right: 0;
-			}
-			.item-title-center {
-				display: inline-block;
-				position: absolute;
-				left: 37%;
-				width: 27%;
-				text-align: center;
-				line-height: 30px;
-				color: #595959;
-			}
-		}
 		.content {
 			overflow: hidden;
 			&.constant-height {
