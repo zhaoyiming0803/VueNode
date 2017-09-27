@@ -23,7 +23,7 @@
 		</div>
 		<div class="coupon-show-more" v-on:click="showMore();">
 			<div class="show-more-mask" id="show-more-mask"></div>
-			<div class="show-more-btn flex-down" id="show-more-btn"><span>查看详情</span></div>
+			<div class="show-more-btn" id="show-more-btn" v-bind:class="{'flex-down': isRuleShow, 'flex-up': !isRuleShow}"><span>查看详情</span></div>
 		</div>
 	</div>
 </template>

@@ -26,12 +26,16 @@ let getData = (countryId = 1) => {
 
 	// 查询热门优惠
 	hotCoupon = new Promise((resolve, reject) => {
+		const getTime = new Date().getTime();
+		const $query = 'select id, coupon_name, coupon_explain, coupon_ico_path from tour_coupon';
+		const $limit = 'limit 0, 4';
+		const $belong = 'coupon_belong_country="'+ countryId +'"';
 		if (countryId === 1) {
-			db('select coupon_name, coupon_explain, coupon_ico_path from tour_coupon limit 0, 4', (error, data) => {
+			db($query + ' ' + $limit, (error, data) => {
 				data ? resolve(data) : reject(error);
 			});
 		} else {
-			db('select coupon_name, coupon_explain, coupon_ico_path from tour_coupon where coupon_belong_country="'+countryId+'" limit 0, 4', (error, data) => {
+			db($query + ' where "'+ getTime +'" < coupon_endtime and ' + $belong + ' ' + $limit, (error, data) => {
 				data ? resolve(data) : reject(error);
 			});
 		}
@@ -39,12 +43,14 @@ let getData = (countryId = 1) => {
 
 	// 专题文章
 	featureArticle = new Promise((resolve, reject) => {
+		const $query = 'select feature_title, feature_ico_path, feature_url, feature_classify from tour_feature';
+		const $limit = 'limit 0, 4';
 		if (countryId === 1) {
-			db('select feature_title, feature_ico_path, feature_url, feature_classify from tour_feature limit 0, 4', (error, data) => {
+			db($query + ' ' + $limit, (error, data) => {
 				data ? resolve(data) : reject(error);
 			});
 		} else {
-			db('select feature_title, feature_ico_path, feature_url, feature_classify from tour_feature where feature_belong_country="'+ countryId +'" limit 0, 4', (error, data) => {
+			db($query + ' where feature_belong_country = "'+ countryId +'" ' + $limit, (error, data) => {
 				data ? resolve(data) : reject(error);
 			});
 		}

@@ -18,6 +18,9 @@ const globalCouponIndex = () => import('@/components/global-coupon/index.vue');
 //全球优惠券列表页
 const globalCouponList = () => import('@/components/global-coupon-list/index.vue');
 
+// 领取优惠券
+const getCoupon = () => import('@/components/get-coupon/index.vue');
+
 Vue.use(Router);
 Vue.use(Resource);
 
@@ -26,18 +29,6 @@ export default new Router({
 		{
 			path: '/',
 			redirect: '/globalCouponIndex'
-		},
-
-		{
-			path: '/globalCouponIndex',
-			name: 'GlobalCouponIndex',
-			component: globalCouponIndex
-		},
-
-		{
-			path: '/globalCouponList',
-			name: 'GlobalCouponList',
-			component: globalCouponList
 		},
 
 		{
@@ -73,6 +64,24 @@ export default new Router({
 			path: '/personal',
 			name: 'Personal',
 			component: personal
+		},
+
+		{
+			path: '/globalCouponIndex',
+			name: 'GlobalCouponIndex',
+			component: globalCouponIndex
+		},
+
+		{
+			path: '/globalCouponList',
+			name: 'GlobalCouponList',
+			component: globalCouponList
+		},
+
+		{
+			path: '/getCoupon/:couponId',
+			name: 'GetCoupon',
+			component: getCoupon
 		}
 	]
 })

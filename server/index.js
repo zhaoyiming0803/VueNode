@@ -22,4 +22,7 @@ router.use('/globalCoupon', require(__dirname + '/global-coupon/index'));
 // 全球优惠列表页
 router.use('/globalCouponList', require(__dirname + '/global-coupon-list/index'));
 
+// 领取优惠券
+router.use('/getCoupon', require(__dirname + '/get-coupon/index'));
+
 module.exports = router;

@@ -38,6 +38,19 @@
 		padding-top: 15px;
 		.comment-item {
 			margin: 3% 3%;
+			.comment-item-top {
+				.phone {
+					float: left;
+				}
+				.star {
+					float: right;
+				}
+			}
+			.comment-item-bottom {
+				padding: 7px 0 0 0;
+				font-size: 12px;
+				color: #b4b4b4;
+			}
 		}
 	}
 </style>

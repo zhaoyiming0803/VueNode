@@ -39,11 +39,11 @@
 				<span class="title-right"></span>
 			</div>
 			<div class="content clearfix">
-				<a href="javascript:;" class="item" v-for="(v, k) in hotCoupon" :key="k">
+				<router-link tag="a" v-for="(v, k) in hotCoupon" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" class="item">
 					<img v-bind:src=v.coupon_ico_path width="98%" />
 					<p class="hot-title">{{v.coupon_name}}</p>
 					<p class="hot-discounts">{{v.coupon_explain}}</p>
-				</a>
+				</router-link>
 			</div>
 			<router-link tag="a" :to="{name: 'GlobalCouponList'}" class="show-more-wraper">
 				<span class="show-more-text">查看更多</span>
@@ -97,6 +97,7 @@
 				this.bannerData = data.bannerData;
 				this.hotCoupon = data.hotCoupon;
 				this.featureArticle = data.featureArticle;
+				console.log(this.hotCoupon);
 			});
 
 			// 轮播图
