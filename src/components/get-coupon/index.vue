@@ -59,7 +59,6 @@
 		},
 		filters: {
 			dateFormate (timestamp) {
-				console.log(new Date(parseInt(timestamp, 10)*1000));
 				let addZero = (str) => {
 					return str >= 10 ? str : ('0' + str);
 				};
