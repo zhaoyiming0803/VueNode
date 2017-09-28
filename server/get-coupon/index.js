@@ -15,8 +15,6 @@ const db = require('../db');
 router.post('/couponDetail', (req, res) => {
 	const couponId = req.body.couponId;
 
-	console.log(couponId);
-
 	let couponDetail = new Promise((resolve, reject) => {
 		db('select coupon_name, coupon_explain, coupon_starttime, coupon_endtime, coupon_ico_path from tour_coupon where id="'+ couponId +'"', (error, data) => {
 			data ? resolve(data) : reject(error);
