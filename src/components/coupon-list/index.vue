@@ -1,7 +1,7 @@
 <template>
 	<div class="coupon-list-wraper">
 		<!-- 可使用 -->
-		<router-link tag="a" v-for="(v, k) in couponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" v-bind:class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}">
+		<router-link v-for="(v, k) in couponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" v-bind:class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}">
 			<div class="shop-ico">
 				<img v-bind:src=v.coupon_ico_path width="100%" height="100%" v-bind:alt=v.coupon_name />
 			</div>
