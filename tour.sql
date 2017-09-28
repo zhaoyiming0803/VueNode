@@ -65,6 +65,34 @@ INSERT INTO `tour_classify` VALUES (1,'购物'),(2,'退税');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tour_comment`
+--
+
+DROP TABLE IF EXISTS `tour_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_comment` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `comment_content` text,
+  `comment_star` int(1) NOT NULL DEFAULT '1',
+  `comment_user_phone` varchar(11) DEFAULT NULL,
+  `comment_time` varchar(30) DEFAULT NULL,
+  `comment_coupon_id` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_comment`
+--
+
+LOCK TABLES `tour_comment` WRITE;
+/*!40000 ALTER TABLE `tour_comment` DISABLE KEYS */;
+INSERT INTO `tour_comment` VALUES (1,'优惠券很好用，优惠力度很大',5,'13126919252','1506605105000',1),(2,'非常喜欢，产品不错',4,'13126919251','1506605439000',1),(3,'不太好用，网卡',1,'13126919252','1506605469000',3),(4,'还不错',3,'13126919251','1506607137000',3),(5,'挺好的',4,'13126919251','1506607149000',3),(6,'用着还行',5,'13126919251','1506607176000',4),(7,'还行吧，能解决问题',5,'13126919251','1506607188000',4),(8,'去日本玩的好，多亏了这里的优惠券',1,'13126919254','1506608981000',6),(9,'泰国一日游，优惠券都用完了，以后还会有吗？',4,'13126919254','1506609036000',9);
+/*!40000 ALTER TABLE `tour_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tour_country`
 --
 
@@ -186,4 +214,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-27 23:14:04
+-- Dump completed on 2017-09-28 22:40:01
