@@ -4,7 +4,7 @@
 
 		<div v-for="(v, k) in comments" :key="k" v-if="v.comment_user_phone" class="comment-item">
 			<div class="comment-item-top clearfix">
-				<div class="phone">{{v.comment_user_phone}}</div>
+				<div class="phone">{{v.comment_user_phone | truncatePhone}}</div>
 				<div class="star">
 					<img v-for="(value, key) in v.comment_star":key="key" src="./images/star.png" width="15" height="15" />
 					<img v-for="(value, key) in (5-v.comment_star)" :key="key" src="./images/notclickstar.png" width="15" height="15" />
@@ -28,6 +28,11 @@
 		},
 		components: {
 			columnDivide
+		},
+		filters: {
+			truncatePhone (phone) {
+				return phone.substr(0, 3) + '****' + phone.substr(7, 4);
+			}
 		}
 	}
 </script>
