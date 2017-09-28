@@ -10,11 +10,11 @@
 			</div>
 			<div class="coupon-brief">
 				<div class="coupon-ico">
-					<img v-bind:src=couponDetail.coupon_ico_path width="79" height="79" />
+					<img v-bind:src=coupon.coupon_ico_path width="79" height="79" />
 				</div>
-				<div class="coupon-name">{{couponDetail.coupon_name}}</div>
-				<div class="coupon-discounts">{{couponDetail.coupon_explain}}</div>
-				<div class="coupon-time">活动时间：{{couponDetail.coupon_starttime | dateFormate}}至{{couponDetail.coupon_endtime | dateFormate}}</div>
+				<div class="coupon-name">{{coupon.coupon_name}}</div>
+				<div class="coupon-discounts">{{coupon.coupon_explain}}</div>
+				<div class="coupon-time">活动时间：{{coupon.coupon_starttime | dateFormate}}至{{coupon.coupon_endtime | dateFormate}}</div>
 			</div>
 		</div>
 
@@ -25,7 +25,7 @@
 			<coupon-rule></coupon-rule>
 
 			<!-- 用户文字和星级评价 -->
-			<coupon-comment></coupon-comment>
+			<coupon-comment v-bind:comments="comments"></coupon-comment>
 		</div>
 
 		<footer-nav></footer-nav>
@@ -42,7 +42,8 @@
 		data () {
 			return {
 				explainName: '领取优惠券',
-				couponDetail: {}
+				coupon: {},
+				comments: []
 			}
 		},
 		components: {
@@ -54,7 +55,8 @@
 		mounted () {
 			this.$http.post('/getCoupon/couponDetail', {couponId: this.$route.params.couponId}, {emulateJSON: true}).then((result) => {
 				const data = JSON.parse(result.bodyText);
-				this.couponDetail = data.couponDetail[0];
+				this.coupon = data.couponDetail[0];
+				this.comments = data.couponDetail;
 			});
 		},
 		filters: {

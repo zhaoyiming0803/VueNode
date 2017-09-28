@@ -16,7 +16,7 @@ router.post('/couponDetail', (req, res) => {
 	const couponId = req.body.couponId;
 
 	let couponDetail = new Promise((resolve, reject) => {
-		db('select coupon_name, coupon_explain, coupon_starttime, coupon_endtime, coupon_ico_path from tour_coupon where id="'+ couponId +'"', (error, data) => {
+		db('select a.coupon_name, a.coupon_explain, a.coupon_starttime, a.coupon_endtime, a.coupon_ico_path, b.comment_content, b.comment_star, b.comment_user_phone from tour_coupon as a left join tour_comment as b on a.id=b.comment_coupon_id where a.id="'+ couponId +'"', (error, data) => {
 			data ? resolve(data) : reject(error);
 		});
 	});

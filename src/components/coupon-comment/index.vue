@@ -2,19 +2,17 @@
 	<div class="comment-wraper">
 		<column-divide v-bind:columnName="columnName"></column-divide>
 
-		<div class="comment-item">
+		<div v-for="(v, k) in comments" :key="k" v-if="v.comment_user_phone" class="comment-item">
 			<div class="comment-item-top clearfix">
-				<div class="phone">131****9251</div>
+				<div class="phone">{{v.comment_user_phone}}</div>
 				<div class="star">
-					<img src="./images/star.png" width="15" height="15" />
-					<img src="./images/star.png" width="15" height="15" />
-					<img src="./images/star.png" width="15" height="15" />
-					<img src="./images/notclickstar.png" width="15" height="15" />
-					<img src="./images/notclickstar.png" width="15" height="15" />
+					<img v-for="(value, key) in v.comment_star":key="key" src="./images/star.png" width="15" height="15" />
+					<img v-for="(value, key) in (5-v.comment_star)" :key="key" src="./images/notclickstar.png" width="15" height="15" />
 				</div>
 			</div>
-			<div class="comment-item-bottom">优惠券很好用，力度很大，希望多多搞这种活动，我们好剁手，么么哒</div>
+			<div class="comment-item-bottom">{{v.comment_content}}</div>
 		</div>
+		<div v-else style="padding: 0 0 10px 10px; color: #595959;">暂无评论</div>
 	</div>
 </template>
 
@@ -22,6 +20,7 @@
 	import columnDivide from '../column-divide/index.vue';
 
 	export default {
+		props: ['comments'],
 		data () {
 			return {
 				columnName: '最新评论'

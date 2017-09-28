@@ -97,7 +97,6 @@
 				this.bannerData = data.bannerData;
 				this.hotCoupon = data.hotCoupon;
 				this.featureArticle = data.featureArticle;
-				console.log(this.hotCoupon);
 			});
 
 			// 轮播图
