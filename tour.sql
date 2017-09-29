@@ -88,7 +88,7 @@ CREATE TABLE `tour_comment` (
 
 LOCK TABLES `tour_comment` WRITE;
 /*!40000 ALTER TABLE `tour_comment` DISABLE KEYS */;
-INSERT INTO `tour_comment` VALUES (1,'优惠券很好用，优惠力度很大',5,'13126919252','1506605105000',1),(2,'非常喜欢，产品不错',4,'13126919251','1506605439000',1),(3,'不太好用，网卡',1,'13126919252','1506605469000',3),(4,'还不错',3,'13126919251','1506607137000',3),(5,'挺好的',4,'13126919251','1506607149000',3),(6,'用着还行',5,'13126919251','1506607176000',4),(7,'还行吧，能解决问题',5,'13126919251','1506607188000',4),(8,'去日本玩的好，多亏了这里的优惠券',1,'13126919254','1506608981000',6),(9,'泰国一日游，优惠券都用完了，以后还会有吗？',4,'13126919254','1506609036000',9);
+INSERT INTO `tour_comment` VALUES (1,'优惠券很好用，优惠力度很大',5,'13126919252','1506605105000',1),(2,'非常喜欢，产品不错',4,'13126919251','1506605439000',1),(3,'不太好用，网卡',1,'13126919252','1506605469000',3),(4,'还不错',3,'13126919255','1506607137000',3),(5,'挺好的',4,'13126919256','1506607149000',3),(6,'用着还行',5,'13126919253','1506607176000',4),(7,'还行吧，能解决问题',5,'13126919251','1506607188000',4),(8,'去日本玩的好，多亏了这里的优惠券',1,'13126919254','1506608981000',6),(9,'泰国一日游，优惠券都用完了，以后还会有吗？',4,'13126919254','1506609036000',9);
 /*!40000 ALTER TABLE `tour_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,8 +146,34 @@ CREATE TABLE `tour_coupon` (
 
 LOCK TABLES `tour_coupon` WRITE;
 /*!40000 ALTER TABLE `tour_coupon` DISABLE KEYS */;
-INSERT INTO `tour_coupon` VALUES (1,'百老汇','满2000立减100港币','1506524754000','1514300798000','0','u003cp style=\"white-space: normal;\"u003eu003cstrongu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(0, 176, 240);\"u003e【优惠券有效期】u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003eu003c/spanu003eu003c/strongu003eu003c/pu003eu003cp style=\"white-space: normal;\"u003eu003cspan style=\"font-size: 14px;\"u003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e自领取日起10天内有效u003cstrongu003eu003cbr/u003eu003c/strongu003eu003cspan style=\"font-size: 14px; color: rgb(0, 176, 240);\"u003eu003cstrongu003e【活动范围】u003c/strongu003eu003c/spanu003eu003cbr/u003e仅限中国境内发行银联卡（卡号以62开头）u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; color: rgb(0, 176, 240);\"u003eu003cstrongu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003e【活动地点】u003c/spanu003eu003c/strongu003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003eu003cbr/u003e仅限百老汇香港指定门店，详情请查询银联国际官网u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; color: rgb(0, 176, 240);\"u003eu003cstrongu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003e【活动内容】u003c/spanu003eu003c/strongu003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e持卡人使用中国境内发行的银联卡（卡号以62开头），持电子现金券以指定银联卡购买产品满港币2000元或以上经验证“优计划”百老汇专属优惠二维码/条形码后，即可立减港币100元。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; color: rgb(0, 176, 240);\"u003eu003cstrongu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003e【活动细则】u003c/spanu003eu003c/strongu003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e1. 此优惠只限中国境内发行的银联卡，持卡人在香港百老汇摄影器材有限公司 (百老汇) 持有效电子现金券并以指定银联卡购买产品满港币2,000元或以上及经验证“优计划”百老汇专属优惠二维码/条形码后，刷银联卡立减港币100元优惠。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e2. 选购前，请先出示电子现金券及指定的银联卡。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e3. 电子现金券数量有限，先到先得。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e4. 电子现金券可使用时间以券上显示有效期为准，每笔合资格交易仅可使用一张电子现金券。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e5. 交易必须通过银联网络付款，方可享有此优惠。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e6. 每张电子现金券仅可使用一次，不可拆分，不能提现或作现金找赎。u003cbr/u003e7. 现金立减不适用于购买百老汇礼券、指定产品及分期付款计划u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e8.现金立减可与银联卡优惠同时使用。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e9. 如交易发生退款或退货，仅退还持卡人实际支付的金额，并不包含优惠金额。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e10. 已使用的电子现金券即时失效，电子现金券将不获返还。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e11. 如退货后适用商品金额未达到活动指定金额，将不能享用此电子现金券立减优惠，客户需补回已立减金额。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e12. 百老汇摄影器材有限公司及银联国际保留变更活动细则並不另行通知的权利。u003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体;\"u003eu003cbr/u003eu003c/spanu003eu003cspan style=\"font-size: 14px; font-family: 宋体; color: rgb(98, 96, 96);\"u003e13. 如有任何争议，百老汇摄影器材有限公司及银联国际对条款及细则保留最终决定权。u003c/spanu003eu003c/spanu003eu003c/pu003eu003cpu003eu003cbr/u003eu003c/pu003e',2,'union','http://jinnangtuan.com/uploads/20170828/1503917926.png','0',1),(3,'新罗免税店','满2000立减100元','1506524754000','1514300798000','0',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503915401.png','0',1),(4,'都塔购物中心','满2000立减100元','1506524754000','1514300798000','0',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503916455.png','0',1),(5,'新世界免税店','满2000立减100港币','1506524754000','1514300798000','0',' 这是是详细介绍 ',3,'visa','http://jinnangtuan.com/uploads/20170828/1503916520.png','0',1),(6,'松本清','满2000立减100日元','1506524754000','1514300798000','0',' 这是是详细介绍 ',4,'jinnang','http://jinnangtuan.com/uploads/20170828/1503920325.png','0',1),(7,'高岛屋','满2000立减100日元','1506524754000','1514300798000','0',' 这是是详细介绍 ',4,'gaodaowu','http://jinnangtuan.com/uploads/20170922/1506048040.jpg','0',1),(8,'周先生','满2000立减100港币','1506524754000','1514300798000','0',' 这是是详细介绍 ',2,'jinnang','http://jinnangtuan.com/uploads/20170828/1503918518.png','0',2),(9,'王权免税店','满2000立减100泰币','1506524754000','1514300798000','0',' 这是是详细介绍 ',5,'visa','http://jinnangtuan.com/uploads/20170828/1503916670.png','0',1),(10,'新加坡Tumi','满2000立减100新加坡元','1506524754000','1514300798000','0',' 这是是详细介绍 ',6,'jinnang','http://jinnangtuan.com/uploads/20170907/1504778592.jpg','0',1),(13,'泰国新罗免税店','满2000立减100泰币','1506524754000','1514300798000','0',' 这是是详细介绍 ',5,'union','http://jinnangtuan.com/uploads/20170828/1503917187.png','0',2);
+INSERT INTO `tour_coupon` VALUES (3,'新罗免税店','满2000立减100元','1506524754000','1514300798000','2',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503915401.png','0',1),(4,'都塔购物中心','满2000立减100元','1506524754000','1514300798000','1',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503916455.png','0',1),(6,'松本清','满2000立减100日元','1506524754000','1514300798000','1',' 这是是详细介绍 ',4,'jinnang','http://jinnangtuan.com/uploads/20170828/1503920325.png','0',1),(7,'高岛屋','满2000立减100日元','1506524754000','1514300798000','1',' 这是是详细介绍 ',4,'gaodaowu','http://jinnangtuan.com/uploads/20170922/1506048040.jpg','0',1),(8,'周先生','满2000立减100港币','1506524754000','1514300798000','1',' 这是是详细介绍 ',2,'jinnang','http://jinnangtuan.com/uploads/20170828/1503918518.png','0',2),(9,'王权免税店','满2000立减100泰币','1506524754000','1514300798000','2',' 这是是详细介绍 ',5,'visa','http://jinnangtuan.com/uploads/20170828/1503916670.png','0',1),(10,'新加坡Tumi','满2000立减100新加坡元','1506524754000','1514300798000','1',' 这是是详细介绍 ',6,'jinnang','http://jinnangtuan.com/uploads/20170907/1504778592.jpg','0',1),(13,'泰国新罗免税店','满2000立减100泰币','1506524754000','1514300798000','1',' 这是是详细介绍 ',5,'union','http://jinnangtuan.com/uploads/20170828/1503917187.png','0',2);
 /*!40000 ALTER TABLE `tour_coupon` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour_coupon_user`
+--
+
+DROP TABLE IF EXISTS `tour_coupon_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_coupon_user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `coupon_id` int(10) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_coupon_user`
+--
+
+LOCK TABLES `tour_coupon_user` WRITE;
+/*!40000 ALTER TABLE `tour_coupon_user` DISABLE KEYS */;
+INSERT INTO `tour_coupon_user` VALUES (18,1,4,0),(19,5,4,0),(20,3,1,0),(21,5,1,0),(22,4,1,0),(23,1,1,0),(24,6,1,0),(25,7,1,0),(26,9,1,0),(27,10,1,0),(28,8,1,0);
+/*!40000 ALTER TABLE `tour_coupon_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -191,6 +217,7 @@ CREATE TABLE `tour_user` (
   `user_name` varchar(60) DEFAULT NULL,
   `user_phone` varchar(11) NOT NULL,
   `user_pwd` varchar(255) NOT NULL,
+  `user_headpic` varchar(255) NOT NULL DEFAULT 'http://jinnangtuan.com/static/img/users/jinnangusers/head.png',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -201,7 +228,7 @@ CREATE TABLE `tour_user` (
 
 LOCK TABLES `tour_user` WRITE;
 /*!40000 ALTER TABLE `tour_user` DISABLE KEYS */;
-INSERT INTO `tour_user` VALUES (1,'赵一鸣','13126919251','e10adc3949ba59abbe56e057f20f883e'),(2,NULL,'13126919255','e10adc3949ba59abbe56e057f20f883e'),(3,NULL,'13126919252','00c66aaf5f2c3f49946f15c1ad2ea0d3'),(4,NULL,'13126919253','e10adc3949ba59abbe56e057f20f883e'),(5,NULL,'13126919254','e10adc3949ba59abbe56e057f20f883e'),(6,NULL,'13126919256','e10adc3949ba59abbe56e057f20f883e'),(7,NULL,'13126919257','e10adc3949ba59abbe56e057f20f883e'),(8,NULL,'13126919250','96e79218965eb72c92a549dd5a330112'),(9,NULL,'13126919258','e10adc3949ba59abbe56e057f20f883e'),(10,NULL,'13126919221','e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `tour_user` VALUES (1,'赵一鸣','13126919251','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(2,NULL,'13126919255','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(3,NULL,'13126919252','00c66aaf5f2c3f49946f15c1ad2ea0d3','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(4,NULL,'13126919253','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(5,NULL,'13126919254','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(6,NULL,'13126919256','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(7,NULL,'13126919257','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(8,NULL,'13126919250','96e79218965eb72c92a549dd5a330112','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(9,NULL,'13126919258','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png'),(10,NULL,'13126919221','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png');
 /*!40000 ALTER TABLE `tour_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -214,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-28 22:40:01
+-- Dump completed on 2017-09-29 17:39:37
