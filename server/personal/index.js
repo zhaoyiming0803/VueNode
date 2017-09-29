@@ -44,7 +44,7 @@ router.post('/showCoupon', (req, res) => {
 	const userId = msg.userId;
 	const type = msg.type;
 
-	db('select a.id, a.coupon_name, a.coupon_explain, a.coupon_ico_path, a.coupon_recived_num, b.status from tour_coupon as a right join tour_coupon_user as b on a.id=b.coupon_id where a.coupon_status=0 and a.coupon_type="'+ type +'" and a.id in (select coupon_id from tour_coupon_user where user_id="'+ userId +'")', (error, data) => {
+	db('select a.id, a.coupon_name, a.coupon_explain, a.coupon_ico_path, a.coupon_recived_num, b.status from tour_coupon as a right join tour_coupon_user as b on a.id=b.coupon_id where a.coupon_status=0 and a.coupon_type="'+ type +'" and a.id in (select coupon_id from tour_coupon_user where user_id="'+ userId +'") and b.user_id="'+ userId +'"', (error, data) => {
 		data && res.json({couponList: data});
 	});
 });
