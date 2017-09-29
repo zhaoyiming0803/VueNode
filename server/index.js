@@ -16,6 +16,10 @@ router.use('/login', require(__dirname + '/account/loginAction'));
 // 找回密码
 router.use('/forgetPwd', require(__dirname + '/account/forgetPwdAction'));
 
+// 个人中心
+
+router.use('/personal', require(__dirname + '/personal/index'));
+
 // 首页
 router.use('/globalCoupon', require(__dirname + '/global-coupon/index'));
 

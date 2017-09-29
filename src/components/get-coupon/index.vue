@@ -19,13 +19,20 @@
 		</div>
 
 		<div class="coupon-bottom-wraper" id="coupon-bottom-wraper">
-			<a href="javascript:;" class="coupon-btn">立即领取</a>
+			<a href="javascript:;" class="coupon-btn" v-on:click="getCoupon();">立即领取</a>
 
 			<!-- 优惠券领取规则 -->
 			<coupon-rule></coupon-rule>
 
 			<!-- 用户文字和星级评价 -->
 			<coupon-comment v-bind:comments="comments"></coupon-comment>
+		</div>
+
+		<!-- 领取状态 -->
+		<div class="get-coupon-status" v-bind:class="{'dis-block': couponStatus!=='', 'dis-none': couponStatus===''}">
+			<div class="prompt">{{couponStatus}}</div>
+			<a href="javascript:;" class="btn" v-if="couponMark===0">重新领取</a>
+			<a href="javascript:;" class="btn" v-if="couponMark===1 || couponMark==2">立即使用</a>
 		</div>
 
 		<footer-nav></footer-nav>
@@ -43,7 +50,9 @@
 			return {
 				explainName: '领取优惠券',
 				coupon: {},
-				comments: []
+				comments: [],
+				couponStatus: '',
+				couponMark: 0
 			}
 		},
 		components: {
@@ -58,6 +67,20 @@
 				this.coupon = data.couponDetail[0];
 				this.comments = data.couponDetail;
 			});
+		},
+		methods: {
+			getCoupon () {
+				try {
+					const userMsg = JSON.parse(window.sessionStorage.userMsg);
+					this.$http.post('/getCoupon/getCoupon', {couponId: this.$route.params.couponId, userId: userMsg.id}, {emulateJSON: true}).then((result) => {
+						const data = JSON.parse(result.bodyText);
+						this.couponStatus = data.backInfo;
+						this.couponMark = data.backMark;
+					});
+				} catch (e) {
+					this.$router.push({name: 'Login'});
+				}
+			}
 		},
 		filters: {
 			dateFormate (timestamp) {
@@ -142,6 +165,39 @@
 				color: #fff;
 				font-size: 16px;
 			}
+		}
+	}
+
+	.get-coupon-status {
+		position: fixed;
+		z-index: 10001;
+		top: 30%;
+		left: 50%;
+		margin-left: -98px;
+		width: 197px;
+		height: 209px;
+		background-image: url("./images/lingqu.png");
+		background-repeat: no-repeat;
+		background-size: 197px 209px;
+		.prompt {
+			position: absolute;
+			top: 128px;
+			width: 100%;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			font-size: 15px;
+		}
+		.btn {
+			display: block;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 42px;
+			line-height: 40px;
+			text-align: center;
+			font-size: 15px;
+			color: #fff;
 		}
 	}
 </style>

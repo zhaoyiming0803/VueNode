@@ -21,7 +21,24 @@
 			</div>
 		</div>
 
-		<coupon-list v-bind:couponList="couponList"></coupon-list>
+		<div class="coupon-list-wraper">
+			<router-link v-for="(v, k) in couponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" v-bind:class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}">
+				<div class="shop-ico">
+					<img v-bind:src=v.coupon_ico_path width="100%" height="100%" v-bind:alt=v.coupon_name />
+				</div>
+				<div class="shop-intro">
+					<div class="shop-title">{{v.coupon_name}}</div>
+					<div class="shop-price">
+						<span class="condition">{{v.coupon_explain}}</span>
+					</div>
+				</div>
+				<div class="shop-active shop-active-canuse">
+					<p>已抢</p>
+					<p>{{v.coupon_recived_num}}</p>
+					<span class="" v-bind:class="{'use-discount': v.coupon_status==0, 'used': v.coupon_status==1, 'past': v.coupon_status==2}"></span>
+				</div>
+			</router-link>
+		</div>
 
 		<footer-nav></footer-nav>
 	</div>
@@ -30,7 +47,6 @@
 <script type="text/ecmascript-6">
 	import {mapActions, mapGetters} from 'vuex';
 	import explain from '../header-explain/index.vue';
-	import couponList from '../coupon-list/index.vue';
 	import footerNav from '../footer-nav/index.vue';
 
 	export default {
@@ -52,7 +68,6 @@
 		]),
 		components: {
 			explain,
-			couponList,
 			footerNav
 		},
 		mounted () {
@@ -104,6 +119,8 @@
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
+	@import "../../../static/less/coupon.less";
+
 	.mb10 {
 		margin-bottom: 10px;
 	}
