@@ -1,4 +1,5 @@
 <template>
+	<!-- APP全球优惠首页组件 -->
 	<div class="global-coupon-wraper">
 
 		<!-- 遮罩层 -->
@@ -39,7 +40,7 @@
 				<span class="title-right"></span>
 			</div>
 			<div class="content clearfix">
-				<router-link tag="a" v-for="(v, k) in hotCoupon" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" class="item">
+				<router-link tag="a" v-for="(v, k) in hotCoupon" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id, showType: 1}}" class="item">
 					<img v-bind:src=v.coupon_ico_path width="98%" />
 					<p class="hot-title">{{v.coupon_name}}</p>
 					<p class="hot-discounts">{{v.coupon_explain}}</p>

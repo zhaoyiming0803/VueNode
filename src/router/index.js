@@ -79,7 +79,7 @@ export default new Router({
 		},
 
 		{
-			path: '/getCoupon/:couponId',
+			path: '/getCoupon/:couponId/:showType',
 			name: 'GetCoupon',
 			component: getCoupon
 		}

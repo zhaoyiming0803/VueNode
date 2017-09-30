@@ -1,4 +1,5 @@
 <template>
+	<!-- 栏目划分组件 -->
 	<div class="column-divide-wraper">
 		<span class="left"></span>
 		<span class="center">{{columnName}}</span>

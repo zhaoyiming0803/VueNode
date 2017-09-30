@@ -1,4 +1,5 @@
 <template>
+	<!-- 个人中心组件 -->
 	<div class="personal-wraper">
 
 		<explain v-bind:explainName="explainName"></explain>
@@ -26,7 +27,7 @@
 					<span class="flex-ico" v-bind:class="{'flex-ico-up': isUnionpay, 'flex-ico-down': !isUnionpay}"></span>
 				</div>
 				<div class="coupon-list-wraper" v-bind:class="{'gift-detail-on': isUnionpay, 'gift-detail-off': !isUnionpay}">
-					<router-link v-for="(v, k) in unionCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
+					<router-link v-for="(v, k) in unionCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id, showType: 2}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
 						<div class="shop-ico">
 							<img v-bind:src=v.coupon_ico_path width="100%" height="100%" v-bind:alt=v.coupon_name />
 						</div>
@@ -59,7 +60,7 @@
 					<span class="flex-ico" v-bind:class="{'flex-ico-up': isVisa, 'flex-ico-down': !isVisa}"></span>
 				</div>
 				<div class="coupon-list-wraper" v-bind:class="{'gift-detail-on': isVisa, 'gift-detail-off': !isVisa}">
-					<router-link v-for="(v, k) in visaCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
+					<router-link v-for="(v, k) in visaCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id, showType: 2}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
 						<div class="shop-ico">
 							<img v-bind:src=v.coupon_ico_path width="100%" height="100%" v-bind:alt=v.coupon_name />
 						</div>
@@ -92,7 +93,7 @@
 					<span class="flex-ico" v-bind:class="{'flex-ico-up': isJinnang, 'flex-ico-down': !isJinnang}"></span>
 				</div>
 				<div class="coupon-list-wraper" v-bind:class="{'gift-detail-on': isJinnang, 'gift-detail-off': !isJinnang}">
-					<router-link v-for="(v, k) in jinnangCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
+					<router-link v-for="(v, k) in jinnangCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id, showType: 2}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
 						<div class="shop-ico">
 							<img v-bind:src=v.coupon_ico_path width="100%" height="100%" v-bind:alt=v.coupon_name />
 						</div>
@@ -125,7 +126,7 @@
 					<span class="flex-ico" v-bind:class="{'flex-ico-up': isGaodaowu, 'flex-ico-down': !isGaodaowu}"></span>
 				</div>
 				<div class="coupon-list-wraper" v-bind:class="{'gift-detail-on': isGaodaowu, 'gift-detail-off': !isGaodaowu}">
-					<router-link v-for="(v, k) in gaodaowuCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
+					<router-link v-for="(v, k) in gaodaowuCouponList" :key="k" :to="{name: 'GetCoupon', params: {couponId: v.id, showType: 2}}" v-bind:class="{'use-discount-bg': v.status==0, 'used-bg': v.status==1, 'past-bg': v.status==2}">
 						<div class="shop-ico">
 							<img v-bind:src=v.coupon_ico_path width="100%" height="100%" v-bind:alt=v.coupon_name />
 						</div>
