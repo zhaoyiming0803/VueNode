@@ -70,6 +70,13 @@ router.post('/publishComment', (req, res) => {
 	let addComment = null;
 	let changeStatus = null;
 
+	/*
+	* 按照一般的逻辑：用户购买或使用产品之后才能进行评论；
+	* 这里的优惠券暂时没有判断什么时候就算使用了，所以测试执行以下逻辑：
+	* 用户发表评论这个【动作】即是【使用】优惠券，优惠券使用完之后不能再次使用
+	* 线上的项目，这块儿的逻辑可以修改下
+	*/
+
 	db('select status from tour_coupon_user where coupon_id="'+ couponId +'" and user_id="'+ id +'"', (error, data) => {
 		if (data && data[0].status==0) {
 			addComment = new Promise((resolve, reject) => {
