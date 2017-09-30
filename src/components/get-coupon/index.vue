@@ -52,7 +52,7 @@
 		</div>
 
 		<star></star>
-		<h1>3分</h1>
+		<h1>{{starGrade}}分</h1>
 		<footer-nav></footer-nav>
 	</div>
 </template>
@@ -76,7 +76,8 @@
 				couponStatus: '',
 				couponMark: 0,
 				columnName: '参与方式',
-				showType: 1
+				showType: 1,
+				starGrade: 0
 			}
 		},
 		components: {
@@ -89,11 +90,16 @@
 			star
 		},
 		mounted () {
-			this.$http.post('/getCoupon/couponDetail', {couponId: this.$route.params.couponId}, {emulateJSON: true}).then((result) => {
+			const _this = this;
+			_this.$http.post('/getCoupon/couponDetail', {couponId: _this.$route.params.couponId}, {emulateJSON: true}).then((result) => {
 				const data = JSON.parse(result.bodyText);
-				this.coupon = data.couponDetail[0];
-				this.comments = data.couponDetail;
-				this.showType = this.$route.params.showType;
+				_this.coupon = data.couponDetail[0];
+				_this.comments = data.couponDetail;
+				_this.showType = _this.$route.params.showType;
+			});
+
+			vueEvent.$on('starGrade', (starGrade) => {
+				_this.starGrade = starGrade;
 			});
 		},
 		methods: {

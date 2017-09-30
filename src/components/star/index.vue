@@ -26,6 +26,7 @@
 		methods: {
 			grade (num) {
 				this.gradeStarArry = this.starArry.slice(4-num, 9-num);
+				vueEvent.$emit('starGrade', num+1);
 			}
 		}
 	}
