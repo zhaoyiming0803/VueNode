@@ -72,6 +72,7 @@
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_2.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_1.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_3.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/star.png)
 
 ### 写在最后
 
