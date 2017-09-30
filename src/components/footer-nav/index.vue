@@ -1,4 +1,5 @@
 <template>
+	<!-- 底部导航组件 -->
 	<div class="footer-nav-wraper">
 		<!-- 个人中心 -->
 		<div v-if="navName === 'personal'" class="box">

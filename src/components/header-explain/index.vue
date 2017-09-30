@@ -1,5 +1,5 @@
 <template>
-	<!-- 顶部 -->
+	<!-- 顶部固定定位组件 -->
 	<div class="fixed-header">
 		<!-- 页面说明 -->
 		<div class="explain"><a href="javascript:;" class="goback" id="goback" v-show="!isAccount" v-on:click="goback();"></a>{{explainName}}</div>

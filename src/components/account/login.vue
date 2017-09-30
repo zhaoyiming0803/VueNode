@@ -1,5 +1,5 @@
 <template>
-	<!-- 登录表单 -->
+	<!-- 登录组件 -->
 	<div class="account-container">
 		<form class="account-container-form" v-on:submit.prevent="login">
 			<p>

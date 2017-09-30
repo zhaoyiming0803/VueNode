@@ -1,4 +1,5 @@
 <template>
+	<!-- 找回密码第一步组件 -->
 	<div class="forgetpwd-wraper">
 
 		<explain v-bind:explainName="explainName"></explain>

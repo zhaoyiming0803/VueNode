@@ -1,5 +1,5 @@
 <template>
-	<!-- 注册表单 -->
+	<!-- 注册组件 -->
 	<div class="account-container">
 		<form v-on:submit.prevent="regist" class="account-container-form">
 			<p>

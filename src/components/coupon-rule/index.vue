@@ -1,4 +1,5 @@
 <template>
+	<!-- 优惠券使用规则组件 -->
 	<div class="coupon-rule-wraper" id="coupon-rule">
 		<column-divide v-bind:columnName="columnName"></column-divide>
 		<div class="content" id="content" v-bind:class="{'constant-height': isRuleShow}">

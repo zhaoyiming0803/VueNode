@@ -1,4 +1,5 @@
 <template>
+	<!-- 优惠券所属分类组件 -->
 	<div class="feature-wraper">
 		<div class="tag">
 			<span v-bind:class="{'this-tag': isShopping}" v-on:click="checkFeature(1);">购物</span>

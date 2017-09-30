@@ -44,11 +44,7 @@
 		cursor: pointer;
 	}
 		
-	.colourful {
-		color: #ffcc01;
-	}
+	.colourful {color: #ffcc01;}
 		
-	.gray {
-		color: #dcd7d7;
-	}
+	.gray {color: #dcd7d7;}
 </style>

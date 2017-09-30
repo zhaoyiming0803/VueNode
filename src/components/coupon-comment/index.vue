@@ -1,4 +1,5 @@
 <template>
+	<!-- 评论展示组件 -->
 	<div class="comment-wraper">
 		<column-divide v-bind:columnName="columnName"></column-divide>
 

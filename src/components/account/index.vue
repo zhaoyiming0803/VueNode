@@ -1,4 +1,5 @@
 <template>
+	<!-- 登录、注册、找回密码等父组件 -->
 	<div class="account-wraper">
 
 		<explain v-bind:explainName="explainName" v-bind:isAccount="isAccount"></explain>

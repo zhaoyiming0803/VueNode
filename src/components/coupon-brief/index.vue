@@ -1,4 +1,5 @@
 <template>
+	<!-- 优惠券信息简介组件 -->
 	<div class="coupon-top-wraper">
 		<div class="top-ico clearfix">
 			<span class="union-ico"></span>
