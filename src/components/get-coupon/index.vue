@@ -51,8 +51,25 @@
 			<a href="javascript:;" class="btn" v-if="couponMark===1 || couponMark===2" v-on:click="toUse();">立即使用</a>
 		</div>
 
-		<star></star>
-		<h1>{{starGrade}}分</h1>
+		<!-- 填写评论 -->
+		<div class="add-comment-wraper" v-if="showType==2">
+			<div style="margin: 2% 3%;">
+				<div class="comment-num clearfix">
+					<div class="comment-num-star">
+						<span class="comment-num-star-txt">您的评价</span>
+						<span class="star-wraper" id="star">
+							<star></star>
+						</span>
+					</div>
+					<div class="comment-num-txt"><span id="comment-num-txt">{{starGrade}}</span>分</div>
+				</div>
+				<div class="add-comment clearfix">
+					<input type="text" class="comment-box" id="comment-box" v-on:focus="amendInpt();" v-model.lazy.trim="commentContent"/>
+					<input type="button" value="发布" id="publish-comment" class="publish-comment" v-on:click="publishComment();" />
+				</div>
+			</div>
+		</div>
+
 		<footer-nav></footer-nav>
 	</div>
 </template>
@@ -77,7 +94,8 @@
 				couponMark: 0,
 				columnName: '参与方式',
 				showType: 1,
-				starGrade: 0
+				starGrade: 0,
+				commentContent: ''
 			}
 		},
 		components: {
@@ -118,6 +136,34 @@
 			toUse () {
 				this.showType = '2';
 				this.couponStatus = '';
+			},
+			amendInpt () {
+				// 解决ios系统输入法遮挡input框的问题
+				let timer = setTimeout(() => {
+					let oBody = document.body;
+					oBody.scrollTop = oBody.scrollHeight;
+					clearTimeout(timer);
+					timer = null;
+				}, 500);
+			},
+			publishComment () {
+				try {
+					const userMsg = JSON.parse(window.sessionStorage.userMsg);
+					const id = userMsg.id;
+					const phone = userMsg.phone;
+					const starGrade = this.starGrade;
+					const commentContent = this.commentContent;
+					const couponId = this.$route.params.couponId;
+
+					commentContent.length 
+					? this.$http.post('/getCoupon/publishComment', {id, phone, starGrade, commentContent, couponId}, {emulateJSON: true}).then((result) => {
+						const data = JSON.parse(result.bodyText);
+						alert(data.backInfo);
+					})
+					: alert('评论内容不能为空！');
+				} catch (e) {
+					this.$router.push({name: 'Login'});
+				}
 			}
 		}
 	}
@@ -196,5 +242,64 @@
 			font-size: 15px;
 			color: #fff;
 		}
+	}
+
+	.add-comment-wraper {
+		position: fixed;
+		bottom: 0;
+		z-index: 10001;
+		width: 100%;
+		max-width: 640px;
+		background-color: #fff;
+		.comment-num {
+			margin-bottom: 7px;
+			.comment-num-star {
+				float: left;
+				.star-wraper {
+					display: inline-block;
+				}
+				.comment-num-star-txt {
+					margin-right: 10px;
+				}
+			}
+			.comment-num-txt {
+				float: right;
+				margin-right: 10px;
+				font-size: 17px;
+				font-weight: 500;
+			}
+		}
+		.add-comment {
+			position: relative;
+			.publish-comment {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 20%;
+				height: 30px;
+				border-radius: 25px;
+				border: 1px solid #23a1df;
+				color: #23a1df;
+				font-size: 15px;
+				background-color: #fff;
+			}
+		}
+		.comment-box {
+			position: relative;
+			bottom: 0;
+			width: 74%;
+			min-height: 30px;
+			line-height: 30px;
+			padding-left: 3%;
+			border-radius: 25px;
+			background-color: #efefef;
+		}
+	}
+
+	@media only screen and (min-width: 640px) {
+		.add-comment-wraper {
+			left: 50%;
+			margin-left: -320px;
+		}	
 	}
 </style>

@@ -44,9 +44,9 @@ router.post('/getCoupon', (req, res) => {
 	});
 
 	validateCoupon.then((result) => {
-		result.length ?
-		res.json({backInfo: '已经领取过了', backMark: 2}) :
-		db('insert into tour_coupon_user set coupon_id="'+ couponId +'", user_id="'+ userId +'"', (error, data) => {
+		result.length
+		? res.json({backInfo: '已经领取过了', backMark: 2})
+		: db('insert into tour_coupon_user set coupon_id="'+ couponId +'", user_id="'+ userId +'"', (error, data) => {
 			if (data.insertId) {
 				db('update tour_coupon set coupon_recived_num=coupon_recived_num+1 where id="'+ couponId +'"', (error, data) => {
 					data ? res.json({backInfo: '领取成功', backMark: 1}) : res.json({backInfo: '领取失败，请重新操作', backMark: 0});
@@ -54,6 +54,49 @@ router.post('/getCoupon', (req, res) => {
 			}
 		});
 	});
+});
+
+/*
+* 发布评价
+*/
+router.post('/publishComment', (req, res) => {
+	const msg = req.body;
+	const id = msg.id;
+	const phone = msg.phone;
+	const starGrade = msg.starGrade;
+	const commentContent = msg.commentContent;
+	const couponId = msg.couponId;
+
+	let addComment = null;
+	let changeStatus = null;
+
+	db('select status from tour_coupon_user where coupon_id="'+ couponId +'" and user_id="'+ id +'"', (error, data) => {
+		if (data && data[0].status==0) {
+			addComment = new Promise((resolve, reject) => {
+				db('insert into tour_comment set comment_user_phone="'+ phone +'", comment_star="'+ starGrade +'", comment_content="'+ commentContent +'", comment_time="'+ new Date().getTime() +'", comment_coupon_id="'+ couponId +'"', (error, data) => {
+					data ? resolve(data) : reject(error);
+				});
+			});
+
+			changeStatus = new Promise((resolve, reject) => {
+				db('update tour_coupon_user set status=1 where coupon_id="'+ couponId +'" and user_id="'+ id +'"', (error, data) => {
+					data ? resolve(data) : reject(error);
+				});
+			});
+
+			Promise.all([addComment, changeStatus]).then((result) => {
+				(result[0] && result[1])
+				? res.json({backInfo: '评论成功'})
+				: res.json({backInfo: '发布失败，请重新操作'});
+				addComment = changeStatus = null;
+			});
+			
+		} else {
+			res.json({backInfo: '您已经使用过此优惠券了！'})
+		}
+	});
+	
+	
 });
 
 module.exports = router;

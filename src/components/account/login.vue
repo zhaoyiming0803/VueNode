@@ -55,8 +55,13 @@
 			}
 		},
 		mounted () {
-			if (!window.sessionStorage) {
+			let $sessionStorage = window.sessionStorage;
+			if (!$sessionStorage) {
 				alert('为保证您可以正常使用我们的产品，请关闭浏览器的无痕浏览模式！');
+				return;
+			}
+			if ($sessionStorage.userMsg && JSON.parse($sessionStorage.userMsg).id) {
+				this.$router.push({name: 'GlobalCouponIndex'});
 			}
 		}
 	}
