@@ -24,6 +24,11 @@
 			this.gradeStarArry = starArry.slice(5, 10);
 		},
 		methods: {
+			/*
+			* 星级评分组件一般是作为其他组件的子组件使用；
+			* 这里使用【单一事件管理】的方法将星级分数传给父组件；
+			* 也可以通过props属性，获取父组件的一个对象(内存地址)，然后将对象的某个属性设置成星级分数值！
+			*/
 			grade (num) {
 				this.gradeStarArry = this.starArry.slice(4-num, 9-num);
 				vueEvent.$emit('starGrade', num+1);

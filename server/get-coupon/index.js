@@ -70,12 +70,11 @@ router.post('/publishComment', (req, res) => {
 	let addComment = null;
 	let changeStatus = null;
 
-	/*
-	* 按照一般的逻辑：用户购买或使用产品之后才能进行评论；
-	* 这里的优惠券暂时没有判断什么时候就算使用了，所以测试执行以下逻辑：
-	* 用户发表评论这个【动作】即是【使用】优惠券，优惠券使用完之后不能再次使用
-	* 线上的项目，这块儿的逻辑可以修改下
-	*/
+	
+	// 按照一般的逻辑：用户购买或使用产品之后才能进行评论；
+	// 这里的优惠券暂时没有判断什么时候就算使用了，所以测试执行以下逻辑：
+	// 用户发表评论这个【动作】即是【使用】优惠券，优惠券使用完之后不能再次使用
+	// 线上的项目，这块儿的逻辑可以修改下
 
 	db('select status from tour_coupon_user where coupon_id="'+ couponId +'" and user_id="'+ id +'"', (error, data) => {
 		if (data && data[0].status==0) {
@@ -96,14 +95,11 @@ router.post('/publishComment', (req, res) => {
 				? res.json({backInfo: '评论成功'})
 				: res.json({backInfo: '发布失败，请重新操作'});
 				addComment = changeStatus = null;
-			});
-			
+			});	
 		} else {
 			res.json({backInfo: '您已经使用过此优惠券了！'})
 		}
 	});
-	
-	
 });
 
 module.exports = router;
