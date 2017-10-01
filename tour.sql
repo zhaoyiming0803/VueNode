@@ -79,7 +79,7 @@ CREATE TABLE `tour_comment` (
   `comment_time` varchar(30) DEFAULT NULL,
   `comment_coupon_id` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +88,7 @@ CREATE TABLE `tour_comment` (
 
 LOCK TABLES `tour_comment` WRITE;
 /*!40000 ALTER TABLE `tour_comment` DISABLE KEYS */;
-INSERT INTO `tour_comment` VALUES (1,'优惠券很好用，优惠力度很大',5,'13126919252','1506605105000',1),(2,'非常喜欢，产品不错',4,'13126919251','1506605439000',1),(3,'不太好用，网卡',1,'13126919252','1506605469000',3),(4,'还不错',3,'13126919255','1506607137000',3),(5,'挺好的',4,'13126919256','1506607149000',3),(6,'用着还行',5,'13126919253','1506607176000',4),(7,'还行吧，能解决问题',5,'13126919251','1506607188000',4),(8,'去日本玩的好，多亏了这里的优惠券',1,'13126919254','1506608981000',6),(9,'泰国一日游，优惠券都用完了，以后还会有吗？',4,'13126919254','1506609036000',9),(15,'的认同感',3,'13126919251','1506758614972',6),(14,'的认同感',3,'13126919251','1506758611991',6),(13,'我的天哪，太好用了！',5,'13126919254','1506757841652',3),(16,'发',4,'13126919251','1506758634550',6),(18,'第三方',0,'13126919251','1506759570649',4),(19,'纵贯线',2,'13126919251','1506759650831',7),(20,'个人业余项目，使用node.js+mysql+vue.js+webpack+less+es6技术栈构建。 http://www.zymseo.com/qianduan/',4,'13126919254','1506760673210',3);
+INSERT INTO `tour_comment` VALUES (1,'优惠券很好用，优惠力度很大',5,'13126919252','1506605105000',1),(2,'非常喜欢，产品不错',4,'13126919251','1506605439000',1),(3,'不太好用，网卡',1,'13126919252','1506605469000',3),(4,'还不错',3,'13126919255','1506607137000',3),(5,'挺好的',4,'13126919256','1506607149000',3),(6,'用着还行',5,'13126919253','1506607176000',4),(7,'还行吧，能解决问题',5,'13126919251','1506607188000',4),(8,'去日本玩的好，多亏了这里的优惠券',1,'13126919254','1506608981000',6),(9,'泰国一日游，优惠券都用完了，以后还会有吗？',4,'13126919254','1506609036000',9),(15,'的认同感',3,'13126919251','1506758614972',6),(14,'的认同感',3,'13126919251','1506758611991',6),(13,'我的天哪，太好用了！',5,'13126919254','1506757841652',3),(16,'发',4,'13126919251','1506758634550',6),(18,'第三方',0,'13126919251','1506759570649',4),(19,'纵贯线',2,'13126919251','1506759650831',7),(20,'个人业余项目，使用node.js+mysql+vue.js+webpack+less+es6技术栈构建。 http://www.zymseo.com/qianduan/',4,'13126919254','1506760673210',3),(21,'star评分组件',3,'13126919258','1506776596801',4),(22,'sdf',4,'13126919253','1506866382195',3),(23,'香港买买买',3,'13126919251','1506875911586',8);
 /*!40000 ALTER TABLE `tour_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +146,7 @@ CREATE TABLE `tour_coupon` (
 
 LOCK TABLES `tour_coupon` WRITE;
 /*!40000 ALTER TABLE `tour_coupon` DISABLE KEYS */;
-INSERT INTO `tour_coupon` VALUES (3,'新罗免税店','满2000立减100元','1506524754000','1514300798000','5',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503915401.png','0',1),(4,'都塔购物中心','满2000立减100元','1506524754000','1514300798000','6',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503916455.png','0',1),(6,'松本清','满2000立减100日元','1506524754000','1514300798000','4',' 这是是详细介绍 ',4,'jinnang','http://jinnangtuan.com/uploads/20170828/1503920325.png','0',1),(7,'高岛屋','满2000立减100日元','1506524754000','1514300798000','3',' 这是是详细介绍 ',4,'gaodaowu','http://jinnangtuan.com/uploads/20170922/1506048040.jpg','0',1),(8,'周先生','满2000立减100港币','1506524754000','1514300798000','1',' 这是是详细介绍 ',2,'jinnang','http://jinnangtuan.com/uploads/20170828/1503918518.png','0',2),(9,'王权免税店','满2000立减100泰币','1506524754000','1514300798000','2',' 这是是详细介绍 ',5,'visa','http://jinnangtuan.com/uploads/20170828/1503916670.png','0',1),(10,'新加坡Tumi','满2000立减100新加坡元','1506524754000','1514300798000','2',' 这是是详细介绍 ',6,'jinnang','http://jinnangtuan.com/uploads/20170907/1504778592.jpg','0',1),(13,'泰国新罗免税店','满2000立减100泰币','1506524754000','1514300798000','1',' 这是是详细介绍 ',5,'union','http://jinnangtuan.com/uploads/20170828/1503917187.png','0',2);
+INSERT INTO `tour_coupon` VALUES (3,'新罗免税店','满2000立减100元','1506524754000','1514300798000','5',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503915401.png','0',1),(4,'都塔购物中心','满2000立减100元','1506524754000','1514300798000','7',' 这是是详细介绍 ',3,'union','http://jinnangtuan.com/uploads/20170828/1503916455.png','0',1),(6,'松本清','满2000立减100日元','1506524754000','1514300798000','4',' 这是是详细介绍 ',4,'jinnang','http://jinnangtuan.com/uploads/20170828/1503920325.png','0',1),(7,'高岛屋','满2000立减100日元','1506524754000','1514300798000','3',' 这是是详细介绍 ',4,'gaodaowu','http://jinnangtuan.com/uploads/20170922/1506048040.jpg','0',1),(8,'周先生','满2000立减100港币','1506524754000','1514300798000','2',' 这是是详细介绍 ',2,'jinnang','http://jinnangtuan.com/uploads/20170828/1503918518.png','0',2),(9,'王权免税店','满2000立减100泰币','1506524754000','1514300798000','2',' 这是是详细介绍 ',5,'visa','http://jinnangtuan.com/uploads/20170828/1503916670.png','0',1),(10,'新加坡Tumi','满2000立减100新加坡元','1506524754000','1514300798000','2',' 这是是详细介绍 ',6,'jinnang','http://jinnangtuan.com/uploads/20170907/1504778592.jpg','0',1),(13,'泰国新罗免税店','满2000立减100泰币','1506524754000','1514300798000','1',' 这是是详细介绍 ',5,'union','http://jinnangtuan.com/uploads/20170828/1503917187.png','0',2);
 /*!40000 ALTER TABLE `tour_coupon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +163,7 @@ CREATE TABLE `tour_coupon_user` (
   `user_id` int(10) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `tour_coupon_user` (
 
 LOCK TABLES `tour_coupon_user` WRITE;
 /*!40000 ALTER TABLE `tour_coupon_user` DISABLE KEYS */;
-INSERT INTO `tour_coupon_user` VALUES (32,4,1,1),(33,3,1,1),(34,7,1,1),(35,4,4,0),(36,7,4,1),(37,6,1,0),(38,6,4,0),(39,4,6,0),(40,10,1,0),(41,3,4,0),(42,3,5,1);
+INSERT INTO `tour_coupon_user` VALUES (32,4,1,1),(33,3,1,1),(34,7,1,1),(35,4,4,0),(36,7,4,1),(37,6,1,0),(38,6,4,0),(39,4,6,0),(40,10,1,0),(41,3,4,1),(42,3,5,1),(43,4,9,1),(44,8,1,1);
 /*!40000 ALTER TABLE `tour_coupon_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +229,7 @@ CREATE TABLE `tour_user` (
 
 LOCK TABLES `tour_user` WRITE;
 /*!40000 ALTER TABLE `tour_user` DISABLE KEYS */;
-INSERT INTO `tour_user` VALUES (1,'赵一鸣','13126919251','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(2,'柳生飘絮','13126919255','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(3,'成是非','13126919252','00c66aaf5f2c3f49946f15c1ad2ea0d3','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(4,'归海一刀','13126919253','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(5,'不败顽童','13126919254','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(6,'云罗郡主','13126919256','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(7,'朱铁胆','13126919257','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(8,'海棠','13126919250','96e79218965eb72c92a549dd5a330112','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(9,'断天涯','13126919258','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(10,'万三千','13126919221','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0);
+INSERT INTO `tour_user` VALUES (1,'赵一鸣','13126919251','e10adc3949ba59abbe56e057f20f883e','http://www.zymseo.com/images/logo.jpg',1),(2,'柳生飘絮','13126919255','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(3,'成是非','13126919252','00c66aaf5f2c3f49946f15c1ad2ea0d3','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(4,'归海一刀','13126919253','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1506875066698.png',1),(5,'古三通','13126919254','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1506875379823.jpg',1),(6,'云罗郡主','13126919256','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1506875974089.jpg',0),(7,'朱铁胆','13126919257','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(8,'海棠','13126919250','96e79218965eb72c92a549dd5a330112','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(9,'断天涯','13126919258','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(10,'万三千','13126919221','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0);
 /*!40000 ALTER TABLE `tour_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -242,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-30 17:53:52
+-- Dump completed on 2017-10-02  0:49:35
