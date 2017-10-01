@@ -17,8 +17,10 @@ router.use('/login', require(__dirname + '/account/loginAction'));
 router.use('/forgetPwd', require(__dirname + '/account/forgetPwdAction'));
 
 // 个人中心
-
 router.use('/personal', require(__dirname + '/personal/index'));
+
+// 个人资料修改
+router.use('/personalEdit', require(__dirname + '/personal/personal-edit'));
 
 // 首页
 router.use('/globalCoupon', require(__dirname + '/global-coupon/index'));

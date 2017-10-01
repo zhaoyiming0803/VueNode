@@ -13,7 +13,7 @@
 				<img src="./images/phone.png" width="30" height="30" class="phone-ico" alt="手机" />
 				<span class="phone-num">{{personMsg.phone}}</span>
 			</div>
-			<a href="javascript:;" class="setting"></a>
+			<router-link tag="a" :to="{name: 'PersonalEdit', params: {'headpic': personMsg.headpic}}" class="setting"></router-link>
 		</div>
 
 		<!-- 卡包列表 -->

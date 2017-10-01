@@ -12,6 +12,12 @@ const forgetPwdSecondStep = () => import('@/components/account/forgetpwd-seconds
 // 个人中心
 const personal = () => import('@/components/personal/index.vue');
 
+// 编辑个人信息
+const personalEdit = () => import('@/components/personal/personal-edit.vue');
+const changeUserHeadpic = () => import('@/components/personal/change-headpic.vue');
+const changeUserName = () => import('@/components/personal/change-username.vue');
+const changeUserSex = () => import('@/components/personal/change-usersex.vue');
+
 // 首页
 const globalCouponIndex = () => import('@/components/global-coupon/index.vue');
 
@@ -64,6 +70,26 @@ export default new Router({
 			path: '/personal',
 			name: 'Personal',
 			component: personal
+		},
+		{
+			path: '/personalEdit/:headpic',
+			name: 'PersonalEdit',
+			component: personalEdit
+		},
+		{
+			path: '/changeUserHeadpic/:userId',
+			name: 'ChangeUserHeadpic',
+			component: changeUserHeadpic
+		},
+		{
+			path: '/changeUserName/:userId/:userName',
+			name: 'ChangeUserName',
+			component: changeUserName
+		},
+		{
+			path: '/changeUserSex/:userId/:userSex',
+			name: 'ChangeUserSex',
+			component: changeUserSex
 		},
 
 		{
