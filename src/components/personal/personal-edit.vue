@@ -6,7 +6,7 @@
 		<!-- 个人信息 -->
 		<div class="personal-msg-wraper personal-edit-msg-wraper">
 			<div class="personal-edit-head">
-				<router-link tag="a" :to="{name: 'ChangeUserHeadpic', params: {'userId': userId}}">
+				<router-link tag="a" :to="{name: 'ChangeUserHeadpic', params: {'userId': userId, 'headpic': headpic}}">
 					<img v-bind:src=headpic width="119" height="119" alt="头像" />
 				</router-link>
 			</div>
@@ -61,11 +61,12 @@
 			try {
 				const userMsg = JSON.parse(window.sessionStorage.userMsg);
 				this.userId = userMsg.id;
-				this.headpic = this.$route.params.headpic;
 				this.$http.post('/personalEdit/getMsg', {userId: this.userId}, {emulateJSON: true}).then((result) => {
 					const data = JSON.parse(result.bodyText).backInfo[0];
 					this.userName = data.user_name;
 					this.userSex = data.user_sex;
+					this.headpic = data.user_headpic;
+					console.log(this.headpic);
 				});
 			} catch (e) {
 				this.$router.push({name: 'Login'});

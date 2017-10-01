@@ -13,14 +13,14 @@
 				<img src="./images/phone.png" width="30" height="30" class="phone-ico" alt="手机" />
 				<span class="phone-num">{{personMsg.phone}}</span>
 			</div>
-			<router-link tag="a" :to="{name: 'PersonalEdit', params: {'headpic': personMsg.headpic}}" class="setting"></router-link>
+			<router-link tag="a" :to="{name: 'PersonalEdit'}" class="setting"></router-link>
 		</div>
 
 		<!-- 卡包列表 -->
 		<div class="gift-list-wraper distance-wraper">
 			<div class="title">卡包</div>
 			<!-- 银联优惠 -->
-			<div class="gift-item" v-if="unionNum !== 0">
+			<div class="gift-item">
 				<div class="brief" v-on:click="showUnion();">
 					<span class="gift-ico unionpay-ico"></span>
 					<span class="gift-name">银联优惠({{unionNum}})</span>
@@ -53,7 +53,7 @@
 			</div>
 
 			<!-- VISA权益 -->
-			<div class="gift-item" v-if="visaNum !== 0">
+			<div class="gift-item">
 				<div class="brief" v-on:click="showVisa();">
 					<span class="gift-ico visa-ico"></span>
 					<span class="gift-name">VISA权益({{visaNum}})</span>
@@ -86,7 +86,7 @@
 			</div>
 
 			<!-- 环球锦囊团优惠 -->
-			<div class="gift-item" v-if="jinnangNum !== 0">
+			<div class="gift-item">
 				<div class="brief" v-on:click="showJinnang();">
 					<span class="gift-ico jinnang-ico"></span>
 					<span class="gift-name">环球锦囊团优惠({{jinnangNum}})</span>
@@ -119,7 +119,7 @@
 			</div>
 
 			<!-- 高岛屋权益 -->
-			<div class="gift-item" v-if="gaodaowuNum !== 0">
+			<div class="gift-item">
 				<div class="brief" v-on:click="showGaodaowu();">
 					<span class="gift-ico gaodaowu-ico"></span>
 					<span class="gift-name">高岛屋权益({{gaodaowuNum}})</span>

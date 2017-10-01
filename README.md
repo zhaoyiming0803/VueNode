@@ -1,6 +1,6 @@
 ### 前言
 
-一直想做一个个人的Vue项目，刚好前段时间公司有个新上线的项目，看UI设计挺不错的，所以就用Node作为后端仿照做了一套。到目前为止，筹备+实施总共有2个半月，利用业余时间做，每天晚上12点发布新版本，估计再有1周就能完工了！
+一直想做一个个人的Vue项目，刚好前段时间公司有个新上线的项目，看UI设计挺不错的，所以就用Node作为后端仿照做了一套。到目前为止，筹备+实施总共有2个半月，利用业余时间做，已经全部完工了，现将所有项目源码更新至github，包括完整的数据库【tour.sql】！
 
 #### 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
 
@@ -52,7 +52,7 @@
 
 - [x] 登录、注册、密码修改（100%）
 - [x] 个人中心信息展示、资料修改（100%）
-- [ ] 头像上传（0%）
+- [x] 头像上传（100%）
 - [x] app首页（100%）
 - [x] app列表页——全球优惠券（100%）
 - [x] 展示国家与地区列表（100%）
@@ -69,11 +69,11 @@
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/regist.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/forget_password.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_1.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_2.png)
+![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_edit.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_1.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_3.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/star.png)
 
 ### 写在最后
 
-待更新。。。。。。
+整个项目包括后台数据添加和前台数据展示两大部分，目前前台展示已经全部做完了，系统后台后期可能会抽时间做完，暂时还不确定。

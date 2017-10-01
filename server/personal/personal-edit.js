@@ -7,6 +7,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const multer = require('../multer');
 
 /*
 * 获取用户基本信息
@@ -14,7 +15,7 @@ const db = require('../db');
 router.post('/getMsg', (req, res) => {
 	const msg = req.body;
 	const userId = msg.userId;
-	db('select user_name, user_sex from tour_user where id="'+ userId +'"', (error, data) => {
+	db('select user_name, user_sex, user_headpic from tour_user where id="'+ userId +'"', (error, data) => {
 		data && res.json({backInfo: data});
 	});
 });
@@ -22,8 +23,14 @@ router.post('/getMsg', (req, res) => {
 /*
 * 修改头像
 */
-router.post('/changeUserHeadpic', (req, res) => {
-	console.log(req.files);
+router.post('/changeUserHeadpic', multer.array('headpic'), (req, res, next) => {
+	const files = req.files[0];
+	const userId = req.body.id;
+	const filePath = '../../static/uploads/images/' + files.filename;
+	
+	db('update tour_user set user_headpic="'+ filePath +'" where id="'+ userId +'"', (error, data) => {
+		data && res.json({backInfo: data});
+	});
 });
 
 /*
@@ -34,7 +41,7 @@ router.post('/changeUserName', (req, res) => {
 	const userId = msg.userId;
 	const userName = msg.userName;
 	db('update tour_user set user_name="'+ userName +'" where id="'+ userId +'"', (error, data) => {
-		data && res.json({backInfo: '修改成功'});
+		data && res.json({backInfo: data.affectedRows});
 	});
 });
 

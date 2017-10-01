@@ -1,3 +1,9 @@
+/*
+ * Description: Vue路由
+ * User: zhaoyiming
+ * Date: 2017/10/1
+*/
+
 import Vue from 'vue';
 import Router from 'vue-router';
 import Resource from 'vue-resource';
@@ -72,12 +78,12 @@ export default new Router({
 			component: personal
 		},
 		{
-			path: '/personalEdit/:headpic',
+			path: '/personalEdit',
 			name: 'PersonalEdit',
 			component: personalEdit
 		},
 		{
-			path: '/changeUserHeadpic/:userId',
+			path: '/changeUserHeadpic/:userId/:headpic',
 			name: 'ChangeUserHeadpic',
 			component: changeUserHeadpic
 		},

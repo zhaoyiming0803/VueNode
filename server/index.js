@@ -8,13 +8,13 @@ var express = require('express');
 var router = express.Router();
 
 // 注册
-router.use('/regist', require(__dirname + '/account/registAction'));
+router.use('/regist', require(__dirname + '/account/regist'));
 
 //登录
-router.use('/login', require(__dirname + '/account/loginAction'));
+router.use('/login', require(__dirname + '/account/login'));
 
 // 找回密码
-router.use('/forgetPwd', require(__dirname + '/account/forgetPwdAction'));
+router.use('/forgetPwd', require(__dirname + '/account/forgetPwd'));
 
 // 个人中心
 router.use('/personal', require(__dirname + '/personal/index'));
