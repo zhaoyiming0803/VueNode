@@ -24,6 +24,8 @@
 
 （5）浏览器访问：localhost:8080
 
+（6）数据库tour_user表中的用户默认密码均为123456
+
 ### 使用PHP或JAVA等后端语言替换NodeJs的方法
 
 此项目作为前后端分离开发的测试，后端只是提供增删改查的数据接口，所有的路由及控制器方法都由前端来完成，所以可以将Node替换为你想要的任何后端开发语言，具体方法如下：
@@ -63,6 +65,42 @@
 - [x] 发布优惠券文字（100%）
 - [x] 星级评价组件（100%）
 
+###目录结构
+***
+<pre>
+├── build			// webpack及Node相关配置
+├── config			// 项目dev和prod环境的配置
+├── dist			// 项目build打包之后的目录
+├── node_modules		// npm包
+├── index.html			// 项目入口文件
+├── package.json		// 项目描述文件
+├── project-screenshoots	// 项目部分界面截图
+├── php_test			// 用PHP代替Node实现首页数据接口示例
+├── server			// 后端目录
+│   ├── account				// 登录、注册、找回密码等控制器
+│   ├── get-coupon			// 领取优惠券控制器
+│   ├── global-coupon			// 首页控制器
+│   ├── global-coupon-list		// 全球优惠券列表页控制器 
+│   └── personal			// 个人中心控制器，包括资料修改、头像上传等
+├── src					// 前端目录
+│   ├── assets				// 图片资源
+│   ├── components			// 项目所有组件，每个文件头部都有组件名称注释
+│   ├── router				// Vue路由
+│   ├── App.vue				// 主页面 
+│   └── main.js				// Webpack 预编译入口
+├── static			// 前端公用静态文件目录
+│   ├── css         
+│   ├── images          
+│   ├── js     
+│   ├── less         
+│   └── upload
+├── .babelrc			// ES6等babel的一些配置
+├── .editorconfig		// 编辑器的一些配置
+├── .eslintignore		// 忽略语法检查的目录文件，一般是忽略build和config目录
+├── .eslintrc.js		// eslint的配置文件
+├── // 关于项目目录各文件作用更加详细的介绍，请参考：http://www.zymseo.com/vue/488.html
+</pre>
+
 ### 项目部分截图
 
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/login.png)
@@ -73,6 +111,7 @@
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_1.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_3.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/star.png)
+![wmv](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/vuenode.wmv)
 
 ### 写在最后
 
