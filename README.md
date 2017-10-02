@@ -66,7 +66,7 @@
 - [x] 星级评价组件（100%）
 
 ###目录结构
-***
+
 <pre>
 ├── build			// webpack及Node相关配置
 ├── config			// 项目dev和prod环境的配置
@@ -98,6 +98,7 @@
 ├── .editorconfig		// 编辑器的一些配置
 ├── .eslintignore		// 忽略语法检查的目录文件，一般是忽略build和config目录
 ├── .eslintrc.js		// eslint的配置文件
+├── LICENSE			// 使用MIT开源协议
 ├── // 关于项目目录各文件作用更加详细的介绍，请参考：http://www.zymseo.com/vue/488.html
 </pre>
 
@@ -111,7 +112,6 @@
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_1.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_3.png)
 ![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/star.png)
-![wmv](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/vuenode.wmv)
 
 ### 写在最后
 
