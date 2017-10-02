@@ -66,7 +66,7 @@
 - [x] 星级评价组件（100%）
 
 ###目录结构
-
+***
 <pre>
 ├── build			// webpack及Node相关配置
 ├── config			// 项目dev和prod环境的配置
@@ -74,7 +74,7 @@
 ├── node_modules		// npm包
 ├── index.html			// 项目入口文件
 ├── package.json		// 项目描述文件
-├── project-screenshoots	// 项目GIF图预览
+├── project-screenshoots	// 项目GIF图
 ├── php_test			// 用PHP代替Node实现首页数据接口示例
 ├── server			// 后端目录
 │   ├── account				// 登录、注册、找回密码等控制器
@@ -98,13 +98,12 @@
 ├── .editorconfig		// 编辑器的一些配置
 ├── .eslintignore		// 忽略语法检查的目录文件，一般是忽略build和config目录
 ├── .eslintrc.js		// eslint的配置文件
-├── LICENSE			// 使用MIT开源协议
 ├── // 关于项目目录各文件作用更加详细的介绍，请参考：http://www.zymseo.com/vue/488.html
 </pre>
 
 ### 项目GIF图
 
-![gif](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/project.gif)
+![gif](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/peoject.gif)
 
 ### 写在最后
 
