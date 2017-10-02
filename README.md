@@ -66,7 +66,7 @@
 - [x] 星级评价组件（100%）
 
 ###目录结构
-***
+
 <pre>
 ├── build			// webpack及Node相关配置
 ├── config			// 项目dev和prod环境的配置
