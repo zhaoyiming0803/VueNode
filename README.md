@@ -74,7 +74,7 @@
 ├── node_modules		// npm包
 ├── index.html			// 项目入口文件
 ├── package.json		// 项目描述文件
-├── project-screenshoots	// 项目GIF图
+├── peoject.gif			// 项目GIF图
 ├── php_test			// 用PHP代替Node实现首页数据接口示例
 ├── server			// 后端目录
 │   ├── account				// 登录、注册、找回密码等控制器
@@ -86,6 +86,7 @@
 │   ├── assets				// 图片资源
 │   ├── components			// 项目所有组件，每个文件头部都有组件名称注释
 │   ├── router				// Vue路由
+│   ├── store				// Vuex状态管理
 │   ├── App.vue				// 主页面 
 │   └── main.js				// Webpack 预编译入口
 ├── static			// 前端公用静态文件目录
@@ -103,7 +104,7 @@
 
 ### 项目GIF图
 
-![gif](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/peoject.gif)
+![gif](https://github.com/zymseo/VueNode/blob/master/project.gif)
 
 ### 写在最后
 
