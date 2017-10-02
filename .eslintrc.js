@@ -1,4 +1,5 @@
 // http://eslint.org/docs/user-guide/configuring
+// eslint的配置文件
 
 module.exports = {
   root: true,
