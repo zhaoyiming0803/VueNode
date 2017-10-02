@@ -102,16 +102,9 @@
 ├── // 关于项目目录各文件作用更加详细的介绍，请参考：http://www.zymseo.com/vue/488.html
 </pre>
 
-### 项目部分截图
+### 项目GIF图
 
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/login.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/regist.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/forget_password.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_1.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/personal_edit.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_1.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/app_index_3.png)
-![image](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/star.png)
+![gif](https://github.com/zymseo/VueNode/blob/master/project-screenshoots/project.gif)
 
 ### 写在最后
 
