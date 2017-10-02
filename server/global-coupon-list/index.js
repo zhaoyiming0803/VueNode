@@ -31,16 +31,17 @@ router.post('/classifyList', (req, res) => {
 */
 
 router.post('/showCoupons', (req, res) => {
-	let data = req.body;
-	let countryId = data.countryId;
-	let classifyId = data.classifyId;
+	let data = req.body,
+		countryId = data.countryId,
+		classifyId = data.classifyId,
+		currentPage = data.currentPage;
 
 	if (parseInt(countryId, 10) === 1) {
-		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_classify="'+ classifyId +'"', (error, data) => {
+		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_classify="'+ classifyId +'" limit '+ (currentPage-1)*10 +', 10', (error, data) => {
 			data && res.json({couponList: data});
 		});
 	} else {
-		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_belong_country="'+ countryId +'" and coupon_classify="'+ classifyId +'"', (error, data) => {
+		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_belong_country="'+ countryId +'" and coupon_classify="'+ classifyId +'" limit '+ (currentPage-1)*10 +', 10', (error, data) => {
 			data && res.json({couponList: data});
 		});
 	}

@@ -66,7 +66,6 @@
 					this.userName = data.user_name;
 					this.userSex = data.user_sex;
 					this.headpic = data.user_headpic;
-					console.log(this.headpic);
 				});
 			} catch (e) {
 				this.$router.push({name: 'Login'});

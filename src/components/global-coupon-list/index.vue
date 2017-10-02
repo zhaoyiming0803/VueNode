@@ -39,6 +39,7 @@
 					<span class="" v-bind:class="{'use-discount': v.coupon_status==0, 'used': v.coupon_status==1, 'past': v.coupon_status==2}"></span>
 				</div>
 			</router-link>
+			<a href="javascript:;" class="load-more" v-on:click="loadMore();" v-if="couponList.length % 10 ===0">加载更多</a>
 		</div>
 
 		<footer-nav></footer-nav>
@@ -58,7 +59,8 @@
 				explainName: '全球优惠',
 				countryList: null,
 				classifyList: null,
-				couponList: null
+				couponList: [],
+				currentPage: 1
 			}
 		},
 		computed: mapGetters([
@@ -72,7 +74,7 @@
 			footerNav
 		},
 		mounted () {
-			this.getCouponsList(this.countryId, this.classifyId);
+			this.getCouponsList(this.countryId, this.classifyId, this.currentPage);
 		},
 		methods: {
 			showCountryList () {
@@ -88,12 +90,17 @@
 				this.isCountry = false;
 				this.isClassify = true;
 			},
-			getCouponsList (countryId=1, classifyId=1) {
-				this.$http.post('/globalCouponList/showCoupons', {countryId: countryId, classifyId: classifyId}, {emulateJSON: true}).then((result) => {
-					let data = JSON.parse(result.bodyText);
-					this.couponList = data.couponList;
+			getCouponsList (countryId=1, classifyId=1, currentPage=1) {
+				this.$http.post('/globalCouponList/showCoupons', {countryId, classifyId, currentPage}, {emulateJSON: true}).then((result) => {
+					let data = JSON.parse(result.bodyText).couponList,
+						dataLen = data.length;
+
+					for (let i = 0; i < dataLen; i += 1) {
+						this.couponList.push(data[i]);
+					}
+
 				});
-				
+
 				// 为防止vuex中保持的countryName与判断条件中默认的countryName冲突，首次加载列表页的时候就需要获取到countryList，保证条件筛选正确
 				!this.countryList &&
 				this.$http.post('/globalCouponList/countryList', {emulateJSON: true}).then((result) => {
@@ -105,15 +112,22 @@
 				let currentCountryName = this.countryList ? this.countryList[countryId-1].country_name : '全球';
 				let currentClassifyName = this.classifyList ? this.classifyList[classifyId-1].classify_name : '购物';
 
+				this.currentPage = 1;
+				this.couponList = [];
+
 				this.$store.commit('changeCountryId', countryId);
 				this.$store.commit('changeCountryName', currentCountryName);
 
 				this.$store.commit('changeClassifyId', classifyId);
 				this.$store.commit('changeClassifyName', currentClassifyName);
 
-				this.getCouponsList(this.countryId, this.classifyId);
+				this.getCouponsList(this.countryId, this.classifyId, this.currentPage);
 
 				this.isCountry = this.isClassify = false;
+			},
+			loadMore () {
+				this.currentPage += 1;
+				this.getCouponsList(this.countryId, this.classifyId, this.currentPage);
 			}
 		}
 	}
@@ -192,6 +206,16 @@
 		}
 		.coupon-list-wraper {
 			margin: 0 3%;
+			.load-more {
+				display: block;
+				width: 100%;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+				background-color: #fff;
+				color: #333;
+				font-size: 16px;
+			}
 		}
 	}
 </style>

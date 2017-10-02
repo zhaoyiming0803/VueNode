@@ -29,9 +29,7 @@
 		methods: {
 			changeUserName () {
 				const userId = this.$route.params.userId;
-				this.$http.post('/personalEdit/changeUserName', {userId, userName: this.userName}, {emulateJSON: true}).then((result) => {
-					console.log(result);
-				});
+				this.$http.post('/personalEdit/changeUserName', {userId, userName: this.userName}, {emulateJSON: true});
 			}
 		}
 	}
