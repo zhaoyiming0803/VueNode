@@ -73,7 +73,7 @@
 	}
 </script>
 
-<style lang="less" rel="stylesheet/less">
+<style scoped lang="less" rel="stylesheet/less">
 	@import "./tour-app-account.less";
 
 	.find-pwd-process {

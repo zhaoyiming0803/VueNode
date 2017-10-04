@@ -66,3 +66,7 @@
 		}
 	}
 </script>
+
+<style scoped lang="less" rel="stylesheet/less">
+	@import "./tour-app-account.less";
+</style>

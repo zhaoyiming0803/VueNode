@@ -30,6 +30,32 @@
 	}
 </script>
 
-<style lang="less" rel="stylesheet/less">
-	@import "./tour-app-account.less";
+<style scoped lang="less" rel="stylesheet/less">
+	.account-check {
+		display: flex;
+		flex-flow: row nowrap;
+		.account-check-btn {
+			flex: 1;
+			position: relative;
+			height: 50px;
+			cursor: pointer;
+			span {
+				display: block;
+				position: absolute;
+				width: 100px;
+				height: 32px;
+				left: 50%;
+				top: 8px;
+				margin-left: -50px;
+				line-height: 32px;
+				text-align: center;
+				font-size: 15px;
+				color: #b4b4b4;
+			}
+			&.this-account-model span {
+				border-bottom: 2px solid #ffb000;
+				color: #4c4c4c;
+			}
+		}
+	}
 </style>
