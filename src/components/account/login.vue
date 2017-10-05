@@ -46,7 +46,7 @@
 							break;
 						case '1':
 							window.sessionStorage.userMsg = JSON.stringify(userMsg);
-							this.$router.push({name: 'Personal'})
+							history.go(-1);
 							break;
 						default:
 							alert('登录失败，请重新操作！');
