@@ -222,7 +222,6 @@
 					this.$http.post('/personal/showCoupon', {userId: userMsg.id, type: 'union'}, {emulateJSON: true}).then((result) => {
 						let data = JSON.parse(result.bodyText);
 						this.unionCouponList = data.couponList;
-						console.log(this.unionCouponList);
 					});
 				}
 				this.isUnionpay = !this.isUnionpay;
