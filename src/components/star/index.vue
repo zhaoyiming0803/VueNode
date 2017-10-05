@@ -16,10 +16,10 @@
 		mounted () {
 			let starArry = this.starArry;
 			for (let j = 0; j < 5; j += 1) {
-				starArry.push({star: '★', className: 'colorfulStar'});
+				starArry[j] = {star: '★', className: 'colorfulStar'};
 			}
-			for (let i = 0; i < 5; i += 1) {
-				starArry.push({star: '★', className: 'grayStar'});
+			for (let i = 5; i < 10; i += 1) {
+				starArry[i] = {star: '★', className: 'grayStar'};
 			}
 			this.gradeStarArry = starArry.slice(5, 10);
 		},
@@ -48,8 +48,8 @@
 		font-weight: 600;
 		cursor: pointer;
 	}
-		
+
 	.colourful {color: #ffcc01;}
-		
+
 	.gray {color: #dcd7d7;}
 </style>
