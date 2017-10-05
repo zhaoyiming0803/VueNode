@@ -17,7 +17,7 @@
 				<p>
 					<span class="code-ico"></span>
 					<input type="text" placeholder="请输入验证码" maxlength="6" class="code" v-model.lazy.trim="code" />
-					<input type="button" value="获取验证码" class="get-code get-code-off" v-on:click="getCode();" />
+					<count-down v-bind:phone=phone></count-down>
 				</p>
 				<p>
 					<input type="submit" value="下一步" class="account-btn" />
@@ -29,43 +29,31 @@
 
 <script type="text/ecmascript-6">
 	import explain from '../header-explain/index.vue';
+	import countDown from '../count-down/index.vue';
+	import cookie from 'static/js/cookie.js';
 
 	export default {
 		data () {
 			return {
 				explainName: '找回密码第一步',
 				phone: '',
-				code: '',
-				tmpCode: ''
+				code: ''
 			}
 		},
 		components: {
-			explain
+			explain,
+			countDown
 		},
 		methods: {
-			getCode () {
-				if (!(/^((13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8})$/).test(this.phone)) {
-					alert('手机号格式不正确，请重新输入！');
-					return false;
-				}
-
-				this.$http.post('/forgetPwd/firstStep', {phone: this.phone}, {emulateJSON: true}).then((result) => {
-					const backInfo = JSON.parse(result.bodyText).backInfo;
-					if (backInfo === '0') {
-						alert('不存在该手机用户，请重新操作');
-					} else if (backInfo.length === 6) {
-						this.tmpCode = backInfo;
-						alert('您的手机验证码是：' + backInfo); // 模拟发送到用户手机的短信验证码
-					}
-				});
-			},
 			next () {
 				if (!(/^((13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8})$/).test(this.phone)) {
 					alert('手机号格式不正确，请重新输入！');
 					return false;
 				}
 
-				if (this.tmpCode.length !== 6 || this.code !== this.tmpCode) {
+				let msgCode = cookie.get('msgCode');
+
+				if (msgCode.length !== 6 || this.code !== msgCode) {
 					alert('短信验证码必须是6位数的数字！');
 					return false;
 				}
