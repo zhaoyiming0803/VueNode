@@ -48,9 +48,9 @@
 		data () {
 			return {
 				explainName: '个人资料修改',
-				headpic: '',
+				headpic: ' ',
 				userId: 0,
-				userName: '',
+				userName: ' ',
 				userSex: 1
 			}
 		},
