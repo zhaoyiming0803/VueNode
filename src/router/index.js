@@ -83,17 +83,17 @@ export default new Router({
 			component: personalEdit
 		},
 		{
-			path: '/changeUserHeadpic/:userId/:headpic',
+			path: '/changeUserHeadpic',
 			name: 'ChangeUserHeadpic',
 			component: changeUserHeadpic
 		},
 		{
-			path: '/changeUserName/:userId/:userName',
+			path: '/changeUserName',
 			name: 'ChangeUserName',
 			component: changeUserName
 		},
 		{
-			path: '/changeUserSex/:userId/:userSex',
+			path: '/changeUserSex',
 			name: 'ChangeUserSex',
 			component: changeUserSex
 		},
@@ -111,7 +111,7 @@ export default new Router({
 		},
 
 		{
-			path: '/getCoupon/:couponId/:showType',
+			path: '/getCoupon',
 			name: 'GetCoupon',
 			component: getCoupon
 		}
