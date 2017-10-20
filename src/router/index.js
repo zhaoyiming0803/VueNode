@@ -37,12 +37,8 @@ Vue.use(Router);
 Vue.use(Resource);
 
 export default new Router({
+	mode: 'abstract',
 	routes: [
-		{
-			path: '/',
-			redirect: '/globalCouponIndex'
-		},
-
 		{
 			path: '/accountIndex',
 			name: 'AccountIndex',
