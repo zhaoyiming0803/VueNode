@@ -18,5 +18,8 @@ export default {
 	},
 	changeClassifyName (state, classifyName) {
 		state.classifyName = classifyName;
+	},
+	changeRoutes (state, routes) {
+		state.routes = routes;
 	}
 }

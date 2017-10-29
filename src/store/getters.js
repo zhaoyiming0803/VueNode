@@ -18,5 +18,8 @@ export default {
 	},
 	classifyName (state) {
 		return state.classifyName;
+	},
+	routes (state) {
+		return state.routes;
 	}
 }

@@ -22,7 +22,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-	import router from './js/login.js';
+	import getRules from '../../router/login.js';
 	export default {
 		data () {
 			return {
@@ -67,6 +67,7 @@
 				this.$store.commit('changeCountryId', 2);
 			},
 			login () {
+				const _this = this;
 				if (!(/^((13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8})$/).test(this.phone)) {
 					alert('手机号码格式不正确，请重新输入！');
 					return false;
@@ -85,7 +86,14 @@
 							break;
 						case '1':
 							window.sessionStorage.userMsg = JSON.stringify(userMsg);
-							this.$router.push({name: 'Personal'});
+							this.$store.commit('changeRoutes', [{id: 1, pid: 0, path: '/test', name: 'test', component: 'test', meta: ['admin', 'editor']}]);
+							getRules(this.$store.getters.routes);
+							console.log('---------');
+							console.log(this.$router.options.routes);
+							console.log('---------');
+							setTimeout(() => {
+								_this.$router.push({name: 'test'});
+							}, 4);
 							break;
 						default:
 							alert('登录失败，请重新操作！');
@@ -94,7 +102,6 @@
 			}
 		},
 		mounted () {
-			console.log(router);
 			let $sessionStorage = window.sessionStorage;
 			if (!$sessionStorage) {
 				alert('为保证您可以正常使用我们的产品，请关闭浏览器的无痕浏览模式！');

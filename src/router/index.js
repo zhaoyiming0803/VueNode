@@ -44,7 +44,7 @@ const serverRoutes = [
 	{
 		id: 1,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: ['admin', 'linker', 'editor'],
 		path: '/accountIndex',
 		name: 'AccountIndex',
 		component: accountIndex
@@ -86,7 +86,7 @@ const serverRoutes = [
 	{
 		id: 6,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: ['admin', 'linker', 'editor'],
 		path: '/personal',
 		name: 'Personal',
 		component: personal
@@ -127,7 +127,7 @@ const serverRoutes = [
 	{
 		id: 11,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: ['admin', 'linker', 'editor'],
 		path: '/globalCouponIndex',
 		name: 'GlobalCouponIndex',
 		component: globalCouponIndex
@@ -171,17 +171,17 @@ const router = new Router({
 });
 
 
-//router.beforeEach((to, from, next) => {
-//	if (!to.meta) {
-//		next();
-//	} else {
-//		if (to.meta.some((item)=>{return item === window.localStorage.role})) {
-//			next();
-//		} else {
-//			console.log('权限不足');
-//		}
-//	}
-//});
+router.beforeEach((to, from, next) => {
+	if (!to.meta) {
+		next();
+	} else {
+		if (to.meta.some((item)=>{return item === window.localStorage.role})) {
+			next();
+		} else {
+			console.log('权限不足');
+		}
+	}
+});
 
 
 export default router;

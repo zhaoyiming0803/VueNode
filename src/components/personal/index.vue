@@ -17,7 +17,7 @@
 		</div>
 
 		<!-- 卡包列表 -->
-		<router-link tag="a" :to="{name: 'Test'}">去test</router-link>
+		<router-link tag="a" :to="{name: 'test'}">去test</router-link>
 		<div class="gift-list-wraper distance-wraper">
 			<div class="title">卡包</div>
 			<!-- 银联优惠 -->

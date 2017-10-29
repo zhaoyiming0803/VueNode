@@ -19,5 +19,8 @@ export default {
 	},
 	changeClassifyName ({commit}) {
 		commit('changeClassifyName');
+	},
+	changeRoutes ({commit}) {
+		commit('changeRoutes');
 	}
 }
