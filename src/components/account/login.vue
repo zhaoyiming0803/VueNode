@@ -22,6 +22,7 @@
 </template>
 
 <script type="text/ecmascript-6">
+	import router from './js/login.js';
 	export default {
 		data () {
 			return {
@@ -93,6 +94,7 @@
 			}
 		},
 		mounted () {
+			console.log(router);
 			let $sessionStorage = window.sessionStorage;
 			if (!$sessionStorage) {
 				alert('为保证您可以正常使用我们的产品，请关闭浏览器的无痕浏览模式！');

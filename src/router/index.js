@@ -35,8 +35,7 @@ const globalCouponList = () => import('@/components/global-coupon-list/index.vue
 // 领取优惠券
 const getCoupon = () => import('@/components/get-coupon/index.vue');
 
-// 测试页
-const test = () => import('@/components/test/index.vue');
+
 
 Vue.use(Router);
 Vue.use(Resource);
@@ -171,22 +170,18 @@ const router = new Router({
 	routes
 });
 
-router.addRoutes([
-	{path: '/test', name: 'Test', component: test}
-]);
 
-
-router.beforeEach((to, from, next) => {
-	if (!to.meta) {
-		next();
-	} else {
-		if (to.meta.some((item)=>{return item === window.localStorage.role})) {
-			next();
-		} else {
-			console.log('权限不足');
-		}
-	}
-});
+//router.beforeEach((to, from, next) => {
+//	if (!to.meta) {
+//		next();
+//	} else {
+//		if (to.meta.some((item)=>{return item === window.localStorage.role})) {
+//			next();
+//		} else {
+//			console.log('权限不足');
+//		}
+//	}
+//});
 
 
 export default router;
