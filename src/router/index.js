@@ -4,6 +4,8 @@
  * Date: 2017/10/1
 */
 
+window.localStorage.role = 'editor';
+
 import Vue from 'vue';
 import Router from 'vue-router';
 import Resource from 'vue-resource';
@@ -33,83 +35,158 @@ const globalCouponList = () => import('@/components/global-coupon-list/index.vue
 // 领取优惠券
 const getCoupon = () => import('@/components/get-coupon/index.vue');
 
+// 测试页
+const test = () => import('@/components/test/index.vue');
+
 Vue.use(Router);
 Vue.use(Resource);
 
-export default new Router({
-	mode: 'abstract',
-	routes: [
-		{
-			path: '/accountIndex',
-			name: 'AccountIndex',
-			component: accountIndex,
-			children: [
-				{
-					path: '/login',
-					name: 'Login',
-					component: login
-				},
-				{
-					path: '/regist',
-					name: 'Regist',
-					component: regist
-				}
-			]
-		},
-		
-		{
-			path: '/forgetPwdFirstStep',
-			name: 'ForgetPwdFirstStep',
-			component: forgetPwdFirstStep
-		 },
-		 {
-			path: '/forgetPwdSecondStep',
-			name: 'ForgetPwdSecondStep',
-			component: forgetPwdSecondStep
-		 },
+const serverRoutes = [
+	{
+		id: 1,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/accountIndex',
+		name: 'AccountIndex',
+		component: accountIndex
+	},
+	{
+		id: 2,
+		pid: 1,
+		meta: ['admin', 'linker', 'editor'],
+		path: '/accountIndex/login',
+		name: 'Login',
+		component: login
+	},
+	{
+		id: 3,
+		pid: 1,
+		meta: ['admin', 'linker'],
+		path: '/accountIndex/regist',
+		name: 'Regist',
+		component: regist
+	},
+	
+	{
+		id: 4,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/forgetPwdFirstStep',
+		name: 'ForgetPwdFirstStep',
+		component: forgetPwdFirstStep
+	 },
+	 {
+		id: 5,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/forgetPwdSecondStep',
+		name: 'ForgetPwdSecondStep',
+		component: forgetPwdSecondStep
+	 },
 
-		{
-			path: '/personal',
-			name: 'Personal',
-			component: personal
-		},
-		{
-			path: '/personalEdit',
-			name: 'PersonalEdit',
-			component: personalEdit
-		},
-		{
-			path: '/changeUserHeadpic',
-			name: 'ChangeUserHeadpic',
-			component: changeUserHeadpic
-		},
-		{
-			path: '/changeUserName',
-			name: 'ChangeUserName',
-			component: changeUserName
-		},
-		{
-			path: '/changeUserSex',
-			name: 'ChangeUserSex',
-			component: changeUserSex
-		},
+	{
+		id: 6,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/personal',
+		name: 'Personal',
+		component: personal
+	},
+	{
+		id: 7,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/personalEdit',
+		name: 'PersonalEdit',
+		component: personalEdit
+	},
+	{
+		id: 8,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/changeUserHeadpic',
+		name: 'ChangeUserHeadpic',
+		component: changeUserHeadpic
+	},
+	{
+		id: 9,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/changeUserName',
+		name: 'ChangeUserName',
+		component: changeUserName
+	},
+	{
+		id: 10,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/changeUserSex',
+		name: 'ChangeUserSex',
+		component: changeUserSex
+	},
 
-		{
-			path: '/globalCouponIndex',
-			name: 'GlobalCouponIndex',
-			component: globalCouponIndex
-		},
+	{
+		id: 11,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/globalCouponIndex',
+		name: 'GlobalCouponIndex',
+		component: globalCouponIndex
+	},
 
-		{
-			path: '/globalCouponList',
-			name: 'GlobalCouponList',
-			component: globalCouponList
-		},
+	{
+		id: 12,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/globalCouponList',
+		name: 'GlobalCouponList',
+		component: globalCouponList
+	},
 
-		{
-			path: '/getCoupon',
-			name: 'GetCoupon',
-			component: getCoupon
+	{
+		id: 13,
+		pid: 0,
+		meta: ['admin', 'linker'],
+		path: '/getCoupon',
+		name: 'GetCoupon',
+		component: getCoupon
+	}
+]
+
+const merge = (list, pid=0) => {
+	const arry = [];
+	list.forEach((item) => {
+		if (item.pid === pid) {
+			item.children = merge(list, item.id);
+			arry.push(item);
 		}
-	]
-})
+	});
+	return arry;
+};
+
+const routes = merge(serverRoutes, 0);
+
+const router = new Router({
+	mode: 'abstract',
+	routes
+});
+
+router.addRoutes([
+	{path: '/test', name: 'Test', component: test}
+]);
+
+
+router.beforeEach((to, from, next) => {
+	if (!to.meta) {
+		next();
+	} else {
+		if (to.meta.some((item)=>{return item === window.localStorage.role})) {
+			next();
+		} else {
+			console.log('权限不足');
+		}
+	}
+});
+
+
+export default router;

@@ -15,6 +15,9 @@
 			</p>
 			<router-link tag="a" class="phone-prompt" :to="{name: 'ForgetPwdFirstStep'}">忘记密码</router-link>
 		</form>
+		<div v-show="hehe.isShow">{{$store.getters.countryId}}</div>
+		<div v-demo:hehe="{countryId: 0, hehe}">自定义指令</div>
+		<div v-on:click="getCountryId();">获取国家ID</div>
 	</div>
 </template>
 
@@ -23,10 +26,45 @@
 		data () {
 			return {
 				phone: '',
-				pwd: ''
+				pwd: '',
+				hehe: {
+					isShow: true
+				}
+			}
+		},
+		directives: {
+			'demo': {
+				inserted: function (vNode) {
+					//console.log(vNode);
+				},
+				bind: function (el, vm, binding) {
+					el.onclick = function () {
+						if (!vm.value.countryId) {
+							console.log(vm.value);
+							//vm.value.isShow = false;
+							console.log('没有权限');
+							vm.value.hehe.isShow = false;
+							console.log(vm.value);
+						}
+					};
+				}
+			}
+		},
+		computed: {
+			countryId: {
+				get: function () {
+					return this.$store.getters.countryId;
+				},
+				set: function (val) {
+					this.$store.commit('changeCountryId', val);
+					console.log(123);
+				}
 			}
 		},
 		methods: {
+			getCountryId () {
+				this.$store.commit('changeCountryId', 2);
+			},
 			login () {
 				if (!(/^((13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8})$/).test(this.phone)) {
 					alert('手机号码格式不正确，请重新输入！');

@@ -12,7 +12,8 @@
 			};
 		},
 		mounted () {
-			this.$router.push({name: 'GlobalCouponIndex'});
+			const _this = this;
+			this.$router.push({name: 'Login'});
 		}
 	}
 </script>

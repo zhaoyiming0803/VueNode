@@ -55,7 +55,6 @@ body {
 input, textarea {
 	border:none 0;
 	outline:none;
-	-webkit-appearance:none;
 }
 
 li {

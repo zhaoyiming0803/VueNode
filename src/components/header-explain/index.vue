@@ -11,7 +11,7 @@
 		props: ['explainName', 'isAccount'],
 		methods: {
 			goback () {
-				history.go(-1);
+				this.$router.back();
 			}
 		}
 	}
