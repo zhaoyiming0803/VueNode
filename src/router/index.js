@@ -44,7 +44,7 @@ const serverRoutes = [
 	{
 		id: 1,
 		pid: 0,
-		meta: ['admin', 'linker', 'editor'],
+		meta: {autoRequire: true},
 		path: '/accountIndex',
 		name: 'AccountIndex',
 		component: accountIndex
@@ -52,7 +52,7 @@ const serverRoutes = [
 	{
 		id: 2,
 		pid: 1,
-		meta: ['admin', 'linker', 'editor'],
+		meta: {autoRequire: true},
 		path: '/accountIndex/login',
 		name: 'Login',
 		component: login
@@ -60,7 +60,7 @@ const serverRoutes = [
 	{
 		id: 3,
 		pid: 1,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/accountIndex/regist',
 		name: 'Regist',
 		component: regist
@@ -69,7 +69,7 @@ const serverRoutes = [
 	{
 		id: 4,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/forgetPwdFirstStep',
 		name: 'ForgetPwdFirstStep',
 		component: forgetPwdFirstStep
@@ -77,7 +77,7 @@ const serverRoutes = [
 	 {
 		id: 5,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/forgetPwdSecondStep',
 		name: 'ForgetPwdSecondStep',
 		component: forgetPwdSecondStep
@@ -86,7 +86,7 @@ const serverRoutes = [
 	{
 		id: 6,
 		pid: 0,
-		meta: ['admin', 'linker', 'editor'],
+		meta: {autoRequire: false},
 		path: '/personal',
 		name: 'Personal',
 		component: personal
@@ -94,7 +94,7 @@ const serverRoutes = [
 	{
 		id: 7,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: false},
 		path: '/personalEdit',
 		name: 'PersonalEdit',
 		component: personalEdit
@@ -102,7 +102,7 @@ const serverRoutes = [
 	{
 		id: 8,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/changeUserHeadpic',
 		name: 'ChangeUserHeadpic',
 		component: changeUserHeadpic
@@ -110,7 +110,7 @@ const serverRoutes = [
 	{
 		id: 9,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/changeUserName',
 		name: 'ChangeUserName',
 		component: changeUserName
@@ -118,7 +118,7 @@ const serverRoutes = [
 	{
 		id: 10,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/changeUserSex',
 		name: 'ChangeUserSex',
 		component: changeUserSex
@@ -127,7 +127,7 @@ const serverRoutes = [
 	{
 		id: 11,
 		pid: 0,
-		meta: ['admin', 'linker', 'editor'],
+		meta: {autoRequire: true},
 		path: '/globalCouponIndex',
 		name: 'GlobalCouponIndex',
 		component: globalCouponIndex
@@ -136,7 +136,7 @@ const serverRoutes = [
 	{
 		id: 12,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/globalCouponList',
 		name: 'GlobalCouponList',
 		component: globalCouponList
@@ -145,7 +145,7 @@ const serverRoutes = [
 	{
 		id: 13,
 		pid: 0,
-		meta: ['admin', 'linker'],
+		meta: {autoRequire: true},
 		path: '/getCoupon',
 		name: 'GetCoupon',
 		component: getCoupon
@@ -170,16 +170,15 @@ const router = new Router({
 	routes
 });
 
-
 router.beforeEach((to, from, next) => {
-	if (!to.meta) {
-		next();
-	} else {
-		if (to.meta.some((item)=>{return item === window.localStorage.role})) {
+	if (!to.meta.autoRequire) {
+		if (to.meta.roles === undefined || to.meta.roles.some((item) => {return item===localStorage.role})) {
 			next();
 		} else {
-			console.log('权限不足');
+			console.log('暂无权限');
 		}
+	} else {
+		next();
 	}
 });
 

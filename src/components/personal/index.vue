@@ -186,6 +186,23 @@
 			explain,
 			footerNav
 		},
+		beforeCreate () {
+			/*
+			* 当前节点需要访问权限，并且路由对应的roles为undefined时，才去后端获取权限
+			* 即使autoRequire为false，如果路由对应的roles不是undefined，证明之前已经向后端获取过一次权限了
+			* 那么必然在路由的导航守卫中进行了权限筛选，程序能够走到这里，说明它已经有权限了，没有必要再去后端请求了
+			* 如果没有权限，在导航守卫中就已经进行了拦截
+			*/
+			if (!this.$router.options.routes[3].autoRequire && this.$route.meta.roles === undefined) {
+				console.log('去后端请求当前路由的权限！');
+				const roles = ['admin']; // 假设这是从后端获取到的当前节点的权限（允许访问当前页面的角色）
+				this.$route.meta.roles = ['admin'];
+				if (!this.$route.meta.roles.some((item) => {return item === localStorage.role})) {
+					this.$router.push({name: 'GlobalCouponIndex'});
+					console.log('初次从后端请求到的数据，证明当前角色暂无当前功能的操作权限');
+				}
+			}
+		},
 		mounted () {
 			console.log(this.$router.options.routes);
 			try {

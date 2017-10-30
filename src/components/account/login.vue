@@ -88,12 +88,12 @@
 							window.sessionStorage.userMsg = JSON.stringify(userMsg);
 							this.$store.commit('changeRoutes', [{id: 1, pid: 0, path: '/test', name: 'test', component: 'test', meta: ['admin', 'editor']}]);
 							getRules(this.$store.getters.routes);
-							console.log('---------');
-							console.log(this.$router.options.routes);
-							console.log('---------');
-							setTimeout(() => {
-								_this.$router.push({name: 'test'});
-							}, 4);
+//							console.log('---------');
+//							console.log(this.$router.options.routes);
+//							console.log('---------');
+//							setTimeout(() => {
+//								_this.$router.push({name: 'test'});
+//							}, 4);
 							break;
 						default:
 							alert('登录失败，请重新操作！');
