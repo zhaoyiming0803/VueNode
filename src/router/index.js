@@ -176,6 +176,9 @@ router.beforeEach((to, from, next) => {
 			next();
 		} else {
 			console.log('暂无权限');
+			next({
+				name: 'GlobalCouponList' // 模拟这里无权限时，返回到了自定义的提示页面
+			});
 		}
 	} else {
 		next();
