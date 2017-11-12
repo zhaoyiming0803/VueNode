@@ -21,7 +21,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import getRules from '../../router/login.js';
 	export default {
 		data () {
@@ -35,10 +35,10 @@
 		},
 		directives: {
 			'demo': {
-				inserted: function (vNode) {
+				inserted (vNode) {
 					//console.log(vNode);
 				},
-				bind: function (el, vm, binding) {
+				bind (el, vm, binding) {
 					el.onclick = function () {
 						if (!vm.value.countryId) {
 							console.log(vm.value);

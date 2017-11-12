@@ -17,9 +17,9 @@
 			if (!sessionStorage.userMsg) {
 				this.$router.push({name: 'Login'});
 			} else {
-				this.$store.commit('changeRoutes', [{id: 1, pid: 0, path: '/test', name: 'test', component: 'test', meta: ['admin', 'editor']}]);
+				this.$store.commit('changeRoutes', [{id: 1, pid: 0, path: '/test', name: 'Test', component: 'test', meta: ['admin', 'editor']}]);
 				getRules(this.$store.getters.routes);
-				this.$router.push({name: 'GlobalCouponIndex'});
+				this.$router.push({name: 'Test'});
 				console.log('已登录，请求权限');
 			}
 		}

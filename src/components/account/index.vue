@@ -14,7 +14,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script scoped>
 	import explain from '../header-explain/index.vue';
 
 	export default {

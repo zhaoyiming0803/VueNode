@@ -23,7 +23,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	export default {
 		props: ['featureArticle'],
 		data () {
@@ -49,7 +49,7 @@
 	}
 </script>
 
-<style scoped lang="less" rel="stylesheet/less">
+<style>
 	.feature-wraper {
 		background-color: #fff;
 		.tag {

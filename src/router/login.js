@@ -7,13 +7,17 @@
 import router from './index.js';
 import testRouter from './test.js';
 
+const toUpperCaseFirst = (str) => {
+	return str.substr(0, 1).toUpperCase() + str.substr(1);
+};
+
 const formatRoutes = (list) => {
 	return list.map((item) => {
 		return {
 			id: item.id,
 			pid: item.pid,
 			path: item.path,
-			name: item.name,
+			name: toUpperCaseFirst(item.name),
 			component: testRouter[item.name],
 			meta: item.meta
 		};

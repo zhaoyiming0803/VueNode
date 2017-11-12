@@ -7,7 +7,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	export default {
 		props: ['columnName'],
 		data () {
@@ -18,7 +18,7 @@
 	}
 </script>
 
-<style scoped lang="less" rel="stylesheet/less">
+<style scoped>
 	.column-divide-wraper {
 		position: relative;
 		margin: 5px 0;

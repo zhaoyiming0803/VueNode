@@ -21,7 +21,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script scoped>
 	export default {
 		data () {
 			return {

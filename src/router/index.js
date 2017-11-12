@@ -53,7 +53,7 @@ const serverRoutes = [
 		id: 2,
 		pid: 1,
 		meta: {autoRequire: true},
-		path: '/accountIndex/login',
+		path: '/login',
 		name: 'Login',
 		component: login
 	},
@@ -61,7 +61,7 @@ const serverRoutes = [
 		id: 3,
 		pid: 1,
 		meta: {autoRequire: true},
-		path: '/accountIndex/regist',
+		path: '/regist',
 		name: 'Regist',
 		component: regist
 	},
