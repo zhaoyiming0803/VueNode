@@ -74,7 +74,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import explain from '../header-explain/index.vue';
 	import footerNav from '../footer-nav/index.vue';
 	import couponBrief from '../coupon-brief/index.vue';
