@@ -80,7 +80,7 @@
 
 		iframe.onload = function () {
 			try {
-				_success(getData(iframe));
+				_success(getData(iframe).replace(/<[^>]+>/g,""));
 			} catch (e) {
 				_error(e);
 			}
