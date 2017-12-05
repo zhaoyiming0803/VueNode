@@ -206,6 +206,82 @@ INSERT INTO `tour_feature` VALUES (1,'韩国购物常见问题，你遇见过几
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tour_node`
+--
+
+DROP TABLE IF EXISTS `tour_node`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_node` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `node_name` varchar(30) DEFAULT NULL,
+  `pid` int(10) DEFAULT '0',
+  `node_mark` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_node`
+--
+
+LOCK TABLES `tour_node` WRITE;
+/*!40000 ALTER TABLE `tour_node` DISABLE KEYS */;
+INSERT INTO `tour_node` VALUES (1,'mediaList',0,'媒体管理'),(2,'addMedia',1,'新增媒体'),(3,'editMedia',1,'媒体编辑'),(4,'checkMedia',1,'媒体审核'),(5,'promotionList',0,'推广计划管理'),(6,'addPlan',5,'新增计划'),(7,'editPlan',5,'编辑计划'),(8,'checkPromotion',5,'推广计划审核');
+/*!40000 ALTER TABLE `tour_node` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour_role`
+--
+
+DROP TABLE IF EXISTS `tour_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_role` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(30) DEFAULT NULL,
+  `role_mark` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_role`
+--
+
+LOCK TABLES `tour_role` WRITE;
+/*!40000 ALTER TABLE `tour_role` DISABLE KEYS */;
+INSERT INTO `tour_role` VALUES (1,'superAdmin','超级管理员'),(2,'promotion','推广主'),(3,'advertiser','广告主');
+/*!40000 ALTER TABLE `tour_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tour_role_node`
+--
+
+DROP TABLE IF EXISTS `tour_role_node`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tour_role_node` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `node_id` int(10) DEFAULT NULL,
+  `role_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour_role_node`
+--
+
+LOCK TABLES `tour_role_node` WRITE;
+/*!40000 ALTER TABLE `tour_role_node` DISABLE KEYS */;
+INSERT INTO `tour_role_node` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(9,5,2),(10,6,2),(11,7,2),(12,8,2),(13,1,3),(14,2,3),(15,3,3),(16,4,3);
+/*!40000 ALTER TABLE `tour_role_node` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tour_user`
 --
 
@@ -229,7 +305,7 @@ CREATE TABLE `tour_user` (
 
 LOCK TABLES `tour_user` WRITE;
 /*!40000 ALTER TABLE `tour_user` DISABLE KEYS */;
-INSERT INTO `tour_user` VALUES (1,'赵一鸣','13126919251','e10adc3949ba59abbe56e057f20f883e','http://www.zymseo.com/images/logo.jpg',1),(2,'柳生飘絮','13126919255','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1507276421213.png',0),(3,'成是非','13126919252','00c66aaf5f2c3f49946f15c1ad2ea0d3','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(4,'归海一刀','13126919253','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1508516716022.jpg',1),(5,'古三通','13126919254','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1506875379823.jpg',1),(6,'云罗郡主','13126919256','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1506875974089.jpg',0),(7,'朱铁胆','13126919257','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(8,'海棠','13126919250','96e79218965eb72c92a549dd5a330112','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(9,'断天涯','13126919258','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(10,'万三千','13126919221','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(14,'多啦A梦','13133333333','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1507362358963.png',1),(13,'锦囊团用户','13111111111','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1);
+INSERT INTO `tour_user` VALUES (1,'赵一鸣','13126919251','e10adc3949ba59abbe56e057f20f883e','http://www.zymseo.com/images/logo.jpg',1),(2,'柳生飘絮','13126919255','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1509270571762.png',0),(3,'成是非','13126919252','00c66aaf5f2c3f49946f15c1ad2ea0d3','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(4,'归海一刀','13126919253','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1508516716022.jpg',1),(5,'古三通','13126919254','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1506875379823.jpg',1),(6,'云罗郡主','13126919256','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1506875974089.jpg',0),(7,'朱铁胆','13126919257','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(8,'海棠','13126919250','96e79218965eb72c92a549dd5a330112','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(9,'断天涯','13126919258','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1),(10,'万三千','13126919221','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',0),(14,'多啦A梦','13133333333','e10adc3949ba59abbe56e057f20f883e','../../static/uploads/images/headpic-1507362358963.png',1),(13,'锦囊团用户','13111111111','e10adc3949ba59abbe56e057f20f883e','http://jinnangtuan.com/static/img/users/jinnangusers/head.png',1);
 /*!40000 ALTER TABLE `tour_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -242,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-21  0:43:48
+-- Dump completed on 2017-12-05 23:21:54
