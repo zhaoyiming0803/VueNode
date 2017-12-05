@@ -27,7 +27,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script >
 	import explain from '../header-explain/index.vue';
 	import countDown from '../count-down/index.vue';
 	import cookie from 'static/js/cookie.js';

@@ -15,25 +15,28 @@ router.post('/loginForm', (req, res) => {
 	const phone = loginMsg.phone;
 	const pwd = md5.update(loginMsg.pwd).digest('hex');
 
-	let p = new Promise((resolve, reject) => {
+	let validateUser = new Promise((resolve, reject) => {
 		db('select id,user_name from tour_user where user_phone="'+ phone +'" and user_pwd="'+pwd +'"', (error, data) => {
 			data ? resolve(data) : reject(error);
 		});
 	});
 	
 	// 0:用户不存在		1:登录成功		2:登录失败
-	p.then((data) => {
+	validateUser.then((data) => {
 		const len = data.length;
 		if (len === 0) {
 			res.json({
                 backInfo: '0'
             });
 		} else if (len === 1) {
-			res.json({
-				backInfo: '1',
-				id: data[0].id,
-				name: data[0].name,
-				phone: phone
+			db('select * from tour_node', (error, data) => {
+				res.json({
+					backInfo: '1',
+					id: data[0].id,
+					name: data[0].name,
+					phone: phone,
+					access: data
+				});
 			});
 		} else {
 			res.json({

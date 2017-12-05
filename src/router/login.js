@@ -16,10 +16,10 @@ const formatRoutes = (list) => {
 		return {
 			id: item.id,
 			pid: item.pid,
-			path: item.path,
-			name: toUpperCaseFirst(item.name),
-			component: testRouter[item.name],
-			meta: item.meta
+			path: '/' + item.node_name,
+			name: toUpperCaseFirst(item.node_name),
+			component: testRouter[item.node_name],
+			meta: [1, 2, 3]
 		};
 	});
 };
@@ -36,5 +36,6 @@ const merge = (list, pid=0) => {
 };
 
 export default function (routes) {
+	console.log(merge(formatRoutes(routes)));
 	router.addRoutes(merge(formatRoutes(routes)));
 };

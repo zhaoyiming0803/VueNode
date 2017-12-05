@@ -86,7 +86,7 @@
 							break;
 						case '1':
 							window.sessionStorage.userMsg = JSON.stringify(userMsg);
-							this.$store.commit('changeRoutes', [{id: 1, pid: 0, path: '/test', name: 'test', component: 'test', meta: ['admin', 'editor']}]);
+							this.$store.commit('changeRoutes', result.body.access);
 							getRules(this.$store.getters.routes);
 //							console.log('---------');
 //							console.log(this.$router.options.routes);
@@ -94,6 +94,7 @@
 //							setTimeout(() => {
 //								_this.$router.push({name: 'test'});
 //							}, 4);
+							this.$router.push({name: 'MediaList'});
 							break;
 						default:
 							alert('登录失败，请重新操作！');

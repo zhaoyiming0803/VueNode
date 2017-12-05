@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import laydate from '../static/laydate/laydate.js';
+	//import laydate from '../static/laydate/laydate.js';
 	import getRules from './router/login.js';
 	export default {
 		data () {
