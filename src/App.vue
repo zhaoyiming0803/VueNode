@@ -18,6 +18,7 @@
 </script>
 
 <style lang="less" rel="stylesheet/less">
+	@import '../static/css/tour-app-base.css';
 	body {
 		background: #fafafa;
 	}

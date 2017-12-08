@@ -59,7 +59,7 @@
 	function showSource (_this, file) {
 		var showEle = _this.showEle;
 		if( window.FileReader ) {
-			let fr = new FileReader();
+			var fr = new FileReader();
 			fr.onloadend = function (e) {
 				showEle.src = e.target.result;
 			};
