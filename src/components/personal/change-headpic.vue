@@ -11,7 +11,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import explain from '../header-explain/index.vue';
 	import validateFileUpload from 'static/js/validatefileupload.js';
 	import iframeFileUpload from 'static/js/iframefileupload.js';
