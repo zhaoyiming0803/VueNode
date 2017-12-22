@@ -49,7 +49,7 @@
 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
 个人微信&QQ：1047832475
-![png](https://github.com/zymseo/VueNode/blob/master/wechat.png)
+![image](https://github.com/zymseo/VueNode/blob/master/wechat.png)
 
 ### 目标功能
 
