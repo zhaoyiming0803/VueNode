@@ -27,7 +27,13 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/fetch': { // api表示当前项目请求的key
+        target: 'http://www.zymseo.com', // 代理服务器路径
+        pathRewrite: {'^/fetch' : '/fetch.php'}, // 重写路径
+        changeOrigin: true
+      }
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)

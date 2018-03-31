@@ -15,16 +15,22 @@
 			</p>
 			<router-link tag="a" class="phone-prompt" :to="{name: 'ForgetPwdFirstStep'}">忘记密码</router-link>
 		</form>
+
+		<test></test>
 	</div>
 </template>
 
 <script type="text/ecmascript-6">
+	import test from '../test/test.vue';
 	export default {
 		data () {
 			return {
 				phone: '',
 				pwd: ''
 			}
+		},
+		components: {
+			test
 		},
 		methods: {
 			login () {
