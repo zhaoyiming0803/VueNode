@@ -41,7 +41,7 @@
 
 	// 从后端获取到的数据
 	function getData (iframe) {
-		return iframe.contentWindow.document.body.innerHTML || iframe.contentDocument.body.innerHTML;
+		return iframe.contentWindow.document.body.innerText || iframe.contentDocument.body.innerText;
 	}
 	
 	function IframeFileUpload (opt) {
@@ -69,6 +69,9 @@
 			for (var i = 0; i < _elementIdLen; i += 1) {
 				oldNode = oDoc.querySelector('#' + _elementId[i]);
 				tmpNode = oldNode.cloneNode(true);
+				
+				// clone方法不能拷贝事件，所以需要给新node重新绑定change事件，方便下次执行
+				tmpNode.addEventListener('change', iframeFileUpload.bind(this, this.opt));
 				
 				oldNode.parentNode.insertBefore(tmpNode, oldNode);
 				frag.appendChild(oldNode);
