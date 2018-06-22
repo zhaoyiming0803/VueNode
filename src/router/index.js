@@ -37,7 +37,6 @@ Vue.use(Router);
 Vue.use(Resource);
 
 export default new Router({
-	mode: 'abstract',
 	routes: [
 		{
 			path: '/',
@@ -67,7 +66,7 @@ export default new Router({
 			component: forgetPwdFirstStep
 		 },
 		 {
-			path: '/forgetPwdSecondStep',
+			path: '/forgetPwdSecondStep/:phone',
 			name: 'ForgetPwdSecondStep',
 			component: forgetPwdSecondStep
 		 },
@@ -83,17 +82,17 @@ export default new Router({
 			component: personalEdit
 		},
 		{
-			path: '/changeUserHeadpic',
+			path: '/changeUserHeadpic/:userId/:headpic',
 			name: 'ChangeUserHeadpic',
 			component: changeUserHeadpic
 		},
 		{
-			path: '/changeUserName',
+			path: '/changeUserName/:userId/:userName',
 			name: 'ChangeUserName',
 			component: changeUserName
 		},
 		{
-			path: '/changeUserSex',
+			path: '/changeUserSex/:userId/:userSex',
 			name: 'ChangeUserSex',
 			component: changeUserSex
 		},
@@ -111,7 +110,7 @@ export default new Router({
 		},
 
 		{
-			path: '/getCoupon',
+			path: '/getCoupon/:couponId/:showType',
 			name: 'GetCoupon',
 			component: getCoupon
 		}
