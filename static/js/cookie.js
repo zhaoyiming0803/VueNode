@@ -2,7 +2,7 @@
  * Description: JS操作cookie一系列方法封装
  * User: zhaoyiming
  * Date: 2017/10/5
- * License: MIT , https://github.com/zymseo/cookie
+ * License: MIT , https://github.com/zymfe/cookie
 */
 
 ;(function (global, oDoc, factory) {
