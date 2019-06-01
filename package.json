@@ -2,7 +2,7 @@
   "name": "VueNode",
   "version": "1.0.0",
   "description": "a vue.js project of VueNode",
-  "author": "zym <1047832475@qq.com>(https://github.com/zymseo)",
+  "author": "zhaoyiming <zymfe@foxmail.com>(https://github.com/zymfe)",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

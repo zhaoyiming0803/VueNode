@@ -7,8 +7,8 @@
 			<div class="comment-item-top clearfix">
 				<div class="phone">{{v.comment_user_phone | truncatePhone}}</div>
 				<div class="star">
-					<img v-for="(value, key) in v.comment_star":key="key" src="./images/star.png" width="15" height="15" />
-					<img v-for="(value, key) in (5-v.comment_star)" :key="key" src="./images/notclickstar.png" width="15" height="15" />
+					<img v-for="(value, key) in v.comment_star" :key="key" src="./images/star.png" width="15" height="15" />
+					<img v-for="(value, key) in (5-v.comment_star)" v-if="(v-v.comment_star)" :key="key" src="./images/notclickstar.png" width="15" height="15" />
 				</div>
 			</div>
 			<div class="comment-item-bottom">{{v.comment_content}}</div>

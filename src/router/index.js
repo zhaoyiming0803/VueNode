@@ -37,7 +37,7 @@ Vue.use(Router);
 Vue.use(Resource);
 
 export default new Router({
-	mode: 'abstract',
+	mode: 'history',
 	routes: [
 		{
 			path: '/',
