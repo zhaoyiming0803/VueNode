@@ -17,7 +17,7 @@ module.exports = merge(baseWebpackConfig, {
     contentBase: resolve('./'),
     compress: true,
     disableHostCheck: true,
-    open: true,
+    // open: true,
     openPage: '../',
     index: 'index.html',
     historyApiFallback: true,

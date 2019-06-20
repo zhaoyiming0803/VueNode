@@ -11,6 +11,7 @@ module.exports = {
   dev: {
     host: 'localhost',
     port: 3000,
-    assetsPublicPath: '/'
+    assetsPublicPath: '/',
+    assetsSubDirectory: 'static'
   }
 };
