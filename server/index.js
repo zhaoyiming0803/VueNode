@@ -6,6 +6,7 @@
 
 var express = require('express');
 var router = express.Router();
+var app = express();
 
 // 注册
 router.use('/regist', require(__dirname + '/account/regist'));
@@ -31,4 +32,7 @@ router.use('/globalCouponList', require(__dirname + '/global-coupon-list/index')
 // 领取优惠券
 router.use('/getCoupon', require(__dirname + '/get-coupon/index'));
 
-module.exports = router;
+app.use(router);
+
+console.log('listen on 8000');
+app.listen(8000);

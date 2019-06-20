@@ -4,12 +4,10 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script scoped type="text/ecmascript-6">
 	export default {
 		data () {
-			return {
-
-			};
+			return {};
 		},
 		mounted () {
 			this.$router.push({name: 'GlobalCouponIndex'});
