@@ -1,23 +1,20 @@
 <template>
-	<div class="app-wraper wraper">
-		<router-view></router-view>
-	</div>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
-<script scoped type="text/ecmascript-6">
-	export default {
-		data () {
-			return {};
-		},
-		mounted () {
-			this.$router.push({name: 'GlobalCouponIndex'});
-		}
-	}
+<script lang="ts" scoped>
+  import { Component, Vue } from 'vue-property-decorator';
+
+  @Component({})
+  export default class Home extends Vue {}
 </script>
 
-<style lang="less" rel="stylesheet/less">
-	@import '../static/css/tour-app-base.css';
-	body {
-		background: #fafafa;
-	}
+<style lang="less">
+  body {
+    font-size: 16px;
+    background-color: #f8f8f8;
+    -webkit-font-smoothing: antialiased;
+  }
 </style>
