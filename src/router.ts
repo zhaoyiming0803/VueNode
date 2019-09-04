@@ -5,21 +5,16 @@ Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  base: '/vue-cli3-typescript/',
+  base: '/example/',
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/account-index',
     },
     {
-      path: '/home',
-      name: 'Home',
-      component: () => import('./pages/Home.vue'),
-    },
-    {
-      path: '/about',
-      name: 'About',
-      component: () => import('./pages/About.vue'),
-    },
-  ],
+      path: '/account-index',
+      name: 'AccountIndex',
+      component: () => import('@/pages/account/index.vue'),
+    }
+  ]
 });

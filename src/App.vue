@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app-wraper wraper">
     <router-view></router-view>
   </div>
 </template>
@@ -12,9 +12,8 @@
 </script>
 
 <style lang="less">
-  body {
-    font-size: 16px;
-    background-color: #f8f8f8;
-    -webkit-font-smoothing: antialiased;
-  }
+  @import './static/css/tour-app-base.css';
+	body {
+		background: #fafafa;
+	}
 </style>
