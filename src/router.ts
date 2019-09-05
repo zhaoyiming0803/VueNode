@@ -15,6 +15,18 @@ export default new Router({
       path: '/account-index',
       name: 'AccountIndex',
       component: () => import('@/pages/account/index.vue'),
+      children: [
+				{
+					path: '/login',
+					name: 'Login',
+					component: () => import('@/pages/account/login.vue')
+				},
+				{
+					path: '/regist',
+					name: 'Regist',
+					component: () => import('@/pages/account/regist.vue')
+				}
+			]
     }
   ]
 });

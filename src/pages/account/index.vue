@@ -20,7 +20,7 @@
 			</router-link>
 		</div>
 
-		<!-- <router-view></router-view> -->
+		<router-view></router-view>
 
 	</div>
 </template>
@@ -36,8 +36,8 @@
 		}
 	})
 	export default class AccountIndex extends Vue {
-		isAccount: boolean = true;
-		explainName: string = '欢迎来到锦囊团';
+		public isAccount: boolean = true;
+		public explainName: string = '欢迎来到锦囊团';
 	}
 </script>
 

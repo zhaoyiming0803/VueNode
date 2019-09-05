@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -9,42 +10,33 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/user/info', (req, res) => {
-  res.json({
-    code: 0,
-    data: {
-      name: 'zymfe',
-      age: 18
-    },
-    msg: ''
-  });
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/api/memu/list', (req, res) => {
-  res.json({
-    code: 0,
-    data: [
-      { 
-        id: 1, 
-        name: '权限管理', 
-        children: [
-          { id: 2, name: '菜单管理' },
-          { id: 3, name: '角色管理' },
-          { id: 4, name: '用户管理' }
-        ] 
-      },
-      { 
-        id: 5, 
-        name: '本地生活', 
-        children: [
-          { id: 6, name: '商品管理' },
-          { id: 7, name: '商家管理' }
-        ] 
-      }
-    ],
-    msg: ''
-  });
-});
+// 注册
+app.use('/regist', require(__dirname + '/account/regist'));
 
-console.log('app listen 8091');
-app.listen(8091);
+//登录
+app.use('/login', require(__dirname + '/account/login'));
+
+// 找回密码
+app.use('/forgetPwd', require(__dirname + '/account/forgetPwd'));
+
+// 个人中心
+app.use('/personal', require(__dirname + '/personal/index'));
+
+// 个人资料修改
+app.use('/personalEdit', require(__dirname + '/personal/personal-edit'));
+
+// 首页
+app.use('/globalCoupon', require(__dirname + '/global-coupon/index'));
+
+// 全球优惠列表页
+app.use('/globalCouponList', require(__dirname + '/global-coupon-list/index'));
+
+// 领取优惠券
+app.use('/getCoupon', require(__dirname + '/get-coupon/index'));
+
+app.listen(8091, () => {
+  console.log('express listen port 8091');
+});

@@ -1,5 +1,3 @@
-import { getMenuListReq } from '@/api/menu';
-
 interface StateType {
   appName: string
   version: string
@@ -33,15 +31,6 @@ export default {
   },
 
   actions: {
-    getMenuList ({ commit }: ActionsType, token: string) {
-      getMenuListReq(token)
-        .then(res => {
-          console.log('getMenuList then: ', res);
-          commit('setMenuList', res.data);
-        })
-        .catch(res => {
-          console.log('getMenuList catch: ', res);
-        })
-    }
+    
   }
 }

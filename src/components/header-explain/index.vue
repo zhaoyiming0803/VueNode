@@ -7,7 +7,7 @@
 				class="goback" 
 				id="goback" 
 				v-show="!isAccount" 
-				@:click="back();">
+				@click="back()">
 			</a>{{explainName}}
 		</div>
 	</div>
@@ -18,8 +18,8 @@
 
   @Component({})
   export default class HeaderExplain extends Vue {
-		@Prop({type: String, required: true}) private explainName: string = '';
-		@Prop({type: Boolean, default: false}) private isAccount: boolean = false;
+		@Prop({type: String, required: true}) private explainName!: string;
+		@Prop({type: Boolean, default: false}) private isAccount!: boolean;
 
 		back () {
 			this.$router.back();
