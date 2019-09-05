@@ -32,12 +32,7 @@ class HttpRequest {
 
     // 响应拦截
     instance.interceptors.response.use((res: AxiosResponse) => {
-      const { data } = res;
-      const { code, msg } = data;
-      if (code !== 0) {
-        console.error(msg);
-      }
-      return res.data;
+      return res;
     }, error => Promise.reject(error));
   }
 

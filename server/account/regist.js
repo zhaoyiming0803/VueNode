@@ -1,7 +1,7 @@
 /*
  * Description: 注册
- * User: zhaoyiming
- * Date: 2017/9/16
+ * @author: zhaoyiming
+ * @since: 2017/9/16
 */
 
 const express = require('express');
@@ -21,15 +21,26 @@ router.post('/registForm', (req, res) => {
 		});
 	});
 	
-	// 0:手机号已被注册		1:注册成功		2:注册失败
 	p.then((data) => {
 		if (data.length >= 1) {
 			res.json({
-                backInfo: '0'
-            });
+				code: 0,
+				data: {},
+				msg: '手机号已被注册'
+			});
 		} else {
 			db('insert into tour_user set user_phone="'+ phone +'", user_pwd="'+ pwd +'"', (error, data) => {
-				data ? res.json({backInfo: '1'}) : res.json({backInfo: '2'});
+				if (data) {
+					res.json({
+						code: 1,
+						msg: '注册成功...'
+					});
+				} else {
+					res.json({
+						code: 2,
+						msg: '注册失败'
+					});
+				}
 			});
 		}
 		p = null;

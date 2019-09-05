@@ -23,6 +23,8 @@
 <script lang="ts" scoped>
 	import { Component, Vue } from 'vue-property-decorator';
 
+	import { regist } from '@/api/account';
+
 	export default class Regist extends Vue {
 		private phone: string = '';
 		private pwd: string = '';
@@ -43,20 +45,16 @@
 				alert('两次输入的密码不一致，请重新输入！');
 				return false;
 			}
-
-			// this.$http.post('/regist/registForm', {phone: this.phone, pwd: this.pwd}, {emulateJSON: true}).then((result) => {
-			// 	switch (JSON.parse(result.bodyText).backInfo) {
-			// 		case '0':
-			// 			alert('该手机号已经被注册，请重新操作！');
-			// 			break;
-			// 		case '1':
-			// 			alert('注册成功！');
-			// 			window.location.href = '/#/login';
-			// 			break;
-			// 		default:
-			// 			alert('注册失败，请重新操作！');
-			// 	}
-			// });
+			
+			regist(this.phone, this.pwd)
+				.then(res => {
+					const { code, msg } = res.data;
+					if (code === 1) alert('注册成功');
+					else alert(msg);
+				})
+				.catch(res => {
+					alert('系统错误，请稍后再试');
+				});
 		}
 	}
 </script>

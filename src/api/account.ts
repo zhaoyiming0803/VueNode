@@ -8,3 +8,11 @@ export const login = (phone: string, pwd: string): AxiosPromise<ResponseData> =>
     data: { phone, pwd }
   });
 };
+
+export const regist = (phone: string, pwd: string): AxiosPromise<ResponseData> => {
+  return httpRequest.request({
+    method: 'post',
+    url: '/regist/registForm',
+    data: { phone, pwd }
+  });
+}
