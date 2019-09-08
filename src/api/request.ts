@@ -3,7 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosPromise, AxiosResponse }
 export interface ResponseData {
   code: number;
   data?: any;
-  msg: string;
+  message: string;
 }
 
 const apiBaseUrl = process.env.NODE_ENV === 'production'

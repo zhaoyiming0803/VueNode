@@ -5,11 +5,11 @@ Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  base: '/example/',
+  base: '/fe/',
   routes: [
     {
       path: '/',
-      redirect: '/account-index',
+      redirect: '/login',
     },
     {
       path: '/account-index',

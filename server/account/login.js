@@ -1,5 +1,5 @@
 /*
- * Description: 登录
+ * 登录
  * @author: zhaoyiming
  * @since: 2017/9/16
 */
@@ -26,8 +26,8 @@ router.post('/loginForm', (req, res) => {
 		if (len === 0) {
 			res.json({
 				code: -1,
-				data: {},
-				msg: '用户不存在'
+				data: null,
+				message: '用户不存在'
 			});
 		} else if (len === 1) {
 			res.json({
@@ -37,13 +37,13 @@ router.post('/loginForm', (req, res) => {
 					name: data[0].name,
 					phone: phone
 				},
-				msg: ''
+				message: ''
 			});
 		} else {
 			res.json({
 				code: -1,
-				data: {},
-				msg: '登录失败'
+				data: null,
+				message: '登录失败'
 			});
 		}
 	});

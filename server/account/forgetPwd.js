@@ -1,7 +1,7 @@
 /*
- * Description: 找回密码第一步
- * User: zhaoyiming
- * Date: 2017/9/17
+ * 找回密码
+ * @author: zhaoyiming
+ * @since: 2017/9/17
 */
 
 const express = require('express');

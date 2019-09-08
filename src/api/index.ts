@@ -1,3 +1,3 @@
-import HttpRequest from '@/utils/request';
-export * from '@/utils/request';
+import HttpRequest from './request';
+export * from '@/api/request';
 export default new HttpRequest();

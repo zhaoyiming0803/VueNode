@@ -1,5 +1,5 @@
 /*
- * Description: 注册
+ * 注册
  * @author: zhaoyiming
  * @since: 2017/9/16
 */
@@ -26,19 +26,19 @@ router.post('/registForm', (req, res) => {
 			res.json({
 				code: 0,
 				data: {},
-				msg: '手机号已被注册'
+				message: '手机号已被注册'
 			});
 		} else {
 			db('insert into tour_user set user_phone="'+ phone +'", user_pwd="'+ pwd +'"', (error, data) => {
 				if (data) {
 					res.json({
 						code: 1,
-						msg: '注册成功...'
+						message: '注册成功...'
 					});
 				} else {
 					res.json({
 						code: 2,
-						msg: '注册失败'
+						message: '注册失败'
 					});
 				}
 			});

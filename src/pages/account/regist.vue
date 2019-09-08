@@ -22,38 +22,44 @@
 
 <script lang="ts" scoped>
 	import { Component, Vue } from 'vue-property-decorator';
-
 	import { regist } from '@/api/account';
+	import { validatePhone, validatePassword } from '@/utils/index';
 
+	@Component
 	export default class Regist extends Vue {
 		private phone: string = '';
 		private pwd: string = '';
 		private confirmPwd: string = '';
 
 		private regist () {
-			if (!(/^((13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8})$/).test(this.phone)) {
-				alert('手机号码格式不正确，请重新输入！');
-				return false;
+			if (!validatePhone(this.phone)) {
+				return this.$dialog.alert({
+					message: '手机号码格式不正确，请重新输入！'
+				});
 			}
 
-			if (!(/\w{6,}/).test(this.pwd)) {
-				alert('密码需要至少6位数，请重新输入！');
-				return false;
+			if (!validatePassword(this.pwd)) {
+				return this.$dialog.alert({
+					message: '密码需要至少6位数，请重新输入！'
+				});
 			}
 
 			if (this.pwd !== this.confirmPwd) {
-				alert('两次输入的密码不一致，请重新输入！');
-				return false;
+				return this.$dialog.alert({
+					message: '两次输入的密码不一致，请重新输入！'
+				});
 			}
 			
 			regist(this.phone, this.pwd)
 				.then(res => {
-					const { code, msg } = res.data;
-					if (code === 1) alert('注册成功');
-					else alert(msg);
+					const { code, message } = res.data;
+					if (code === 1) this.$dialog.alert({ message: '注册成功' });
+					else this.$dialog.alert({ message });
 				})
-				.catch(res => {
-					alert('系统错误，请稍后再试');
+				.catch(error => {
+					this.$dialog.alert({ 
+						message: error
+					});
 				});
 		}
 	}

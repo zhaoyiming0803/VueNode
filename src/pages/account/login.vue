@@ -20,7 +20,9 @@
 <script lang="ts" scoped>
 	import { Component, Vue } from 'vue-property-decorator';
 	import { login } from '@/api/account';
+	import { validatePhone, validatePassword } from '@/utils/index';
 
+	@Component
 	export default class Login extends Vue {
 		private phone: string = '';
 		private pwd: string = '';
@@ -37,38 +39,30 @@
 		}
 
 		login () {
-			if (!(/^((13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8})$/).test(this.phone)) {
-				alert('手机号码格式不正确，请重新输入！');
-				return false;
+			if (!validatePhone(this.phone)) {
+				return this.$dialog.alert({
+					message: '手机号码格式不正确，请重新输入！'
+				});
 			}
 
-			if (!(/\w{6,}/).test(this.pwd)) {
-				alert('密码需要至少6位数，请重新输入！');
-				return false;
+			if (!validatePassword(this.pwd)) {
+				return this.$dialog.alert({
+					message: '密码需要至少6位数，请重新输入！'
+				});
 			}
 
 			login(this.phone, this.pwd)
 				.then(res => {
-					console.log('success: ', res);
+					const { code, data, message } = res.data;
+					if (code === 0) {
+						window.sessionStorage.user_info = JSON.stringify(data);
+					} else {
+						this.$dialog.alert({ message });
+					}
 				})
-				.catch(res => {
-					console.log('error ', res);
-				})
-
-			// this.$http.post('/login/loginForm', {phone: this.phone, pwd: this.pwd}, {emulateJSON: true}).then((result) => {
-			// 	const userMsg = JSON.parse(result.bodyText);
-			// 	switch (userMsg.backInfo) {
-			// 		case '0':
-			// 			alert('账号或密码有误，请重新输入！');
-			// 			break;
-			// 		case '1':
-			// 			window.sessionStorage.userMsg = JSON.stringify(userMsg);
-			// 			this.$router.push({name: 'Personal'});
-			// 			break;
-			// 		default:
-			// 			alert('登录失败，请重新操作！');
-			// 	}
-			// });
+				.catch(error => {
+					this.$dialog.alert({ message: error });
+				});
 		}
 	}
 </script>

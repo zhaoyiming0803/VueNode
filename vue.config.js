@@ -4,7 +4,7 @@ const tsImportPluginFactory = require('ts-import-plugin');
 module.exports = {
   parallel: false,
   outputDir: 'dist',
-  publicPath: process.env.NODE_ENV === 'production' ? '/vue-cli3-typescript/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/fe/' : '/',
   chainWebpack: config => {
     config.module
       .rule('ts')
