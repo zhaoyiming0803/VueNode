@@ -20,7 +20,7 @@ app.use('/regist', require(__dirname + '/account/regist'));
 app.use('/login', require(__dirname + '/account/login'));
 
 // 找回密码
-app.use('/forgetPwd', require(__dirname + '/account/forgetPwd'));
+app.use('/forgetPassword', require(__dirname + '/account/forgetPassword'));
 
 // 个人中心
 app.use('/personal', require(__dirname + '/personal/index'));

@@ -12,7 +12,7 @@
 			<p>
 				<input type="submit" value="登	录" class="account-btn" />
 			</p>
-			<!-- <router-link tag="a" class="phone-prompt" :to="{name: 'ForgetPwdFirstStep'}">忘记密码</!-->
+			<router-link tag="a" class="phone-prompt" :to="{name: 'GetPhoneCode'}">忘记密码</router-link>
 		</form>
 	</div>
 </template>
@@ -27,14 +27,14 @@
 		private phone: string = '';
 		private pwd: string = '';
 
-		private mounted () {
-			let $sessionStorage = window.sessionStorage;
-			if (!$sessionStorage) {
-				alert('为保证您可以正常使用我们的产品，请关闭浏览器的无痕浏览模式！');
-				return;
-			}
-			if ($sessionStorage.userMsg && JSON.parse($sessionStorage.userMsg).id) {
-				this.$router.push({name: 'GlobalCouponIndex'});
+		private created () {
+			try {
+				const userInfo = JSON.parse(window.sessionStorage.user_info);
+				this.$router.push({
+					name: 'GlobalCouponIndex'
+				});
+			} catch (e) {
+				// ... do nothing
 			}
 		}
 

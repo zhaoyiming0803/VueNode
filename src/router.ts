@@ -9,23 +9,33 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/account/login',
     },
     {
-      path: '/account-index',
+      path: '/account',
       name: 'AccountIndex',
       component: () => import('@/pages/account/index.vue'),
       children: [
 				{
-					path: '/login',
+					path: 'login',
 					name: 'Login',
 					component: () => import('@/pages/account/login.vue')
 				},
 				{
-					path: '/regist',
+					path: 'regist',
 					name: 'Regist',
 					component: () => import('@/pages/account/regist.vue')
-				}
+        },
+        {
+          path: 'get-phone-code',
+          name: 'GetPhoneCode',
+          component: () => import('@/pages/account/get-phone-code.vue')
+        },
+        {
+          path: 'reset-password',
+          name: 'ResetPassword',
+          component: () => import('@/pages/account/reset-password.vue')
+        }
 			]
     }
   ]

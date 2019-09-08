@@ -16,7 +16,7 @@
 <script lang="ts" scoped>
   import { Component, Vue, Prop } from 'vue-property-decorator';
 
-  @Component({})
+  @Component
   export default class HeaderExplain extends Vue {
 		@Prop({type: String, required: true}) private explainName!: string;
 		@Prop({type: Boolean, default: false}) private isAccount!: boolean;
@@ -31,7 +31,7 @@
 	.fixed-header {
 	  position: fixed;
 	  top: 0;
-	  z-index: 10001;
+	  z-index: 10;
 	  width: 100%;
 	  min-width: 320px;
 	  max-width: 640px;

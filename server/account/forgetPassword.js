@@ -12,7 +12,7 @@ const crypto = require('crypto');
 /*
 * 找回密码第一步
 */
-router.post('/firstStep', (req, res) => {
+router.post('/getPhoneCode', (req, res) => {
 	const msg = req.body;
 	const phone = msg.phone;
 
@@ -25,17 +25,21 @@ router.post('/firstStep', (req, res) => {
 	p.then((data) => {
 		if (data.length !== 1) {
 			res.json({
-                backInfo: '0'
-            });
+				code: -1,
+				data: null,
+				message: '手机号码不存在'
+			});
 		} else {
 			// ...模拟一系列获取短信验证码接口的代码
-			let tmpCode = '';
+			let code = '';
 			for (let i = 0; i < 6; i += 1) {
-				tmpCode += Math.floor(Math.random() * 10);
+				code += Math.floor(Math.random() * 10);
 			}
 			res.json({
-                backInfo: tmpCode
-            });
+				code: 0,
+				data: code,
+				message: ''
+			});
 		}
 	});
 });
@@ -43,14 +47,26 @@ router.post('/firstStep', (req, res) => {
 /*
 * 找回密码第二步
 */
-router.post('/secondStep', (req, res) => {
+router.post('/resetPassword', (req, res) => {
 	const md5 = crypto.createHash('md5');
 	const msg = req.body;
 	const phone = msg.phone;
 	const pwd = md5.update(msg.pwd).digest('hex');
 
 	db('update tour_user set user_pwd="'+ pwd +'" where user_phone="'+ phone +'"', (error, data) => {
-		data ? res.json({backInfo: '1'}) : res.json({backInfo: '0'});
+		if (data) {
+			res.json({
+				code: 0,
+				data: null,
+				message: ''
+			});
+		} else {
+			res.json({
+				code: -1,
+				data: null,
+				message: '密码重置失败，请重新操作'
+			});
+		}
 	});
 });
 
