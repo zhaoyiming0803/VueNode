@@ -1,7 +1,7 @@
 /*
- * Description: app全球优惠列表页控制器
- * User: zhaoyiming
- * Date: 2017/9/25
+ * app全球优惠列表页控制器
+ * @author: zhaoyiming
+ * @since: 2017/9/25
 */
 
 const express = require('express');
@@ -11,18 +11,30 @@ const db = require('../db');
 /*
 * 国家与地区列表
 */
-router.post('/countryList', (req, res) => {
+router.get('/countryList', (req, res) => {
 	db('select id, country_name from tour_country', (error, data) => {
-		data && res.json({countryList: data});
+		if (data) {
+			res.json({
+				code: 0,
+				data,
+				message: ''
+			});
+		}
 	});
 });
 
 /*
 * 优惠券分类列表
 */
-router.post('/classifyList', (req, res) => {
+router.get('/classifyList', (req, res) => {
 	db('select id, classify_name from tour_classify', (error, data) => {
-		data && res.json({classifyList: data});
+		if (data) {
+			res.json({
+				code: 0,
+				data,
+				message: ''
+			});
+		}
 	});
 });
 
@@ -38,11 +50,23 @@ router.post('/showCoupons', (req, res) => {
 
 	if (parseInt(countryId, 10) === 1) {
 		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_classify="'+ classifyId +'" limit '+ (currentPage-1)*10 +', 10', (error, data) => {
-			data && res.json({couponList: data});
+			if (data) {
+				res.json({
+					code: 0,
+					data,
+					message: ''
+				});
+			}
 		});
 	} else {
 		db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_belong_country="'+ countryId +'" and coupon_classify="'+ classifyId +'" limit '+ (currentPage-1)*10 +', 10', (error, data) => {
-			data && res.json({couponList: data});
+			if (data) {
+				res.json({
+					code: 0,
+					data,
+					message: ''
+				});
+			}
 		});
 	}
 });

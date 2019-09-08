@@ -9,7 +9,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/account/login',
+      redirect: '/home',
     },
     {
       path: '/account',
@@ -37,6 +37,16 @@ export default new Router({
           component: () => import('@/pages/account/reset-password.vue')
         }
 			]
-    }
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: () => import('@/pages/home.vue')
+    },
+    // {
+    //   path: '/get-coupon',
+    //   name: 'GetCoupon',
+    //   component: () => import('@/pages/get-coupon/index.vue')
+    // }
   ]
 });

@@ -1,7 +1,8 @@
 interface StateType {
-  appName: string
-  version: string
-  menuList: any[]
+  countryId: number
+  countryName: string
+  classifyId: number
+  classifyName: string
 }
 
 interface ActionsType {
@@ -9,9 +10,10 @@ interface ActionsType {
 }
 
 const state: StateType = {
-  appName: 'Vue-Cli3-TypeScript',
-  version: 'v0.0.1',
-  menuList: []
+  countryId: 1,
+	countryName: '全球',
+	classifyId: 1,
+	classifyName: '购物'
 };
 
 export default {
@@ -22,11 +24,20 @@ export default {
   },
 
   mutations: {
-    setVersion (state: StateType, version: any) {
-      state.version = version;
+    changeCountryId (state: StateType, countryId: number) {
+      state.countryId = countryId;
     },
-    setMenuList (state: StateType, menuList: any[]) {
-      state.menuList = menuList;
+
+    changeCountryName (state: StateType, countryName: string) {
+      state.countryName = countryName;
+    },
+
+    changeClassifyId (state: StateType, classifyId: number) {
+      state.classifyId = classifyId;
+    },
+
+    changeClassifyName (state: StateType, classifyName: string) {
+      state.classifyName = classifyName;
     }
   },
 
