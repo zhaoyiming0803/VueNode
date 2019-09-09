@@ -58,7 +58,7 @@
 					<div class="comment-num-star">
 						<span class="comment-num-star-txt">您的评价</span>
 						<span class="star-wraper" id="star">
-							<star></star>
+							<star @on-change="changeStar"></star>
 						</span>
 					</div>
 					<div class="comment-num-txt"><span id="comment-num-txt">{{starGrade}}</span>分</div>
@@ -81,6 +81,7 @@
 	import CouponBrief from '@/components/coupon-brief/index.vue';
 	import CouponRule from '@/components/coupon-rule/index.vue';
 	import CouponComment from '@/components/coupon-comment/index.vue';
+	import Star from '@/components/star/index.vue';
 	import { getCouponDetail, getCoupon, publishComment } from '@/api/coupon';
 
 	@Component({
@@ -89,7 +90,8 @@
 			FooterNav,
 			CouponBrief,
 			CouponRule,
-			CouponComment
+			CouponComment,
+			Star
 		}
 	})
 	export default class GetCoupon extends Vue {
@@ -188,6 +190,10 @@
 				this.$router.push({name: 'Login'});
 			}
 		}
+
+		private changeStar (starGrade: number): void {
+			this.starGrade = starGrade;
+		}
 	}
 </script>
 
@@ -235,7 +241,7 @@
 
 	.get-coupon-status {
 		position: fixed;
-		z-index: 10001;
+		z-index: 10;
 		top: 30%;
 		left: 50%;
 		margin-left: -98px;
@@ -269,7 +275,7 @@
 	.add-comment-wraper {
 		position: fixed;
 		bottom: 0;
-		z-index: 10001;
+		z-index: 11;
 		width: 100%;
 		max-width: 640px;
 		background-color: #fff;

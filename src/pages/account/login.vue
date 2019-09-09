@@ -31,7 +31,7 @@
 			try {
 				const userInfo = JSON.parse(window.sessionStorage.user_info);
 				this.$router.push({
-					name: 'GlobalCouponIndex'
+					path: '/home'
 				});
 			} catch (e) {
 				// ... do nothing
@@ -56,6 +56,7 @@
 					const { code, data, message } = res.data;
 					if (code === 0) {
 						window.sessionStorage.user_info = JSON.stringify(data);
+						this.$router.back();
 					} else {
 						this.$dialog.alert({ message });
 					}

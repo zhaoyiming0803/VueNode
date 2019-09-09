@@ -1,7 +1,7 @@
 /*
- * Description: 领取优惠券控制器
- * User: zhaoyiming
- * Date: 2017/9/27
+ * 领取优惠券
+ * @author: zhaoyiming
+ * @since: 2017/9/27
 */
 
 const express = require('express');

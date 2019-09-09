@@ -12,18 +12,17 @@ const multer = require('../multer');
 /*
 * 获取用户基本信息
 */
-router.post('/getMsg', (req, res) => {
-	const msg = req.body;
-	const userId = msg.userId;
-	db('select user_name, user_sex, user_headpic from tour_user where id="'+ userId +'"', (error, data) => {
-		data && res.json({backInfo: data});
+router.get('/getMsg', (req, res) => {
+	const { id } = req.query;
+	db('select user_name, user_sex, user_headpic from tour_user where id="'+ id +'"', (error, data) => {
+		data && res.json({code: 0, data: data[0], message: 0});
 	});
 });
 
 /*
 * 修改头像
 */
-router.post('/changeUserHeadpic', multer.array('headpic'), (req, res, next) => {
+router.post('/changeUserHeadpic', multer.array('file'), (req, res, next) => {
 	const files = req.files[0];
 	const userId = req.body.id;
 	const filePath = '../../static/uploads/images/' + files.filename;

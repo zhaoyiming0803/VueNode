@@ -47,6 +47,21 @@ export default new Router({
       path: '/get-coupon',
       name: 'GetCoupon',
       component: () => import('@/pages/get-coupon/index.vue')
+    },
+    {
+      path: '/personal',
+      name: 'Personal',
+      component: () => import('@/pages/personal/index.vue')
+    },
+    {
+      path: '/personal-edit',
+      name: 'PersonEdit',
+      component: () => import('@/pages/personal/personal-edit.vue')
+    },
+    {
+      path: '/change-user-thumb',
+      name: 'ChangeUserThumb',
+      component: () => import('@/pages/personal/change-headpic.vue')
     }
   ]
 });
