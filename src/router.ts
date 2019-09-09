@@ -43,10 +43,10 @@ export default new Router({
       name: 'Home',
       component: () => import('@/pages/home.vue')
     },
-    // {
-    //   path: '/get-coupon',
-    //   name: 'GetCoupon',
-    //   component: () => import('@/pages/get-coupon/index.vue')
-    // }
+    {
+      path: '/get-coupon',
+      name: 'GetCoupon',
+      component: () => import('@/pages/get-coupon/index.vue')
+    }
   ]
 });

@@ -11,8 +11,8 @@ const db = require('../db');
 /*
 * 查询优惠券详情
 */
-router.post('/couponDetail', (req, res) => {
-	const couponId = req.body.couponId;
+router.get('/couponDetail', async (req, res) => {
+	const couponId = req.query.id;
 
 	let couponDetail = new Promise((resolve, reject) => {
 		db('select a.coupon_name, a.coupon_explain, a.coupon_starttime, a.coupon_endtime, a.coupon_ico_path, b.comment_content, b.comment_star, b.comment_user_phone from tour_coupon as a left join tour_comment as b on a.id=b.comment_coupon_id where a.id="'+ couponId +'"', (error, data) => {
@@ -20,39 +20,59 @@ router.post('/couponDetail', (req, res) => {
 		});
 	});
 
-	couponDetail.then((data) => {
-		if (data.length) {
+	couponDetail
+		.then(data => {
+			if (data.length) {
+				res.json({
+					code: 0,
+					data,
+					message: ''
+				});
+			} else {
+				res.json({
+					code: 0,
+					data: null,
+					message: '优惠券获取失败，请刷新'
+				});
+			}
+		})
+		.catch(error => {
 			res.json({
-				couponDetail: data
+				code: 0,
+				data: null,
+				message: '优惠券获取失败，请刷新'
 			});
-		}
-	});
+		});
 });
 
 /*
 * 立即获取优惠券
 */
-router.post('/getCoupon', (req, res) => {
-	const msg = req.body;
-	const couponId = msg.couponId;
-	const userId = msg.userId;
+router.get('/getCoupon', (req, res) => {
+	const { coupon_id, user_id } = req.query;
 
-	let validateCoupon = new Promise((resolve, reject) => {
-		db('select id from tour_coupon_user where coupon_id="'+ couponId +'" and user_id="'+ userId +'"', (error, data) => {
+	const validateCoupon = new Promise((resolve, reject) => {
+		db('select id from tour_coupon_user where coupon_id="'+ coupon_id +'" and user_id="'+ user_id +'"', (error, data) => {
 			data ? resolve(data) : reject(error);
 		});
 	});
 
-	validateCoupon.then((result) => {
-		result.length
-		? res.json({backInfo: '已经领取过了', backMark: 2})
-		: db('insert into tour_coupon_user set coupon_id="'+ couponId +'", user_id="'+ userId +'"', (error, data) => {
-			if (data.insertId) {
-				db('update tour_coupon set coupon_recived_num=coupon_recived_num+1 where id="'+ couponId +'"', (error, data) => {
-					data ? res.json({backInfo: '领取成功', backMark: 1}) : res.json({backInfo: '领取失败，请重新操作', backMark: 0});
-				});
-			}
-		});
+	validateCoupon.then(result => {
+		if (result.length) {
+			res.json({ code: -1, data: null, message: '已经领取过了' });
+		} else {
+			db('insert into tour_coupon_user set coupon_id="'+ coupon_id +'", user_id="'+ user_id +'"', (error, data) => {
+				if (data.insertId) {
+					db('update tour_coupon set coupon_recived_num=coupon_recived_num+1 where id="'+ coupon_id +'"', (error, data) => {
+						if (data) {
+							res.json({ code: 0, data: 1, message: '领取成功' });
+						} else {
+							res.json({ code: -1, data: 0, message: '领取失败，请重新操作' });
+						}
+					});
+				}
+			});
+		}
 	});
 });
 
@@ -60,17 +80,10 @@ router.post('/getCoupon', (req, res) => {
 * 发布评价
 */
 router.post('/publishComment', (req, res) => {
-	const msg = req.body;
-	const id = msg.id;
-	const phone = msg.phone;
-	const starGrade = msg.starGrade;
-	const commentContent = msg.commentContent;
-	const couponId = msg.couponId;
-
+	const { id, phone, starGrade, commentContent, couponId } = req.body;
 	let addComment = null;
 	let changeStatus = null;
 
-	
 	// 按照一般的逻辑：用户购买或使用产品之后才能进行评论；
 	// 这里的优惠券暂时没有判断什么时候就算使用了，所以测试执行以下逻辑：
 	// 用户发表评论这个【动作】即是【使用】优惠券，优惠券使用完之后不能再次使用
@@ -92,12 +105,12 @@ router.post('/publishComment', (req, res) => {
 
 			Promise.all([addComment, changeStatus]).then((result) => {
 				(result[0] && result[1])
-				? res.json({backInfo: '评论成功'})
-				: res.json({backInfo: '发布失败，请重新操作'});
+					? res.json({ code: 0, data: null, message: '评论成功' })
+					: res.json({ code: -1, data: null, message: '发布失败，请重新操作' });
 				addComment = changeStatus = null;
 			});	
 		} else {
-			res.json({backInfo: '您已经使用过此优惠券了！'})
+			res.json({ code: 0, data: null, message: '您已经使用过此优惠券了！' })
 		}
 	});
 });

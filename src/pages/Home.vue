@@ -40,10 +40,10 @@
 			<router-link 
         v-for="(v, k) in couponList" 
         :key="k" 
-        :to="{name: 'GetCoupon', params: {couponId: v.id, showType: 1}}" 
+        :to="{path: '/get-coupon', query: {id: v.id, type: 1}}" 
         :class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}">
 				<div class="shop-ico">
-					<img v-bind:src=v.coupon_ico_path width="100%" height="100%" :alt=v.coupon_name />
+					<img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
 				</div>
 				<div class="shop-intro">
 					<div class="shop-title">{{v.coupon_name}}</div>
@@ -57,7 +57,7 @@
 					<span :class="{'use-discount': v.coupon_status==0, 'used': v.coupon_status==1, 'past': v.coupon_status==2}"></span>
 				</div>
 			</router-link>
-			<a href="javascript:;" v-if="couponList.length % 10 ===0" class="load-more" @click="loadMore();">加载更多</a>
+			<a href="javascript:;" v-if="couponList.length % 10 === 0" class="load-more" @click="loadMore">加载更多</a>
 		</div>
 
     <footer-nav></footer-nav>
@@ -67,8 +67,8 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
   import explain from '@/components/header-explain/index.vue';
-  import { getCouponsList, getClassifyList, getCountryList } from '@/api/coupon';
   import footerNav from '@/components/footer-nav/index.vue';
+  import { getCouponsList, getClassifyList, getCountryList } from '@/api/coupon';
 
   @Component({
     components: {

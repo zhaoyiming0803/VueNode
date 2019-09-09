@@ -1,13 +1,13 @@
 <template>
-	<!-- 获取优惠券组件 -->
+	<!-- 获取优惠券 -->
 	<div class="get-coupon-wraper">
 
-		<explain explainName="explainName"></explain>
+		<explain :explainName="explainName"></explain>
 
-		<coupon-brief coupon="coupon"></coupon-brief>
+		<coupon-brief :coupon="coupon"></coupon-brief>
 
 		<div class="coupon-bottom-wraper" id="coupon-bottom-wraper">
-			<a href="javascript:;" class="coupon-btn" @click="getCoupon();" v-if="showType==1">立即领取</a>
+			<a href="javascript:;" v-if="showType==1" @click="getCoupon"  class="coupon-btn">立即领取</a>
 
 			<!-- 优惠券使用方法 -->
 			<div v-if="showType==2" class="use-coupon">
@@ -17,7 +17,7 @@
 					<p>请务必“长按”保存到手机相册</p>
 				</div>
 
-				<column-divide v-bind:columnName="columnName"></column-divide>
+				<column-divide :columnName="columnName"></column-divide>
 				<div class="useway">
 					<div class="item">
 						<img src="./images/quan_get.png" width="37" height="37" />
@@ -41,18 +41,18 @@
 			<coupon-rule></coupon-rule>
 
 			<!-- 用户文字和星级评价 -->
-			<coupon-comment v-bind:comments="comments"></coupon-comment>
+			<coupon-comment :comments="comments"></coupon-comment>
 		</div>
 
 		<!-- 领取状态 -->
-		<div class="get-coupon-status" v-bind:class="{'dis-block': couponStatus!=='', 'dis-none': couponStatus===''}">
+		<div class="get-coupon-status" :class="{'dis-block': couponStatus !== '', 'dis-none': couponStatus === ''}">
 			<div class="prompt">{{couponStatus}}</div>
 			<a href="javascript:;" class="btn" v-if="couponMark===0">重新领取</a>
-			<a href="javascript:;" class="btn" v-if="couponMark===1 || couponMark===2" v-on:click="toUse();">立即使用</a>
+			<a href="javascript:;" class="btn" v-if="couponMark===1 || couponMark===2" @click="toUse">立即使用</a>
 		</div>
 
 		<!-- 填写评论 -->
-		<div class="add-comment-wraper" v-if="showType==2">
+		<div class="add-comment-wraper" v-if="showType == 2">
 			<div style="margin: 2% 3%;">
 				<div class="comment-num clearfix">
 					<div class="comment-num-star">
@@ -64,8 +64,8 @@
 					<div class="comment-num-txt"><span id="comment-num-txt">{{starGrade}}</span>分</div>
 				</div>
 				<div class="add-comment clearfix">
-					<input type="text" class="comment-box" id="comment-box" v-on:focus="amendInpt();" v-model.lazy.trim="commentContent"/>
-					<input type="button" value="发布" id="publish-comment" class="publish-comment" v-on:click="publishComment();" />
+					<input type="text" class="comment-box" id="comment-box" @focus="amendInpt" v-model.lazy.trim="commentContent"/>
+					<input type="button" value="发布" id="publish-comment" class="publish-comment" @click="publishComment" />
 				</div>
 			</div>
 		</div>
@@ -74,96 +74,118 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
-	import explain from '../header-explain/index.vue';
-	import footerNav from '../footer-nav/index.vue';
-	import couponBrief from '../coupon-brief/index.vue';
-	import columnDivide from '../column-divide/index.vue';
-	import couponRule from '../coupon-rule/index.vue';
-	import couponComment from '../coupon-comment/index.vue';
+<script lang="ts">
+	import { Component, Vue } from 'vue-property-decorator';
+	import Explain from '@/components/header-explain/index.vue';
+	import FooterNav from '@/components/footer-nav/index.vue';
+	import CouponBrief from '@/components/coupon-brief/index.vue';
+	import CouponRule from '@/components/coupon-rule/index.vue';
+	import CouponComment from '@/components/coupon-comment/index.vue';
+	import { getCouponDetail, getCoupon, publishComment } from '@/api/coupon';
 
-	import star from '../star/index.vue';
-
-	export default {
-		data () {
-			return {
-				explainName: '领取优惠券',
-				coupon: {},
-				comments: [],
-				couponStatus: '',
-				couponMark: 0,
-				columnName: '参与方式',
-				showType: 1,
-				starGrade: 0,
-				commentContent: ''
-			}
-		},
+	@Component({
 		components: {
-			explain,
-			couponBrief,
-			columnDivide,
-			couponRule,
-			couponComment,
-			footerNav,
-			star
-		},
-		mounted () {
-			const _this = this;
-			_this.$http.post('/getCoupon/couponDetail', {couponId: _this.$route.params.couponId}, {emulateJSON: true}).then((result) => {
-				const data = JSON.parse(result.bodyText);
-				_this.coupon = data.couponDetail[0];
-				_this.comments = data.couponDetail;
-				_this.showType = _this.$route.params.showType;
-			});
+			Explain,
+			FooterNav,
+			CouponBrief,
+			CouponRule,
+			CouponComment
+		}
+	})
+	export default class GetCoupon extends Vue {
+		private explainName: string = '领取优惠券';
+		private coupon: object = {};
+		private comments: any[] = [];
+		private couponStatus: string = '';
+		private couponMark: number = 0;
+		private showType: number = 1;
+		private columnName: string = '参与方式';
+		private starGrade: number = 0;
+		private commentContent: string = '';
 
-			vueEvent.$on('starGrade', (starGrade) => {
-				_this.starGrade = starGrade;
-			});
-		},
-		methods: {
-			getCoupon () {
-				try {
-					const userMsg = JSON.parse(window.sessionStorage.userMsg);
-					this.$http.post('/getCoupon/getCoupon', {couponId: this.$route.params.couponId, userId: userMsg.id}, {emulateJSON: true}).then((result) => {
-						const data = JSON.parse(result.bodyText);
-						this.couponStatus = data.backInfo;
-						this.couponMark = data.backMark;
+		private created () {
+			this.getCouponDetail();
+		}
+
+		private getCouponDetail () {
+			const query: any = this.$route.query;
+			const couponId: number = query.id - 0;
+			const showType: number = query.type - 0;
+			getCouponDetail(couponId)
+				.then(res => {
+					const { code, data, message } = res.data;
+					if (code === 0) {
+						this.coupon = data[0];
+						this.comments = data;
+						this.showType = showType;
+					} else {
+						this.$dialog.alert({ message });
+					}
+				})
+				.catch(error => {
+					this.$dialog.alert({
+						message: error
 					});
-				} catch (e) {
-					this.$router.push({name: 'Login'});
-				}
-			},
-			toUse () {
-				this.showType = '2';
-				this.couponStatus = '';
-			},
-			amendInpt () {
-				// 解决ios系统输入法遮挡input框的问题
-				let timer = setTimeout(() => {
-					let oBody = document.body;
-					oBody.scrollTop = oBody.scrollHeight;
-					clearTimeout(timer);
-					timer = null;
-				}, 500);
-			},
-			publishComment () {
-				try {
-					const userMsg = JSON.parse(window.sessionStorage.userMsg);
-					const id = userMsg.id;
-					const phone = userMsg.phone;
-					const starGrade = this.starGrade;
-					const commentContent = this.commentContent;
-					const couponId = this.$route.params.couponId;
+				})
+		}
 
-					commentContent.length 
-					? this.$http.post('/getCoupon/publishComment', {id, phone, starGrade, commentContent, couponId}, {emulateJSON: true}).then((result) => {
-						const data = JSON.parse(result.bodyText);
-						alert(data.backInfo);
+		private getCoupon () {
+			try {
+				const userInfo = JSON.parse(window.sessionStorage.user_info);
+				const query: any = this.$route.query;
+				const couponId: number = query.id - 0;
+				getCoupon(couponId, userInfo.id)
+					.then(res => {
+						const { code, data, message } = res.data;
+						this.couponStatus = message;
+						this.couponMark = data;
 					})
-					: alert('评论内容不能为空！');
-				} catch (e) {
-					this.$router.push({name: 'Login'});
+					.catch(error => {
+						this.$dialog.alert({
+							message: error
+						});
+					})
+			} catch (e) {
+				this.$router.push({name: 'Login'});
+			}
+		}
+
+		private toUse () {
+			this.showType = 2;
+			this.couponStatus = '';
+		}
+
+		private amendInpt () {
+			// 解决ios系统输入法遮挡input框的问题
+			const timer: number = setTimeout(() => {
+				let oBody = document.body;
+				oBody.scrollTop = oBody.scrollHeight;
+				clearTimeout(timer);
+			}, 500);
+		}
+
+		private publishComment () {
+			try {
+				const { id, phone } = JSON.parse(window.sessionStorage.user_info);
+				const starGrade = this.starGrade;
+				const commentContent = this.commentContent;
+				const query: any = this.$route.query;
+				const couponId = query.id - 0;
+
+				if (commentContent.length) {
+					publishComment(id, phone, starGrade, commentContent, couponId)
+						.then(res => {
+							const { code, data, message } = res.data;
+							this.$dialog.alert({ message });
+						})
+						.catch(error => {
+							this.$dialog.alert({
+								message: error
+							});
+						});
 				}
+			} catch (e) {
+				this.$router.push({name: 'Login'});
 			}
 		}
 	}

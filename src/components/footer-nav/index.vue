@@ -39,7 +39,7 @@
 <style scoped lang="less" rel="stylesheet/less">
 	.footer-nav-wraper {
 		position: fixed;
-		z-index: 9999;
+		z-index: 10;
 		bottom: 0;
 		width: 100%;
 		max-width: 640px;

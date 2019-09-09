@@ -22,3 +22,33 @@ export const getCountryList = (): AxiosPromise<ResponseData> => {
     url: '/globalCouponList/countryList'
   });
 }
+
+export const getCouponDetail = (id: number): AxiosPromise<ResponseData> => {
+  return httpRequest.request({
+    method: 'get',
+    url: '/getCoupon/couponDetail',
+    params: { id }
+  });
+}
+
+export const getCoupon = (coupon_id: number, user_id: number): AxiosPromise<ResponseData> => {
+  return httpRequest.request({
+    method: 'get',
+    url: '/getCoupon/getCoupon',
+    params: { coupon_id, user_id }
+  });
+}
+
+export const publishComment = (
+  id: number, 
+  phone: string, 
+  starGrade: number, 
+  commentContent: string, 
+  couponId: number
+): AxiosPromise<ResponseData> => {
+  return httpRequest.request({
+    method: 'post',
+    url: '/getCoupon/publishComment',
+    data: { id, phone, starGrade, commentContent, couponId }
+  });
+}
