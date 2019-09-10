@@ -13,14 +13,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// 注册
-app.use('/regist', require(__dirname + '/account/regist'));
+app.use('/auth', require(__dirname + '/auth'));
+app.use('/user', require(__dirname + '/user'));
 
-//登录
-app.use('/login', require(__dirname + '/account/login'));
-
-// 找回密码
-app.use('/forgetPassword', require(__dirname + '/account/forgetPassword'));
 
 // 个人中心
 app.use('/personal', require(__dirname + '/personal/index'));

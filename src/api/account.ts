@@ -4,7 +4,7 @@ import { AxiosPromise } from 'axios';
 export const login = (phone: string, pwd: string): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/login/loginForm',
+    url: '/auth/loginForm',
     data: { phone, pwd }
   });
 };
@@ -12,7 +12,7 @@ export const login = (phone: string, pwd: string): AxiosPromise<ResponseData> =>
 export const regist = (phone: string, pwd: string): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/regist/registForm',
+    url: '/auth/registForm',
     data: { phone, pwd }
   });
 }
@@ -20,7 +20,7 @@ export const regist = (phone: string, pwd: string): AxiosPromise<ResponseData> =
 export const getPhoneCode = (phone: string): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/forgetPassword/getPhoneCode',
+    url: '/auth/getPhoneCode',
     data: { phone }
   });
 }
@@ -28,7 +28,7 @@ export const getPhoneCode = (phone: string): AxiosPromise<ResponseData> => {
 export const resetPassword = (phone: string, pwd: string): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/forgetPassword/resetPassword',
+    url: '/auth/resetPassword',
     data: { phone, pwd }
   });
 }

@@ -27,12 +27,11 @@
 
 <script lang="ts" scoped>
 	import { Component, Vue } from 'vue-property-decorator';
-
-	import explain from '@/components/header-explain/index.vue';
+	import Explain from '@/components/header-explain/index.vue';
 
 	@Component({
 		components: {
-			explain
+			Explain
 		}
 	})
 	export default class AccountIndex extends Vue {

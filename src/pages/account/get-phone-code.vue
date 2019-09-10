@@ -26,14 +26,14 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import explain from '@/components/header-explain/index.vue';
-  import countDown from '@/components//count-down/index.vue';
+  import Explain from '@/components/header-explain/index.vue';
+  import CountDown from '@/components//count-down/index.vue';
   import { validatePhone } from '@/utils/index';
   
   @Component({
     components: {
-      explain,
-      countDown
+      Explain,
+      CountDown
     }
   })
   export default class GetPhoneCode extends Vue {

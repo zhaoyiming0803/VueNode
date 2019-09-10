@@ -66,14 +66,14 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import explain from '@/components/header-explain/index.vue';
-  import footerNav from '@/components/footer-nav/index.vue';
+  import Explain from '@/components/header-explain/index.vue';
+  import FooterNav from '@/components/footer-nav/index.vue';
   import { getCouponsList, getClassifyList, getCountryList } from '@/api/coupon';
 
   @Component({
     components: {
-      explain,
-      footerNav
+      Explain,
+      FooterNav
     }
   })
   export default class Home extends Vue {
@@ -102,6 +102,7 @@
     }
 
     private created () {
+      this.getClassifyList();
       this.getCouponsList(this.countryId, this.classifyId, this.currentPage);
     }
 
@@ -141,18 +142,23 @@
     private showClassifyList () {
       this.isCountry = false;
       if (!this.classifyList.length) {
-        getClassifyList()
-          .then(res => {
-            const { code, data, message } = res.data;
-            if (code === 0) {
-              this.classifyList = data;
-            }
-          });
+        this.getClassifyList();
       }
       this.isClassify = true;
     }
 
+    private getClassifyList () {
+      getClassifyList()
+        .then(res => {
+          const { code, data, message } = res.data;
+          if (code === 0) {
+            this.classifyList = data;
+          }
+        });
+    }
+
     private showCoupons (countryId: number, classifyId: number) {
+      console.log(this.classifyList);
       const currentCountryName = this.countryList 
         ? this.countryList[countryId-1].country_name 
         : '全球';

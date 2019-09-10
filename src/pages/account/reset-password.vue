@@ -26,13 +26,13 @@
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
-  import explain from '@/components/header-explain/index.vue';
+  import Explain from '@/components/header-explain/index.vue';
 	import { validatePhone, validatePassword } from '@/utils/index';
 	import { resetPassword } from '@/api/account';
 
 	@Component({
 		components: {
-			explain
+			Explain
 		}
 	})
 	export default class ResetPassword extends Vue {

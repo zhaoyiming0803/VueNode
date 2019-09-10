@@ -13,7 +13,7 @@ const state: StateType = {
   countryId: 1,
 	countryName: '全球',
 	classifyId: 1,
-	classifyName: '购物'
+  classifyName: '购物'
 };
 
 export default {
