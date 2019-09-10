@@ -169,7 +169,6 @@
 		</div>
 
 		<footer-nav :navName="navName"></footer-nav>
-
 	</div>
 </template>
 

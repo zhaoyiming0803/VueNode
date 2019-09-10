@@ -54,6 +54,7 @@
     @Prop({type: Object, default: () => {}}) private headers!: object;
     @Prop({type: Boolean, default: false}) private withCredentials!: false;
     @Prop({type: Object, default: () => {}}) private data!: object;
+    @Prop({type: Object}) private defaultFile!: File;
     @Prop({type: Function, default: () => {}}) private beforeUpload!: UploadCallback;
     @Prop({type: Function, default: () => {}}) private onProgress!: UploadCallback;
     @Prop({type: Function, default: () => {}}) private onSuccess!: UploadCallback;
@@ -62,6 +63,12 @@
 
     private file: File = { process: 0, url: '' };
     private isShowLoading: boolean = false;
+
+    private created () {
+      if (this.defaultFile) {
+        this.file = this.defaultFile;
+      }
+    }
 
     private handleChange (e: any) {
       const [file] = e.target.files;

@@ -32,7 +32,7 @@ router.post('/changeUserHeadpic', multer.array('file'), (req, res, next) => {
 			// 后期要换成oss地址
 			res.json({ code: 0, data: file.filename, message: 0 });
 		} else {
-			res.json({ code: 0, data: null, message: error });
+			res.json({ code: -1, data: null, message: error });
 		}
 	});
 });
@@ -45,7 +45,11 @@ router.post('/changeUserName', (req, res) => {
 	const userId = msg.userId;
 	const userName = msg.userName;
 	db('update tour_user set user_name="'+ userName +'" where id="'+ userId +'"', (error, data) => {
-		data && res.json({backInfo: data.affectedRows});
+		if (data) {
+			res.json({ code: 0, data, message: '修改成功'});
+		} else {
+			res.json({ code: -1, data: null, message: error });
+		}
 	});
 });
 
@@ -57,7 +61,11 @@ router.post('/changeUserSex', (req, res) => {
 	const userId = msg.userId;
 	const sex = msg.sex;
 	db('update tour_user set user_sex="'+ sex +'" where id="'+ userId +'"', (error, data) => {
-		data && res.json({backInfo: '修改成功'});
+		if (data) {
+			res.json({ code: 0, data, message: '修改成功'});
+		} else {
+			res.json({ code: -1, data: null, message: error });
+		}
 	});
 });
 

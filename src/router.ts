@@ -62,6 +62,16 @@ export default new Router({
       path: '/change-user-thumb',
       name: 'ChangeUserThumb',
       component: () => import('@/pages/personal/change-headpic.vue')
+    },
+    {
+      path: '/change-user-name',
+      name: 'ChangeUserName',
+      component: () => import('@/pages/personal/change-user-name.vue')
+    },
+    {
+      path: '/change-user-sex',
+      name: 'ChangeUserSex',
+      component: () => import('@/pages/personal/change-user-sex.vue')
     }
   ]
 });

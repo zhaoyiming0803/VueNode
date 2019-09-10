@@ -14,7 +14,11 @@
 
 		<!-- 个人信息修改项 -->
 		<div class="personal-msg-item-wraper">
-			<!-- <router-link tag="a" :to="{name: 'ChangeUserName', params: {'userId': userId, 'userName': userName}}" class="white-item-wrpaer item" style="margin: 10px auto 15px auto;">
+			<router-link 
+				tag="a" 
+				:to="{path: '/change-user-name', query: {'userId': userId, 'userName': userName}}" 
+				class="white-item-wrpaer item" 
+				style="margin: 10px auto 15px auto;">
 				<div class="ico username">
 					<span>用户名称</span>
 				</div>
@@ -22,7 +26,10 @@
 					<span>{{userName}}</span>
 				</div>
 			</router-link>
-			<router-link tag="a" :to="{name: 'ChangeUserSex', params: {'userId': userId, 'userSex': userSex}}" class="white-item-wrpaer item">
+			<router-link 
+				tag="a" 
+				:to="{path: '/change-user-sex', query: {'userId': userId, 'userSex': userSex}}" 
+				class="white-item-wrpaer item">
 				<div class="ico sex">
 					<span>性别</span>
 				</div>
@@ -31,7 +38,7 @@
 					<span v-else>女</span>
 				</div>
 				<div class="line"></div>
-			</router-link> -->
+			</router-link>
 		</div>
 
 		<!-- 退出登录 -->

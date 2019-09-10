@@ -5,13 +5,13 @@
 
 		<div class="white-item-wrpaer" style="border-bottom: 1px solid #efeded">
 			<label for="man">头像：</label>
-			<!-- <input type="file" name="headpic" id="headpic" class="headpic" multiple="multiple" v-on:change="changeHeadpic" /> -->
 			<upload
 				ref="upload" 
 				:action="uploadFile"
 				accept="image/*"
 				:data="{id: userId}"
 				:withCredentials="false"
+				:defaultFile="defaultFile"
 				:format="['jpg', 'jpeg', 'png', 'bmp']">
 			</upload>
 		</div>
@@ -30,6 +30,11 @@
 	interface Query {
     userId?: number
     headpic?: string
+	}
+	
+	interface File {
+    process?: number
+    url?: string
   }
 
 	@Component({
@@ -40,19 +45,15 @@
 	})
 	export default class ChangeHeadpic extends Vue {
 		private explainName: string = '修改头像';
-		private headpic: undefined | string = '';
+		private defaultFile: File = { url: '', process: 100 };
 		private userId: undefined | number = 0;
 		private uploadFile: string = 'http://localhost:8091/personalEdit/changeUserHeadpic';
 		private fileMaxLength: number = 1;
 
 		private created () {
 			const query: Query = this.$route.query;
-			this.headpic = query.headpic;
+			this.defaultFile.url = query.headpic;
 			this.userId = query.userId;
-		}
-
-		private mounted () {
-			
 		}
 
 		private changeHeadpic () {

@@ -30,3 +30,19 @@ export const getUserInfo = (id: number): AxiosPromise<ResponseData> => {
     params: { id }
   });
 }
+
+export const changeUserName = (userId: number, userName: string): AxiosPromise<ResponseData> => {
+  return httpRequest.request({
+    method: 'post',
+    url: '/personalEdit/changeUserName',
+    data: { userId, userName }
+  });
+}
+
+export const changeUserSex = (userId: number, sex: number): AxiosPromise<ResponseData> => {
+  return httpRequest.request({
+    method: 'post',
+    url: '/personalEdit/changeUserSex',
+    data: { userId, sex }
+  });
+}
