@@ -23,12 +23,17 @@ router.get('/getMsg', (req, res) => {
 * 修改头像
 */
 router.post('/changeUserHeadpic', multer.array('file'), (req, res, next) => {
-	const files = req.files[0];
+	const file = req.files[0];
 	const userId = req.body.id;
-	const filePath = '../../static/uploads/images/' + files.filename;
+	const filePath = 'static/uploads/images/' + file.filename;
 	
 	db('update tour_user set user_headpic="'+ filePath +'" where id="'+ userId +'"', (error, data) => {
-		data && res.json({backInfo: data});
+		if (data) {
+			// 后期要换成oss地址
+			res.json({ code: 0, data: file.filename, message: 0 });
+		} else {
+			res.json({ code: 0, data: null, message: error });
+		}
 	});
 });
 

@@ -12,12 +12,8 @@
 				accept="image/*"
 				:data="{id: userId}"
 				:withCredentials="false"
-				:format="['jpg', 'jpeg', 'png', 'bmp']"
-				:multiple="false"
-				:maxLength="fileMaxLength"
-				:isAllowHandle="true">
+				:format="['jpg', 'jpeg', 'png', 'bmp']">
 			</upload>
-			<img src="headpic" id="show-headpic" width="45" height="45" />
 		</div>
 	</div>
 </template>
@@ -31,6 +27,11 @@
 	// import test from '@/libs/test';
 	// console.log(test);
 
+	interface Query {
+    userId?: number
+    headpic?: string
+  }
+
 	@Component({
 		components: {
 			Explain,
@@ -39,15 +40,15 @@
 	})
 	export default class ChangeHeadpic extends Vue {
 		private explainName: string = '修改头像';
-		private headpic: string = '';
-		private userId: number = 0;
+		private headpic: undefined | string = '';
+		private userId: undefined | number = 0;
 		private uploadFile: string = 'http://localhost:8091/personalEdit/changeUserHeadpic';
 		private fileMaxLength: number = 1;
 
 		private created () {
-			const query: any = this.$route.query;
+			const query: Query = this.$route.query;
 			this.headpic = query.headpic;
-			this.userId = query.userId - 0;
+			this.userId = query.userId;
 		}
 
 		private mounted () {

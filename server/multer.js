@@ -1,5 +1,5 @@
 /*
- * Description: 从npm下载express文件上传使用方法
+ * 从npm下载express文件上传使用方法
  * @author: zhaoyiming
  * @since: 2017/10/1
  * url: http://www.zymseo.com/node/472.html
@@ -9,7 +9,7 @@ const multer = require('multer');
 const storage = multer.diskStorage({
 	// 设置上传后文件路径。
 	destination(req, file, cb) {
-		cb(null, './static/uploads/images/'); // 这里的根路径是VueNode的项目根目录
+		cb(null, './src/static/uploads/images/'); // 这里的根路径是VueNode的项目根目录
 	},
 
 	// 给上传文件重命名，获取添加后缀名

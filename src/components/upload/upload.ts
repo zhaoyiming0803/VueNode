@@ -28,7 +28,7 @@ interface Options {
 function upload (options: Options) {
   const xhr = window.XMLHttpRequest 
     ? new XMLHttpRequest()
-    : new ActiveXObject("Microsoft.XMLHTTP");
+    : new ActiveXObject('Microsoft.XMLHTTP');
   
   if (validateContextAndParams(xhr, options) !== true) {
     return;

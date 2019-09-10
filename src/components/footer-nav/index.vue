@@ -3,11 +3,11 @@
 	<div class="footer-nav-wraper">
 		<!-- 个人中心 -->
 		<div v-if="navName === 'personal'" class="box">
-			<router-link tag="a" :to="{name: 'GlobalCouponIndex'}" class="nav-tag">
+			<router-link tag="a" :to="{path: '/home'}" class="nav-tag">
 				<img src="./images/discountsgrey.png" width="30" height="26" alt="全球优惠" class="tag-ico" />
 				<div class="tag-name">全球优惠</div>
 			</router-link>
-			<router-link tag="a" :to="{name: 'Personal'}" class="nav-tag this-tag">
+			<router-link tag="a" :to="{path: '/personal'}" class="nav-tag this-tag">
 				<img src="./images/mineblue.png" width="30" height="26" alt="我的" class="tag-ico" />
 				<div class="tag-name">我的</div>
 			</router-link>
@@ -15,11 +15,11 @@
 
 		<!-- 非个人中心 -->
 		<div v-if="navName !== 'personal'" class="box">
-			<router-link tag="a" :to="{name: 'GlobalCouponIndex'}" class="nav-tag this-tag">
+			<router-link tag="a" :to="{path: '/home'}" class="nav-tag this-tag">
 				<img src="./images/discountsblue.png" width="30" height="26" alt="全球优惠" class="tag-ico" />
 				<div class="tag-name">全球优惠</div>
 			</router-link>
-			<router-link tag='a' :to="{name: 'Personal'}" class="nav-tag">
+			<router-link tag='a' :to="{path: '/personal'}" class="nav-tag">
 				<img src="./images/minegrey.png" width="30" height="26" alt="我的" class="tag-ico" />
 				<div class="tag-name">我的</div>
 			</router-link>
