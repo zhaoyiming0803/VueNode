@@ -77,22 +77,4 @@ router.post('/getPhoneCode', async (req, res) => {
   }
 });
 
-/**
- * 重置密码
- */
-router.post('/resetPassword', async (req, res) => {
-	const md5 = crypto.createHash('md5');
-	const msg = req.body;
-	const phone = msg.phone;
-  const pwd = md5.update(msg.pwd).digest('hex');
-  
-  try {
-    const data = await db('update tour_user set user_pwd="'+ pwd +'" where user_phone="'+ phone +'"');
-    if (data) res.json({ code: 0, data: null, message: '' });
-		else res.json({ code: -1, data: null, message: '密码重置失败，请重新操作' });
-  } catch (err) {
-    res.json({ code: -1, data: null, message: err });
-  }
-});
-
 module.exports = router;

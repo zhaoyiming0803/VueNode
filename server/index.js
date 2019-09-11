@@ -15,13 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/auth', require(__dirname + '/auth'));
 app.use('/user', require(__dirname + '/user'));
-
-
-// 个人中心
-app.use('/personal', require(__dirname + '/personal/index'));
-
-// 个人资料修改
-app.use('/personalEdit', require(__dirname + '/personal/personal-edit'));
+app.use('/coupon', require(__dirname + '/coupon'));
+app.use('/resion', require(__dirname + '/region'));
 
 // 首页
 app.use('/globalCoupon', require(__dirname + '/global-coupon/index'));
