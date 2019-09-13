@@ -9,7 +9,7 @@
 <script lang="ts">
 	import { Component, Vue, Prop } from 'vue-property-decorator';
 	import { validatePhone } from '@/utils/index';
-	import { getPhoneCode } from '@/api/account';
+	import { getPhoneCode } from '@/api/auth';
 
 	@Component
 	export default class CountDown extends Vue {

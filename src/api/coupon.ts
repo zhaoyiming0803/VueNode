@@ -1,54 +1,59 @@
 import httpRequest, { ResponseData } from './index';
 import { AxiosPromise } from 'axios';
 
-export const getCouponsList = (countryId: number, classifyId: number, currentPage: number): AxiosPromise<ResponseData> => {
+export const getCouponsList = (regionId: number, classifyId: number, page: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
-    method: 'post',
-    url: '/globalCouponList/showCoupons',
-    data: { countryId, classifyId, currentPage }
+    method: 'get',
+    url: '/coupon/home',
+    params: { regionId, classifyId, page }
   });
 };
 
 export const getClassifyList = (): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/globalCouponList/classifyList'
+    url: '/coupon/classify'
   });
 }
 
-export const getCountryList = (): AxiosPromise<ResponseData> => {
+export const getRegionList = (): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/globalCouponList/countryList'
+    url: '/region/list'
   });
 }
 
 export const getCouponDetail = (id: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/getCoupon/couponDetail',
+    url: '/coupon/detail',
     params: { id }
   });
 }
 
-export const getCoupon = (coupon_id: number, user_id: number): AxiosPromise<ResponseData> => {
+export const getCouponRecord = (userId: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/getCoupon/getCoupon',
-    params: { coupon_id, user_id }
+    url: '/coupon/record',
+    params: { userId }
   });
 }
 
-export const publishComment = (
-  id: number, 
-  phone: string, 
-  starGrade: number, 
-  commentContent: string, 
-  couponId: number
-): AxiosPromise<ResponseData> => {
+export const receiveCoupon = (couponId: number, userId: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/getCoupon/publishComment',
-    data: { id, phone, starGrade, commentContent, couponId }
+    url: '/coupon/receive',
+    data: { couponId, userId }
+  });
+}
+
+export const getReceivedCouponList = (
+  userId: number, 
+  type: 'union' | 'visa' | 'jinnang' | 'gaodaowu'
+): AxiosPromise<ResponseData> => {
+  return httpRequest.request({
+    method: 'get',
+    url: '/coupon/received',
+    params: { userId, type }
   });
 }

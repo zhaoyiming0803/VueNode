@@ -40,7 +40,7 @@
 		}
 	})
 	export default class CouponComment extends Vue {
-		@Prop({type: Array}) private comments!: any[];
+		@Prop({type: Array, default: () => []}) private comments!: any[];
 
 		private columnName: string = '最新评论';
 	}

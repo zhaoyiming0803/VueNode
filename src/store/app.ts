@@ -1,6 +1,6 @@
 interface StateType {
-  countryId: number
-  countryName: string
+  regionId: number
+  regionName: string
   classifyId: number
   classifyName: string
 }
@@ -10,8 +10,8 @@ interface ActionsType {
 }
 
 const state: StateType = {
-  countryId: 1,
-	countryName: '全球',
+  regionId: 1,
+	regionName: '全球',
 	classifyId: 1,
   classifyName: '购物'
 };
@@ -24,12 +24,12 @@ export default {
   },
 
   mutations: {
-    changeCountryId (state: StateType, countryId: number) {
-      state.countryId = countryId;
+    changeRegionId (state: StateType, countryId: number) {
+      state.regionId = countryId;
     },
 
-    changeCountryName (state: StateType, countryName: string) {
-      state.countryName = countryName;
+    changeRegionName (state: StateType, countryName: string) {
+      state.regionName = countryName;
     },
 
     changeClassifyId (state: StateType, classifyId: number) {

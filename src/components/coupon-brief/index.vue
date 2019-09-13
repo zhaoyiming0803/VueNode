@@ -7,7 +7,7 @@
 		</div>
 		<div class="coupon-brief">
 			<div class="coupon-ico">
-				<img :src=coupon.coupon_ico_path width="79" height="79" />
+				<img :src="coupon.coupon_ico_path" width="79" height="79" />
 			</div>
 			<div class="coupon-name">{{coupon.coupon_name}}</div>
 			<div class="coupon-discounts">{{coupon.coupon_explain}}</div>
