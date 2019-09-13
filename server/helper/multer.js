@@ -9,7 +9,7 @@ const multer = require('multer');
 const storage = multer.diskStorage({
 	// 设置上传后文件路径。
 	destination(req, file, cb) {
-		cb(null, './src/static/uploads/images/'); // 这里的根路径是VueNode的项目根目录
+		cb(null, './tmp/');
 	},
 
 	// 给上传文件重命名，获取添加后缀名

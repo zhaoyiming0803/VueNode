@@ -110,7 +110,7 @@
           this.onProgress(process);
         },
         onSuccess: (res: any) => {
-          const url = `static/uploads/images/${res.data}`;
+          const url = res.data;
           // 后期要换成oss地址
           Object.assign(file, { url, process: 100 });
           this.onSuccess({url, process: 100});

@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "tour",
+      "script": "./index.js",
+      "watch": false,
+      "node_args": "--harmony",
+      "merge_logs": false,
+      "cwd": "./",
+      "instance": 1,
+      "exec_mode": "cluster"
+    }
+  ]
+}

@@ -48,7 +48,7 @@ export default class ChangeHeadpic extends Vue {
   private defaultFile: File = { url: "", process: 100 };
   private userId: undefined | number = 0;
   private uploadFile: string =
-    "http://localhost:8091/user/changeUserHeadpic";
+    "http://tour-api.0351zhuangxiu.com/user/changeUserHeadpic";
   private fileMaxLength: number = 1;
 
   private created() {

@@ -9,6 +9,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../helper/db');
 const multer = require('../helper/multer');
+const { putFile } = require('../helper/qiniu-oss');
 
 /**
  * 获取用户基本信息
@@ -33,13 +34,15 @@ router.get('/info', async (req, res) => {
  */
 router.post('/changeUserHeadpic', multer.array('file'), async (req, res) => {
   try {
+    const cwd = process.cwd();
     const file = req.files[0];
     const userId = req.body.id;
-    const filePath = 'static/uploads/images/' + file.filename;
-    const data = await db('update tour_user set user_headpic="' + filePath + '" where id="' + userId + '"');
+    const filePath = `${cwd}/tmp/${file.filename}`;
+    const fileUrl = await putFile(filePath);
+    const data = await db('update tour_user set user_headpic="' + fileUrl + '" where id="' + userId + '"');
     if (data) {
       // 后期要换成oss地址
-      res.json({ code: 0, data: file.filename, message: 0 });
+      res.json({ code: 0, data: fileUrl, message: 0 });
     } else {
       res.json({ code: -1, data: null, message: '修改修改失败，请重新操作' });
     }
