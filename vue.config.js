@@ -5,15 +5,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   parallel: false,
   outputDir: 'dist',
-  publicPath: process.env.NODE_ENV === 'production' ? '/fe/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/tour/' : '/',
   chainWebpack: config => {
-    config
-      .plugin('copy')
-      .tap(args => {
-        args[0][0].from = './src/static/uploads';
-        args[0][0].to = 'static/uploads'
-        return args;
-      });
+    // config
+    //   .plugin('copy')
+    //   .tap(args => {
+    //     args[0][0].from = './src/static/uploads';
+    //     args[0][0].to = 'static/uploads'
+    //     return args;
+    //   });
 
     config.module
       .rule('ts')
