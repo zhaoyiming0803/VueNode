@@ -7,7 +7,7 @@ export interface ResponseData {
 }
 
 const apiBaseUrl = process.env.NODE_ENV === 'production'
-  ? 'http://tour-api.0351zhuangxiu.com'
+  ? 'https://tour-api.0351zhuangxiu.com'
   : 'http://localhost:8091';
 
 class HttpRequest {
