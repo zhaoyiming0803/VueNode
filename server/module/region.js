@@ -6,14 +6,14 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('./db');
+const db = require('../helper/db');
 
 /**
  * 国家与地区列表
  */
 router.get('/list', async (req, res) => {
   try {
-    const data = await db('select id, country_name from tour_country');
+    const data = await db('select id, region_name from tour_region');
     res.json({ code: 0, data, message: '' });
   } catch (e) {
     res.json({ code: -1, data: null, message: e });

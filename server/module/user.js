@@ -7,8 +7,8 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('./db');
-const multer = require('./multer');
+const db = require('../helper/db');
+const multer = require('../helper/multer');
 
 /**
  * 获取用户基本信息
@@ -16,8 +16,8 @@ const multer = require('./multer');
 
 router.get('/info', async (req, res) => {
   try {
-    const { userId } = req.query;
-    const [data] = await db('select * from tour_user where id="' + userId + '"');
+    const { id } = req.query;
+    const [data] = await db('select * from tour_user where id="' + id + '"');
     if (data) {
       res.json({ code: 0, data, message: '' });
     } else {
