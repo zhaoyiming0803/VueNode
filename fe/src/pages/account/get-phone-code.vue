@@ -15,6 +15,8 @@
             maxlength="11"
             class="phone"
             v-model.lazy.trim="phone"
+            v-focus
+            v-blur
           />
         </p>
         <p>
@@ -25,6 +27,8 @@
             maxlength="6"
             class="code"
             v-model.lazy.trim="code"
+            v-focus
+            v-blur
           />
           <count-down :phone="phone"></count-down>
         </p>
@@ -38,14 +42,22 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+
 import Explain from "@/components/header-explain/index.vue";
 import CountDown from "@/components//count-down/index.vue";
+
+import { focus, blur } from "@/mixins/directive";
+
 import { validatePhone } from "@/utils/index";
 
 @Component({
   components: {
     Explain,
     CountDown
+  },
+  directives: {
+    focus,
+    blur
   }
 })
 export default class GetPhoneCode extends Vue {

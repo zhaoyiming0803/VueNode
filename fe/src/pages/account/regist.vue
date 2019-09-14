@@ -9,6 +9,8 @@
           maxlength="11"
           class="phone"
           v-model.lazy.trim="phone"
+          v-focus
+          v-blur
         />
       </p>
       <p>
@@ -28,10 +30,18 @@
 
 <script lang="ts" scoped>
 import { Component, Vue } from "vue-property-decorator";
+
+import { focus, blur } from "@/mixins/directive";
+
 import { regist } from "@/api/auth";
 import { validatePhone, validatePassword } from "@/utils/index";
 
-@Component
+@Component({
+  directives: {
+    focus,
+    blur
+  }
+})
 export default class Regist extends Vue {
   private phone: string = "";
   private pwd: string = "";

@@ -10,11 +10,25 @@
       <form class="account-container-form" v-on:submit.prevent="complete">
         <p>
           <span class="pwd-ico"></span>
-          <input type="password" placeholder="请输入密码" class="pwd" v-model.lazy.trim="pwd" />
+          <input
+            type="password"
+            placeholder="请输入密码"
+            class="pwd"
+            v-model.lazy.trim="pwd"
+            v-focus
+            v-blur
+          />
         </p>
         <p>
           <span class="pwd-ico"></span>
-          <input type="password" placeholder="请确认密码" class="pwd" v-model.lazy.trim="confirmPwd" />
+          <input
+            type="password"
+            placeholder="请确认密码"
+            class="pwd"
+            v-model.lazy.trim="confirmPwd"
+            v-focus
+            v-blur
+          />
         </p>
         <p>
           <input type="submit" value="完	成" class="account-btn" />
@@ -26,13 +40,21 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+
 import Explain from "@/components/header-explain/index.vue";
+
+import { focus, blur } from "@/mixins/directive";
+
 import { validatePhone, validatePassword } from "@/utils/index";
 import { resetPassword } from "@/api/auth";
 
 @Component({
   components: {
     Explain
+  },
+  directives: {
+    focus,
+    blur
   }
 })
 export default class ResetPassword extends Vue {

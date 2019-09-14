@@ -11,7 +11,8 @@ const resolve = dir => path.resolve(__dirname, '../', dir);
 
 module.exports = config => {
 	config.resolve.alias
-    .set('public', resolve('public'));
+    .set('public', resolve('public'))
+    .set('@', resolve('src'));
   config.resolve.extensions
     .add('.less')
     .add('.css');

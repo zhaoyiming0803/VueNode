@@ -80,6 +80,8 @@
             class="comment-box"
             id="comment-box"
             @focus="amendInpt"
+            v-focus
+            v-blur
             v-model.lazy.trim="commentContent"
           />
           <input
@@ -99,6 +101,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+
 import Explain from "@/components/header-explain/index.vue";
 import FooterNav from "@/components/footer-nav/index.vue";
 import CouponBrief from "@/components/coupon-brief/index.vue";
@@ -106,8 +109,11 @@ import CouponRule from "@/components/coupon-rule/index.vue";
 import CouponComment from "@/components/coupon-comment/index.vue";
 import Star from "@/components/star/index.vue";
 import ColumnDivide from "@/components/column-divide/index.vue";
+
+import { focus, blur } from '@/mixins/directive';
+
 import { getCouponDetail, receiveCoupon } from "@/api/coupon";
-import { publishComment, getCouponComment } from "@/api/comment.ts";
+import { publishComment, getCouponComment } from "@/api/comment";
 
 interface CouponInterface {
   comment_content: string;
@@ -119,6 +125,8 @@ interface CouponInterface {
   coupon_name: string;
 }
 
+let scrollTop: number = 0;
+
 @Component({
   components: {
     Explain,
@@ -128,6 +136,10 @@ interface CouponInterface {
     CouponComment,
     Star,
     ColumnDivide
+  },
+  directives: {
+    focus,
+    blur
   }
 })
 export default class GetCoupon extends Vue {
@@ -191,6 +203,11 @@ export default class GetCoupon extends Vue {
   private receiveCoupon() {
     try {
       const uid: number = window.sessionStorage.uid;
+      if (!uid) {
+        return this.$router.push({
+          path: '/account/login'
+        });
+      }
       const query: any = this.$route.query;
       const couponId: number = query.id - 0;
       receiveCoupon(couponId, uid)

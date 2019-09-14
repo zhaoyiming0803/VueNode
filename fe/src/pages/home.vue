@@ -147,7 +147,7 @@ export default class Home extends Vue {
       })
       .catch(error => {
         this.$dialog.alert({
-          message: error
+          message: '优惠券列表获取失败，请稍后再试'
         });
       })
       .finally(() => {
