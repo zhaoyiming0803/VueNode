@@ -9,16 +9,16 @@ const mysql = require('mysql');
 module.exports = (sql, callback) => {
 	return new Promise((resolve, reject) => {
 		const db = mysql.createConnection({
-			host : '127.0.0.1',
-			user : 'root',
-			password : '',
-			database : 'tour'
+			host: '127.0.0.1',
+			user: 'root',
+			password: '',
+			database: 'tour'
 		});
-	
+
 		db.connect();
 		db.query(sql, (err, data) => {
 			if (err) reject(err);
-			else resolve(data); 
+			else resolve(data);
 		});
 		db.end();
 	});

@@ -10,8 +10,8 @@ Vue.use(Dialog);
 Vue.use(Loading);
 
 Vue.prototype.uploadFile = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8091/user/changeUserHeadpic'
-  : 'http://api.0351zhuangxiu.com/tour/user/changeUserHeadpic'
+  ? 'http://localhost:8091/tour/user/changeUserHeadpic'
+  : 'https://api.0351zhuangxiu.com/tour/user/changeUserHeadpic'
 
 Vue.config.productionTip = false;
 
