@@ -60,7 +60,7 @@ router.post('/receive', async (req, res) => {
     const { couponId, userId } = req.body;
     const [id] = await db('select id from tour_coupon_user where coupon_id="' + couponId + '" and user_id="' + userId + '"');
     if (id) {
-      res.json({ code: -1, data: null, message: '已经领取过了' });
+      res.json({ code: -1, data: 2, message: '已经领取过了' });
     } else {
       const { insertId } = await db('insert into tour_coupon_user set coupon_id="' + couponId + '", user_id="' + userId + '"');
       if (insertId) {

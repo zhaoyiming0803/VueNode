@@ -20,10 +20,10 @@ router.post('/loginForm', async (req, res) => {
   const pwd = md5.update(loginMsg.pwd).digest('hex');
 
   try {
-    const result = await db('select id,user_name from tour_user where user_phone="' + phone + '" and user_pwd="' + pwd + '"');
-    const [data] = result;
-    if (!data) res.json({ code: -1, data: null, message: '用户不存在' });
-    else res.json({ code: 0, data, message: '' });
+    const result = await db('select id from tour_user where user_phone="' + phone + '" and user_pwd="' + pwd + '"');
+    const [item] = result;
+    if (!item) res.json({ code: -1, data: null, message: '用户不存在' });
+    else res.json({ code: 0, data: item.id, message: '' });
   } catch (err) {
     res.json({ code: -1, data: null, message: '登录失败，请重新操作' });
   }
