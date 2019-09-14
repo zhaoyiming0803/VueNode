@@ -17,7 +17,7 @@
       </div>
 
       <!-- 地区列表 -->
-      <div class="list" id="contry-list" :class="{'dis-block': isregion, 'dis-none': !isregion}">
+      <div class="list" id="contry-list" :class="{'dis-block': isRegion, 'dis-none': !isRegion}">
         <a
           href="javascript:;"
           v-for="(v, k) in regionList"
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <div class="coupon-list-wraper">
+    <div class="coupon-list-wraper" v-if="!isLoading">
       <router-link
         v-for="(v, k) in couponList"
         :key="k"
@@ -69,10 +69,18 @@
       </router-link>
       <a
         href="javascript:;"
-        v-if="couponList.length % 10 === 0"
+        v-if="couponList.length && couponList.length % 10 === 0"
         class="load-more"
         @click="loadMore"
       >加载更多</a>
+    </div>
+
+    <div v-else style="background-color: white">
+      <van-skeleton title avatar :row="3" />
+      <van-skeleton title avatar :row="3" />
+      <van-skeleton title avatar :row="3" />
+      <van-skeleton title avatar :row="3" />
+      <van-skeleton title avatar :row="3" />
     </div>
 
     <footer-nav></footer-nav>
@@ -81,24 +89,29 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+
+import { Skeleton  } from 'vant';
 import Explain from "@/components/header-explain/index.vue";
 import FooterNav from "@/components/footer-nav/index.vue";
+
 import { getCouponsList, getClassifyList, getRegionList } from "@/api/coupon";
 
 @Component({
   components: {
     Explain,
-    FooterNav
+    FooterNav,
+    [Skeleton.name]: Skeleton
   }
 })
 export default class Home extends Vue {
   private explainName: string = "全球优惠";
-  private isregion: boolean = false;
+  private isRegion: boolean = false;
   private regionList: any[] = [];
   private classifyList: any[] = [];
   private isClassify: boolean = false;
   private currentPage: number = 1;
   private couponList: any[] = [];
+  private isLoading: boolean = false;
 
   private get regionId(): number {
     return this.$store.state.app.regionId;
@@ -122,6 +135,7 @@ export default class Home extends Vue {
   }
 
   private getCouponsList(regionId: number, classifyId: number, page: number) {
+    this.isLoading = true;
     getCouponsList(regionId, classifyId, page)
       .then(res => {
         const { code, data, message } = res.data;
@@ -135,7 +149,10 @@ export default class Home extends Vue {
         this.$dialog.alert({
           message: error
         });
-      });
+      })
+      .finally(() => {
+        this.isLoading = false;
+      })
     this.getRegionList();
   }
 
@@ -149,12 +166,12 @@ export default class Home extends Vue {
   }
 
   private showregionList() {
-    this.isregion = true;
+    this.isRegion = true;
     this.isClassify = false;
   }
 
   private showClassifyList() {
-    this.isregion = false;
+    this.isRegion = false;
     if (!this.classifyList.length) {
       this.getClassifyList();
     }
@@ -189,7 +206,7 @@ export default class Home extends Vue {
 
     this.getCouponsList(this.regionId, this.classifyId, this.currentPage);
 
-    this.isregion = this.isClassify = false;
+    this.isRegion = this.isClassify = false;
   }
 
   private loadMore() {

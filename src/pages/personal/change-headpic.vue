@@ -27,11 +27,6 @@ import Upload from "@/components/upload/index.vue";
 // import test from '@/libs/test';
 // console.log(test);
 
-interface Query {
-  userId?: number;
-  headpic?: string;
-}
-
 interface File {
   process?: number;
   url?: string;
@@ -47,13 +42,11 @@ export default class ChangeHeadpic extends Vue {
   private explainName: string = "修改头像";
   private defaultFile: File = { url: "", process: 100 };
   private userId: undefined | number = 0;
-  private uploadFile: string =
-    "http://tour-api.0351zhuangxiu.com/user/changeUserHeadpic";
   private fileMaxLength: number = 1;
 
   private created() {
-    const query: Query = this.$route.query;
-    this.defaultFile.url = query.headpic;
+    const query: any = this.$route.query;
+    this.defaultFile.url = decodeURIComponent(query.headpic);
     this.userId = query.userId;
   }
 

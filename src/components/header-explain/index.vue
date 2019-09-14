@@ -4,8 +4,6 @@
 		<div class="explain">
 			<a 
 				href="javascript:;" 
-				class="goback" 
-				id="goback" 
 				v-show="!isAccount" 
 				@click="back()">
 			</a>{{explainName}}

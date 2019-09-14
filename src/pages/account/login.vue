@@ -34,13 +34,10 @@ export default class Login extends Vue {
   private pwd: string = "";
 
   private created() {
-    try {
-      const userInfo = JSON.parse(window.sessionStorage.user_info);
+    if (window.sessionStorage.uid) {
       this.$router.push({
-        path: "/home"
+        path: '/home'
       });
-    } catch (e) {
-      // ... do nothing
     }
   }
 
@@ -61,14 +58,14 @@ export default class Login extends Vue {
       .then(res => {
         const { code, data, message } = res.data;
         if (code === 0) {
-          window.sessionStorage.user_info = JSON.stringify(data);
+          window.sessionStorage.uid = data;
           this.$router.back();
         } else {
           this.$dialog.alert({ message });
         }
       })
       .catch(error => {
-        this.$dialog.alert({ message: error });
+        this.$dialog.alert({ message: '登录失败' });
       });
   }
 }

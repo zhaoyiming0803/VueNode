@@ -52,11 +52,16 @@
     >
       <div class="prompt">{{couponStatus}}</div>
       <a href="javascript:;" class="btn" v-if="couponMark===0">重新领取</a>
-      <a href="javascript:;" class="btn" v-if="couponMark===1 || couponMark===2" @click="toUse">立即使用</a>
+      <a href="javascript:;" class="btn" v-else-if="couponMark===1" @click="toUse">立即使用</a>
+      <a href="javascript:;" class="btn">
+        <span v-if="couponMark === 0" @click="receiveCoupon">重新领取</span>
+        <span v-else-if="couponMark === 1" @click="toUse">立即使用</span>
+        <span v-else @click="couponStatus = ''">知道了</span>
+      </a>
     </div>
 
     <!-- 填写评论 -->
-    <div class="add-comment-wraper" v-if="showType == 2">
+    <div class="add-comment-wraper" v-if="showType === 2">
       <div style="margin: 2% 3%;">
         <div class="comment-num clearfix">
           <div class="comment-num-star">
@@ -100,7 +105,7 @@ import CouponBrief from "@/components/coupon-brief/index.vue";
 import CouponRule from "@/components/coupon-rule/index.vue";
 import CouponComment from "@/components/coupon-comment/index.vue";
 import Star from "@/components/star/index.vue";
-import ColumnDivide from '@/components/column-divide/index.vue';
+import ColumnDivide from "@/components/column-divide/index.vue";
 import { getCouponDetail, receiveCoupon } from "@/api/coupon";
 import { publishComment, getCouponComment } from "@/api/comment.ts";
 
@@ -138,22 +143,23 @@ export default class GetCoupon extends Vue {
   };
   private comments: any[] = [];
   private couponStatus: string = "";
-  private couponMark: number = 0;
+  private couponMark: 0 | 1 | 2 = 0;
   private showType: number = 1;
   private columnName: string = "参与方式";
   private starGrade: number = 0;
   private commentContent: string = "";
+  private couponId: number = 0;
 
   private created() {
     const query: any = this.$route.query;
-    const couponId: number = query.id - 0;
     const showType: number = query.type - 0;
-    this.getCouponDetail(couponId, showType);
-    this.getCouponComment(couponId);
+    this.couponId = query.id - 0;
+    this.getCouponDetail(showType);
+    this.getCouponComment();
   }
 
-  private getCouponDetail(couponId: number, showType: number) {
-    getCouponDetail(couponId)
+  private getCouponDetail(showType: number) {
+    getCouponDetail(this.couponId)
       .then(res => {
         const { code, data, message } = res.data;
         if (code === 0) {
@@ -170,8 +176,8 @@ export default class GetCoupon extends Vue {
       });
   }
 
-  private getCouponComment(couponId: number) {
-    getCouponComment(couponId)
+  private getCouponComment() {
+    getCouponComment(this.couponId)
       .then(res => {
         const { code, data, message } = res.data;
         if (code === 0) this.comments = data;
@@ -184,10 +190,10 @@ export default class GetCoupon extends Vue {
 
   private receiveCoupon() {
     try {
-      const userInfo = JSON.parse(window.sessionStorage.user_info);
+      const uid: number = window.sessionStorage.uid;
       const query: any = this.$route.query;
       const couponId: number = query.id - 0;
-      receiveCoupon(couponId, userInfo.id)
+      receiveCoupon(couponId, uid)
         .then(res => {
           const { code, data, message } = res.data;
           this.couponStatus = message;
@@ -219,17 +225,19 @@ export default class GetCoupon extends Vue {
 
   private publishComment() {
     try {
-      const { id, phone } = JSON.parse(window.sessionStorage.user_info);
+      const uid = window.sessionStorage.uid;
       const starGrade = this.starGrade;
       const commentContent = this.commentContent.trim();
       const query: any = this.$route.query;
       const couponId = query.id - 0;
 
       if (commentContent.length) {
-        publishComment(id, phone, starGrade, commentContent, couponId)
+        publishComment(uid, starGrade, commentContent, couponId)
           .then(res => {
             const { code, data, message } = res.data;
             this.$dialog.alert({ message });
+            this.showType = 1;
+            this.getCouponComment();
           })
           .catch(error => {
             this.$dialog.alert({

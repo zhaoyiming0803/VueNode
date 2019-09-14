@@ -10,8 +10,7 @@ export const getCouponComment = (couponId: Number): AxiosPromise<ResponseData> =
 }
 
 export const publishComment = (
-  id: number, 
-  phone: string, 
+  userId: number, 
   starGrade: number, 
   commentContent: string, 
   couponId: number
@@ -19,6 +18,6 @@ export const publishComment = (
   return httpRequest.request({
     method: 'post',
     url: '/comment/publish',
-    data: { id, phone, starGrade, commentContent, couponId }
+    data: { userId, starGrade, commentContent, couponId }
   });
 }

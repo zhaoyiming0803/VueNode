@@ -192,7 +192,7 @@ import { Vue, Component } from "vue-property-decorator";
 import Explain from "@/components/header-explain/index.vue";
 import FooterNav from "@/components/footer-nav/index.vue";
 import { getUserInfo } from "@/api/personal";
-import { getCouponRecord, getReceivedCouponList } from '@/api/coupon';
+import { getCouponRecord, getReceivedCouponList } from "@/api/coupon";
 
 interface UserInfo {
   phone: string;
@@ -237,12 +237,16 @@ export default class Personal extends Vue {
   private gaodaowuCouponList: Coupon[] = [];
 
   private created() {
-    const { id, phone } = JSON.parse(window.sessionStorage.user_info);
-    this.getUserInfo(id, phone);
-    this.getCouponRecord(id);
+    const uid: number = window.sessionStorage.uid;
+    if (uid) {
+      this.getUserInfo(uid);
+      this.getCouponRecord(uid);
+    } else {
+      this.$router.push({ path: "/account/login" });
+    }
   }
 
-  private getUserInfo(id: number, phone: string) {
+  private getUserInfo(id: number) {
     try {
       getUserInfo(id)
         .then(res => {
@@ -265,7 +269,7 @@ export default class Personal extends Vue {
     }
   }
 
-  getCouponRecord (id: number) {
+  getCouponRecord(id: number) {
     getCouponRecord(id)
       .then(res => {
         const { code, data, message } = res.data;
@@ -290,12 +294,14 @@ export default class Personal extends Vue {
           this.$dialog.alert({ message });
         }
       })
-      .catch(error => this.$dialog.alert({message: error}));
+      .catch(error => this.$dialog.alert({ message: error }));
   }
 
-  private getReceivedCouponList(type: "union" | "visa" | "jinnang" | "gaodaowu") {
-    const { id } = JSON.parse(window.sessionStorage.user_info);
-    return getReceivedCouponList(id, type);
+  private getReceivedCouponList(
+    type: "union" | "visa" | "jinnang" | "gaodaowu"
+  ) {
+    const uid: number = window.sessionStorage.uid;
+    return getReceivedCouponList(uid, type);
   }
 
   private async showUnion() {
