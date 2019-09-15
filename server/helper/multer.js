@@ -2,7 +2,6 @@
  * 从npm下载express文件上传使用方法
  * @author: zhaoyiming
  * @since: 2017/10/1
- * url: http://www.zymseo.com/node/472.html
 */
 
 const multer = require('multer');
