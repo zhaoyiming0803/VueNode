@@ -32,7 +32,7 @@
           <router-link
             v-for="(v, k) in unionCouponList"
             :key="k"
-            :to="{name: '/get-coupon', query: {id: v.id, type: 2}}"
+            :to="{path: '/get-coupon', query: {id: v.id, type: 2}}"
             :class="{'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2}"
           >
             <div class="shop-ico">
@@ -73,7 +73,7 @@
           <router-link
             v-for="(v, k) in visaCouponList"
             :key="k"
-            :to="{name: '/get-coupon', query: {id: v.id, type: 2}}"
+            :to="{path: '/get-coupon', query: {id: v.id, type: 2}}"
             :class="{'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2}"
           >
             <div class="shop-ico">
