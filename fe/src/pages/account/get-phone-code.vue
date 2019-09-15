@@ -72,7 +72,7 @@ export default class GetPhoneCode extends Vue {
       });
     }
 
-    this.$router.push({
+    this.$router.replace({
       path: "/account/reset-password",
       query: {
         phone: this.phone

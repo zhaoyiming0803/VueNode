@@ -20,7 +20,12 @@
       <p>
         <input type="submit" value="登	录" class="account-btn" />
       </p>
-      <router-link tag="a" class="phone-prompt" :to="{name: 'GetPhoneCode'}">忘记密码</router-link>
+      <router-link 
+        tag="a" 
+        class="phone-prompt" 
+        :to="{name: 'GetPhoneCode'}"
+        replace>忘记密码
+      </router-link>
     </form>
   </div>
 </template>

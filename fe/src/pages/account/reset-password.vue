@@ -90,7 +90,7 @@ export default class ResetPassword extends Vue {
           this.$dialog.alert({
             message: "密码修改成功"
           });
-          this.$router.push({ name: "Login" });
+          this.$router.replace({ name: "Login" });
         } else {
           this.$dialog.alert({
             message

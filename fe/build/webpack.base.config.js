@@ -41,10 +41,10 @@ module.exports = config => {
 			return args;
 		});
 
-	config.module.rule('ts').use('ts-loader').tap(options = > {
+	config.module.rule('ts').use('ts-loader').tap(options => {
 		options = merge(options, {
 			transpileOnly: true,
-			getCustomTransformers: () = > ({
+			getCustomTransformers: () => ({
 				before: [tsImportPluginFactory({
 					libraryName: 'vant',
 					libraryDirectory: 'es',
@@ -58,7 +58,7 @@ module.exports = config => {
 		return options;
 	});
 
-	config.plugin('copy').tap(args = > {
+	config.plugin('copy').tap(args => {
 		args[0][0].from = resolve('src/static/uploads');
 		args[0][0].to = 'static/uploads'
 			return args;
