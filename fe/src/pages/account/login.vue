@@ -40,16 +40,8 @@ import { validatePhone, validatePassword } from "@/utils/index";
   }
 })
 export default class Login extends Vue {
-  private phone: string = "";
-  private pwd: string = "";
-
-  private created() {
-    if (window.sessionStorage.uid) {
-      this.$router.push({
-        path: "/home"
-      });
-    }
-  }
+  private phone: string = '';
+  private pwd: string = '';
 
   login() {
     if (!validatePhone(this.phone)) {

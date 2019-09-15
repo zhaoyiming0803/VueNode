@@ -6,6 +6,7 @@
       <router-link
         tag="div"
         :to="{name: 'Login'}"
+        replace
         active-class="this-account-model"
         class="account-check-btn"
       >
@@ -14,6 +15,7 @@
       <router-link
         tag="div"
         :to="{name: 'Regist'}"
+        replace
         active-class="this-account-model"
         class="account-check-btn"
       >
@@ -37,6 +39,14 @@ import Explain from "@/components/header-explain/index.vue";
 export default class AccountIndex extends Vue {
   public isAccount: boolean = true;
   public explainName: string = "欢迎来到锦囊团";
+
+  private created () {
+    if (window.sessionStorage.uid) {
+      this.$router.replace({
+        path: '/home'
+      });
+    }
+  }
 }
 </script>
 

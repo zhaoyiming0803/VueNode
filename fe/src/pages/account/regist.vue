@@ -15,11 +15,23 @@
       </p>
       <p>
         <span class="pwd-ico"></span>
-        <input type="password" placeholder="请输入至少6位数的密码" class="pwd" v-model.lazy.trim="pwd" />
+        <input 
+          type="password" 
+          placeholder="请输入至少6位数的密码" 
+          class="pwd" 
+          v-model.lazy.trim="pwd"
+          v-focus
+          v-blur />
       </p>
       <p>
         <span class="pwd-ico"></span>
-        <input type="password" placeholder="确认密码" class="pwd" v-model.lazy.trim="confirmPwd" />
+        <input 
+          type="password" 
+          placeholder="确认密码" 
+          class="pwd" 
+          v-model.lazy.trim="confirmPwd"
+          v-focus
+          v-blur />
       </p>
       <p>
         <input type="submit" value="注	册" class="account-btn" />
@@ -69,8 +81,14 @@ export default class Regist extends Vue {
     regist(this.phone, this.pwd)
       .then(res => {
         const { code, message } = res.data;
-        if (code === 1) this.$dialog.alert({ message: "注册成功" });
-        else this.$dialog.alert({ message });
+        if (code === 0) {
+          this.$router.replace({
+            path: '/account/login'
+          });
+          this.$dialog.alert({ message: "注册成功" });
+        } else {
+          this.$dialog.alert({ message });
+        } 
       })
       .catch(error => {
         this.$dialog.alert({
