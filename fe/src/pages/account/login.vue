@@ -4,7 +4,7 @@
       <p>
         <span class="phone-ico"></span>
         <input
-          type="text"
+          type="tel"
           placeholder="请输入手机号"
           maxlength="11"
           class="phone"
