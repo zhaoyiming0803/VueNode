@@ -1,0 +1,22 @@
+pipeline {
+	agent {
+		node {
+			label ""
+			customWorkspace 'workspace/tour-fe/'
+		}
+	}
+
+	stages {
+		stage('build') {
+			steps {
+				sh 'npm --registry=https://registry.npm.taobao.org install'
+				sh 'npm --registry=https://registry.npm.taobao.org run build'
+			}
+		}
+		stage('deploy') {
+			steps {
+				sh 'bash ./publish.sh'
+			}
+		}
+	}
+}
