@@ -4,7 +4,7 @@
 cd ./dist
 tar -czvf tour.tar.gz .
 
-mkdir -p /work/web/tour
-rm -rf /work/web/tour/*
-cp tour.tar.gz /work/web/tour
-cd /work/web/tour && tar -xvf tour.tar.gz
+mkdir -p /work/fe/tour
+rm -rf /work/fe/tour/*
+cp tour.tar.gz /work/fe/tour
+cd /work/fe/tour && tar -xvf tour.tar.gz
