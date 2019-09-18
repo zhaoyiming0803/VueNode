@@ -34,9 +34,9 @@
 
 ### 线上部署
 
-- 前端：参考 fe 目录下的 nginx.conf 
+- 前端：参考 fe 目录下的 nginx.conf、Jenkinsfile、publish.sh
 
-- 后端：参考 server 目录下的 nginx.conf 和 pm2.json
+- 后端：参考 server 目录下的 nginx.conf、pm2.json、Jenkinsfile、publish.sh
 
 ### 关于数据库
 
