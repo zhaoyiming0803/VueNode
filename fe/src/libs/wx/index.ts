@@ -3,7 +3,7 @@ import { AjaxResponse } from './types';
 async function wechat() {
   const config = await ajax();
 
-  wx.config({
+  wx.config({ 
     debug: false, 
     appId: config.appId,
     timestamp: config.timestamp,
@@ -40,11 +40,11 @@ async function wechat() {
       title: '欢迎来到锦囊团官网',
       desc: '全世界各地的优惠券免费拿哦',
       link: window.location.href,
-      imgUrl: 'https://web.0351zhuangxiu.com/jnt.png'
+      imgUrl: 'https://web.0351zhuangxiu.com/tour/static/images/jnt.png'
     };
 
-    wx.updateAppMessageShareData(shareOption);
-    wx.updateTimelineShareData(shareOption);
+    wx.onMenuShareTimeline(shareOption);
+    wx.onMenuShareAppMessage(shareOption);
   });
 }
 

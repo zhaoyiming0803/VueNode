@@ -12,7 +12,7 @@ module.exports = config => {
     proxy: {
       '/tour/static': {
         sw: false,
-        target: 'http://localhost:8080',
+        target: 'https://web.0351zhuangxiu.com:443',
         pathRewrite: { '^/fe/static': '/static' },
         changeOrigin: false
       }

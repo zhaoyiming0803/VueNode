@@ -59,8 +59,8 @@ module.exports = config => {
 	});
 
 	config.plugin('copy').tap(args => {
-		args[0][0].from = resolve('src/static/uploads');
-		args[0][0].to = 'static/uploads'
+		args[0][0].from = resolve('src/static');
+		args[0][0].to = 'static'
 			return args;
 	});
 }
