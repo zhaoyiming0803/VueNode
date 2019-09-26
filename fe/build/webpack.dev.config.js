@@ -13,7 +13,7 @@ module.exports = config => {
       '/tour/static': {
         sw: false,
         target: 'https://web.0351zhuangxiu.com:443',
-        pathRewrite: { '^/fe/static': '/static' },
+        pathRewrite: { '^/tour/static': '/static' },
         changeOrigin: false
       }
     },
