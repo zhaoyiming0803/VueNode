@@ -1,6 +1,14 @@
 import { AjaxResponse } from './types';
 
 async function wechat() {
+  const ua: string = navigator.userAgent.toLowerCase();
+  const reg: RegExp = /MicroMessenger/i;
+  const matchedResult: RegExpMatchArray | null = ua.match(reg);
+
+  if (matchedResult === null || matchedResult[0] !== 'micromessenger') {
+    return;
+  }
+
   const config = await ajax();
 
   wx.config({ 
