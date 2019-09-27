@@ -43,44 +43,47 @@
       </div>
     </div>
 
-    <div class="coupon-list-wraper" v-if="!isLoading">
-      <router-link
-        v-for="(v, k) in couponList"
-        :key="k"
-        :to="{path: '/get-coupon', query: {id: v.id, type: 1}}"
-        :class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}"
-      >
-        <div class="shop-ico">
-          <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
-        </div>
-        <div class="shop-intro">
-          <div class="shop-title">{{v.coupon_name}}</div>
-          <div class="shop-price">
-            <span class="condition">{{v.coupon_explain}}</span>
+    <div class="coupon-list-wraper">
+      <template>
+        <router-link
+          v-for="(v, k) in couponList"
+          :key="k"
+          :to="{path: '/get-coupon', query: {id: v.id, type: 1}}"
+          :class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}"
+        >
+          <div class="shop-ico">
+            <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
           </div>
-        </div>
-        <div class="shop-active shop-active-canuse">
-          <p>已抢</p>
-          <p>{{v.coupon_recived_num}}</p>
-          <span
-            :class="{'use-discount': v.coupon_status==0, 'used': v.coupon_status==1, 'past': v.coupon_status==2}"
-          ></span>
-        </div>
-      </router-link>
+          <div class="shop-intro">
+            <div class="shop-title">{{v.coupon_name}}</div>
+            <div class="shop-price">
+              <span class="condition">{{v.coupon_explain}}</span>
+            </div>
+          </div>
+          <div class="shop-active shop-active-canuse">
+            <p>已抢</p>
+            <p>{{v.coupon_recived_num}}</p>
+            <span
+              :class="{'use-discount': v.coupon_status==0, 'used': v.coupon_status==1, 'past': v.coupon_status==2}"
+            ></span>
+          </div>
+        </router-link>
+      </template>
+
       <a
         href="javascript:;"
         v-if="couponList.length && couponList.length % 10 === 0"
         class="load-more"
         @click="loadMore"
       >加载更多</a>
-    </div>
 
-    <div v-else style="background-color: white">
-      <van-skeleton title avatar :row="3" />
-      <van-skeleton title avatar :row="3" />
-      <van-skeleton title avatar :row="3" />
-      <van-skeleton title avatar :row="3" />
-      <van-skeleton title avatar :row="3" />
+      <div v-if="isLoading" style="background-color: white">
+        <van-skeleton title avatar :row="3" />
+        <van-skeleton title avatar :row="3" />
+        <van-skeleton title avatar :row="3" />
+        <van-skeleton title avatar :row="3" />
+        <van-skeleton title avatar :row="3" />
+      </div>
     </div>
 
     <footer-nav></footer-nav>

@@ -3,7 +3,7 @@
   <div class="get-coupon-wraper">
     <explain :explainName="explainName"></explain>
 
-    <coupon-brief :coupon="coupon"></coupon-brief>
+    <coupon-brief :coupon="coupon" v-if="coupon.coupon_name"></coupon-brief>
 
     <div class="coupon-bottom-wraper" id="coupon-bottom-wraper">
       <a href="javascript:;" v-if="showType==1" @click="receiveCoupon" class="coupon-btn">立即领取</a>
