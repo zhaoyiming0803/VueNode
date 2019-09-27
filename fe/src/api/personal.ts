@@ -4,7 +4,7 @@ import { AxiosPromise } from 'axios';
 export const getUserInfo = (id: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/user/info',
+    url: '/tour/user/info',
     params: { id }
   });
 }
@@ -12,7 +12,7 @@ export const getUserInfo = (id: number): AxiosPromise<ResponseData> => {
 export const changeUserName = (userId: number, userName: string): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/user/changeUserName',
+    url: '/tour/user/changeUserName',
     data: { userId, userName }
   });
 }
@@ -20,7 +20,7 @@ export const changeUserName = (userId: number, userName: string): AxiosPromise<R
 export const changeUserSex = (userId: number, sex: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/user/changeUserSex',
+    url: '/tour/user/changeUserSex',
     data: { userId, sex }
   });
 }

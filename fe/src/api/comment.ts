@@ -4,7 +4,7 @@ import { AxiosPromise } from 'axios';
 export const getCouponComment = (couponId: Number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/comment/get',
+    url: '/tour/comment/get',
     params: { couponId }
   });
 }
@@ -17,7 +17,7 @@ export const publishComment = (
 ): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/comment/publish',
+    url: '/tour/comment/publish',
     data: { userId, starGrade, commentContent, couponId }
   });
 }

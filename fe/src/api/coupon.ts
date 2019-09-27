@@ -4,7 +4,7 @@ import { AxiosPromise } from 'axios';
 export const getCouponsList = (regionId: number, classifyId: number, page: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/coupon/home',
+    url: '/tour/coupon/home',
     params: { regionId, classifyId, page }
   });
 };
@@ -12,21 +12,21 @@ export const getCouponsList = (regionId: number, classifyId: number, page: numbe
 export const getClassifyList = (): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/coupon/classify'
+    url: '/tour/coupon/classify'
   });
 }
 
 export const getRegionList = (): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/region/list'
+    url: '/tour/region/list'
   });
 }
 
 export const getCouponDetail = (id: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/coupon/detail',
+    url: '/tour/coupon/detail',
     params: { id }
   });
 }
@@ -34,7 +34,7 @@ export const getCouponDetail = (id: number): AxiosPromise<ResponseData> => {
 export const getCouponRecord = (userId: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/coupon/record',
+    url: '/tour/coupon/record',
     params: { userId }
   });
 }
@@ -42,7 +42,7 @@ export const getCouponRecord = (userId: number): AxiosPromise<ResponseData> => {
 export const receiveCoupon = (couponId: number, userId: number): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/coupon/receive',
+    url: '/tour/coupon/receive',
     data: { couponId, userId }
   });
 }
@@ -53,7 +53,7 @@ export const getReceivedCouponList = (
 ): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/coupon/received',
+    url: '/tour/coupon/received',
     params: { userId, type }
   });
 }
