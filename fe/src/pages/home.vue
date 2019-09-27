@@ -140,7 +140,7 @@ export default class Home extends Vue {
       .then(res => {
         const { code, data, message } = res.data;
         if (code === 0) {
-          this.couponList = this.couponList.concat(data);
+          this.couponList.push.apply(this.couponList, data);
         } else {
           this.$dialog.alert({ message });
         }

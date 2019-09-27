@@ -6,7 +6,9 @@ export interface ResponseData {
   message: string;
 }
 
-const apiBaseUrl = 'https://api.0351zhuangxiu.com';
+const apiBaseUrl = process.env.NODE_ENV === 'production'
+  ? 'https://api.0351zhuangxiu.com'
+  : 'http://localhost:8091'
 
 class HttpRequest {
   constructor(public baseUrl: string = apiBaseUrl) {
