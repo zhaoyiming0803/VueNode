@@ -42,7 +42,7 @@
 
  - 安装mysql数据库，新建数据库tour，然后导入全部数据（/server/tour.sql）
 
- - 浏览器访问：localhost:8080
+ - 浏览器访问：https://web.0351zhuangxiu.com/tour/ (本地host：127.0.0.1 web.0351zhuangxiu.com)
 
  - 数据库 tour_user 表中的用户默认密码均为123456
 
