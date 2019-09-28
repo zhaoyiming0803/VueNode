@@ -4,7 +4,7 @@ import { AxiosPromise } from 'axios';
 export const authorizeUserInfo = (code: number | string): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'post',
-    url: '/wechat/auth/authorizeUserInfo',
+    url: 'https://api.0351zhuangxiu.com/wechat/auth/authorizeUserInfo',
     params: { code }
   });
 }
