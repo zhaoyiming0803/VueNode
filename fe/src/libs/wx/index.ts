@@ -1,4 +1,4 @@
-import { AjaxResponse } from './types';
+import ajax from './ajax';
 
 async function wechat() {
   const ua: string = navigator.userAgent.toLowerCase();
@@ -9,7 +9,10 @@ async function wechat() {
     return;
   }
 
-  const config = await ajax();
+  const config = await ajax({
+    method: 'GET',
+    url: 'https://api.0351zhuangxiu.com/wechat/auth/signature'
+  });
 
   wx.config({ 
     debug: false, 
@@ -53,28 +56,6 @@ async function wechat() {
 
     wx.onMenuShareTimeline(shareOption);
     wx.onMenuShareAppMessage(shareOption);
-  });
-}
-
-function ajax(): Promise<AjaxResponse> {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('GET', 'https://api.0351zhuangxiu.com/wechat/auth/signature', true);
-
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState !== 4 || xhr.status === 0) return;
-
-      const responseData: AjaxResponse = JSON.parse(xhr.response);
-
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(responseData);
-      } else {
-        reject(`request failed with status code ${xhr.status}`);
-      }
-    };
-
-    xhr.send();
   });
 }
 

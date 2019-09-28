@@ -64,5 +64,15 @@ export default [
 		path: '/change-user-sex',
 		name: 'ChangeUserSex',
 		component: () => import('@/pages/personal/change-user-sex.vue')
+	},
+	{
+		path: '/wechat',
+		name: 'Wechat',
+		component: () => import('@/pages/wechat/index.vue')
+	},
+	{
+		path: '/auth',
+		name: 'Auth',
+		component: () => import('@/pages/wechat/auth.vue')
 	}
 ];
