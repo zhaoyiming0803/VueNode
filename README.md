@@ -12,7 +12,7 @@
 
 - 新加了针对前后端部署的详细文档以及 nginx pm2 配置。
 
-前后端代码以数据库都已部署到腾讯云（优惠活动抢购的）：[在线预览](https://web.0351zhuangxiu.com/tour/)
+前后端代码以数据库都已部署到腾讯云：[在线预览](https://web.0351zhuangxiu.com/tour/)
 
 如果对 Vue 源码感兴趣，可以参考[Vue源码学习笔记](https://github.com/zymfe/into-vue)
 
