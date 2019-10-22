@@ -2,19 +2,19 @@
 
 1.0 版本的 VueNode 是 2017 年做的，单纯是为了做本地测试，所以代码看上去并不是非常舒服。所以趁着 2019 年中秋节放假，把这个项目重构了一遍。主要修改如下：
 
-- 前端使用 TypeScript，个人感觉确实好用，因为其类型校验，在重构过程中还解决了 1.0 版本的几个潜在 bug。
+- 前端使用 TypeScript，个人感觉确实好用，因为其类型校验，在重构过程中还解决了 1.0 版本的几个潜在 Bug。
 
-- 项目使用 vue-cli3 初始化，在此基础上修改了很多默认配置，更加适合当前项目，性能更优。
+- 项目使用 Vue CLI 3 初始化，在此基础上修改了很多默认配置，更加适合当前项目，性能更优。
 
-- 头像上传，文件上传到了七牛云 OSS，节省本地空间，并且能很好的利用 cdn 优势。
+- 头像上传，文件上传到了七牛云 OSS，节省本地空间，并且能很好的利用 CDN 优势。
 
 - 整理了后端接口，使用 async 和 await ，再也不用多层嵌套回调函数了。
 
-- 新加了针对前后端部署的详细文档以及 nginx pm2 配置。
+- 新加了针对前后端部署的详细文档以及 Nginx PM2 配置。
 
 前后端代码以数据库都已部署到腾讯云：[在线预览](https://web.0351zhuangxiu.com/tour/)
 
-如果对 Vue 源码感兴趣，可以参考[Vue源码学习笔记](https://github.com/zymfe/into-vue)
+如果对 Vue.js 源码感兴趣，可以参考[Vue.js源码学习笔记](https://github.com/zymfe/into-vue)
 
 上一个版本，请参考[VueNode V1.0](https://github.com/zymfe/VueNode/tree/v1.0)
 
@@ -22,9 +22,9 @@
 
 ### 技术栈
 
-前端：html、css、less、ES6(7|8)、webpack4、vue-cli3、vue2.6.10、vuex3.1.1、vue-router3.1.3、axios0.19.0
+前端：HTML、CSS、Less、ES6(7|8)、Webpack4、Vue CLI 3、Vue.JS2.6.10、Vuex3.1.1、Vue Router3.1.3、Axios0.19.0
 
-后端：Node、Mysql
+后端：Node.js、MySQL
 
 ### 项目本地运行方法
 
