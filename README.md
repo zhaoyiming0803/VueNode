@@ -1,6 +1,6 @@
 ### VueNode
 
-1.0 版本的 VueNode 是 2017 年做的，单纯是为了做本地测试，所以代码看上去并不是非常舒服。所以趁着 2019 年中秋节放假，把这个项目重构了一遍。主要修改如下：
+[1.0版本](https://github.com/zymfe/VueNode/tree/v1.0)的 VueNode 是 2017 年做的，单纯是为了做本地测试，所以代码看上去并不是非常舒服。所以趁着 2019 年中秋节放假，把这个项目重构了一遍。主要修改如下：
 
 - 前端使用 TypeScript，个人感觉确实好用，因为其类型校验，在重构过程中还解决了 1.0 版本的几个潜在 Bug。
 
@@ -15,8 +15,6 @@
 前后端代码以数据库都已部署到腾讯云：[在线预览](https://web.0351zhuangxiu.com/tour/)
 
 如果对 Vue.js 源码感兴趣，可以参考[Vue.js源码学习笔记](https://github.com/zymfe/into-vue)
-
-上一个版本，请参考[VueNode V1.0](https://github.com/zymfe/VueNode/tree/v1.0)
 
 #### 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
 
