@@ -8,7 +8,9 @@
       "merge_logs": false,
       "cwd": "./",
       "instance": 1,
-      "exec_mode": "cluster"
+      "exec_mode": "cluster",
+      "max_memory_restart": "50M",
+      "log_date_format": "yyyy-MM-DD HH:mZ"
     }
   ]
 }

@@ -1,4 +1,5 @@
 const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = config => {
   config.devtool = false;
@@ -22,4 +23,10 @@ module.exports = config => {
       }
     })
   );
+
+  config.plugins.push(new CompressionPlugin({
+    test: /\.(js|css|html|svg)$/,
+    threshold: 10,
+    deleteOriginalAssets: false
+  }));
 }

@@ -4,11 +4,16 @@
  * @since: 2017/10/1
 */
 
+const fs = require('fs');
 const multer = require('multer');
 const storage = multer.diskStorage({
 	// 设置上传后文件路径。
 	destination(req, file, cb) {
-		cb(null, './tmp/');
+		const path = `${process.cwd()}/tmp/`;
+		if (!fs.existsSync(path)) {
+			fs.mkdirSync(path);
+		}
+		cb(null, path);
 	},
 
 	// 给上传文件重命名，获取添加后缀名

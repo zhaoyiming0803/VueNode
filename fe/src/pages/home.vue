@@ -76,7 +76,7 @@
       @click="loadMore"
     >加载更多</a>
 
-    <div v-if="isLoading" style="background-color: white">
+    <div v-if="couponList.length === 0" style="background-color: white">
       <van-skeleton title avatar :row="3" />
       <van-skeleton title avatar :row="3" />
       <van-skeleton title avatar :row="3" />
@@ -112,7 +112,6 @@ export default class Home extends Vue {
   private isClassify: boolean = false;
   private currentPage: number = 1;
   private couponList: any[] = [];
-  private isLoading: boolean = false;
 
   private get regionId(): number {
     return this.$store.state.app.regionId;
@@ -136,7 +135,6 @@ export default class Home extends Vue {
   }
 
   private getCouponsList(regionId: number, classifyId: number, page: number) {
-    this.isLoading = true;
     getCouponsList(regionId, classifyId, page)
       .then(res => {
         const { code, data, message } = res.data;
@@ -152,7 +150,7 @@ export default class Home extends Vue {
         });
       })
       .finally(() => {
-        this.isLoading = false;
+        
       });
     this.getRegionList();
   }

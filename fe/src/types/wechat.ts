@@ -14,7 +14,8 @@ namespace Wechat {
       'chooseImage',
       'uploadImage',
       'downloadImage',
-      'scanQRCode'
+      'scanQRCode',
+      'getLocation'
     ]
   }
 
@@ -49,6 +50,20 @@ namespace Wechat {
    */
   interface OnMenuShareTimeline extends BaseShareOption {}
 
+  /**
+   * 获取地理位置
+   */
+  interface LocationResponse {
+    latitude: number,  // 纬度，浮点数，范围为90 ~ -90
+    longitude: number, // 经度，浮点数，范围为180 ~ -180。
+    speed: number,     // 速度，以米/每秒计
+    accuracy: number   // 位置精度
+  }
+  interface GetLocation {
+    type: string,
+    success?: (res: LocationResponse) => void
+  }
+
   export interface Wx {
     config(options: WxOptions): void,
     ready(fn: Function): void,
@@ -56,6 +71,7 @@ namespace Wechat {
     updateAppMessageShareData(options: UpdateAppMessageShareData): void,
     updateTimelineShareData(options: UpdateTimelineShareData): void,
     onMenuShareTimeline(options: OnMenuShareTimeline): void,
-    onMenuShareAppMessage(options: OnMenuShareAppMessage): void
+    onMenuShareAppMessage(options: OnMenuShareAppMessage): void,
+    getLocation(options: GetLocation): void
   }
 }
