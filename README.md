@@ -14,9 +14,9 @@
 
 前后端代码以数据库都已部署到腾讯云（优惠活动抢购的）：[在线预览](https://web.0351zhuangxiu.com/tour/)
 
-如果对 Vue 源码感兴趣，可以参考[Vue源码学习笔记](https://github.com/zymfe/into-vue)
+如果对 Vue 源码感兴趣，可以参考[Vue源码学习笔记](https://github.com/zhaoyiming0803/into-vue)
 
-上一个版本，请参考[VueNode V1.0](https://github.com/zymfe/VueNode/tree/v1.0)
+上一个版本，请参考[VueNode V1.0](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
 
 #### 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
 
@@ -55,7 +55,7 @@
 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
 ### 个人微信&QQ：1047832475
-![image](https://github.com/zymfe/VueNode/blob/v1.0/wechat.png?raw=true)
+![image](https://github.com/zhaoyiming0803/VueNode/blob/v1.0/wechat.png?raw=true)
 
 ### 目标功能
 
@@ -71,8 +71,8 @@
 - [x] 使用优惠券（100%）
 - [x] 发布优惠券文字（100%）
 - [x] 星级评价组件（100%）
-- [x] 微信分享（100%）使用 nodejs 开发微信源码：https://github.com/zymfe/wechat-nodejs
+- [x] 微信分享（100%）使用 nodejs 开发微信源码：https://github.com/zhaoyiming0803/wechat-nodejs
 
 ### 项目GIF图
 
-![gif](https://github.com/zymfe/VueNode/blob/v1.0/project.gif?raw=true)
+![gif](https://github.com/zhaoyiming0803/VueNode/blob/v1.0/project.gif?raw=true)
