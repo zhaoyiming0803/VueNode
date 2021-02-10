@@ -55,7 +55,7 @@
 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
 ### 个人微信&QQ：1047832475
-![image](https://github.com/zhaoyiming0803/VueNode/blob/v1.0/wechat.png?raw=true)
+![image](https://zhaoyiming0803.github.io/wechat.png)
 
 ### 目标功能
 
