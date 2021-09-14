@@ -12,12 +12,6 @@
 
 - 新加了针对前后端部署的详细文档以及 Nginx PM2 配置。
 
-前后端代码以数据库都已部署到腾讯云：[在线预览](https://web.0351zhuangxiu.com/tour/)
-
-如果对 Vue 源码感兴趣，可以参考[Vue源码学习笔记](https://github.com/zhaoyiming0803/into-vue)
-
-上一个版本，请参考[VueNode V1.0](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
-
 #### 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
 
 ### 技术栈
