@@ -1,11 +1,12 @@
 {
-  "name": "typescript",
-  "version": "0.1.0",
+  "name": "vuenode",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
+  "author": "zhaoyiming0803",
   "devDependencies": {
     "@babel/plugin-transform-modules-umd": "^7.2.0",
     "@vue/cli-plugin-babel": "^3.8.0",

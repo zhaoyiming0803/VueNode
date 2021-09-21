@@ -1,4 +1,4 @@
-/*
+/**
  * 数据库配置
  * @author: zhaoyiming
  * @since:  2017/9/16
@@ -14,11 +14,11 @@ const db = mysql.createConnection({
 });
 db.connect();
 
-module.exports = (sql, callback) => {
+module.exports = sql => {
 	return new Promise((resolve, reject) => {
 		db.query(sql, (err, data) => {
-			if (err) reject(err);
-			else resolve(data);
-		});
-	});
-};
+			if (err) reject(err)
+			else resolve(data)
+		})
+	})
+}
