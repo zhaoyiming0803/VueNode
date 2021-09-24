@@ -1,19 +1,12 @@
 ### VueNode
 
-[1.0版本](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)的 VueNode 是 2017 年做的，单纯是为了做本地测试，所以代码看上去并不是非常舒服。所以趁着 2019 年中秋节放假，把这个项目重构了一遍。主要修改如下：
+当前项目使用 Vue3 开发，旧版本可参考：
 
-- 前端使用 TypeScript，个人感觉确实好用，因为其类型校验，在重构过程中还解决了 1.0 版本的几个潜在 Bug。
+[v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
 
-- 项目使用 Vue CLI 3 初始化，在此基础上修改了很多默认配置，更加适合当前项目，性能更优。
-
-- 头像上传，文件上传到了七牛云 OSS，节省本地空间，并且能很好的利用 CDN 优势。
-
-- 整理了后端接口，使用 async 和 await ，再也不用多层嵌套回调函数了。
-
-- 新加了针对前后端部署的详细文档以及 Nginx PM2 配置。
+[v2.x](https://github.com/zhaoyiming0803/VueNode/tree/v2.2.2)
 
 #### 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
-
 ### 技术栈
 
 前端：HTML、CSS、Less、ES6(7|8)、Webpack4、Vue CLI 3、Vue.JS2.6.10、Vuex3.1.1、Vue Router3.1.3、Axios0.19.0
