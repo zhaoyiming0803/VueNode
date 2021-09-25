@@ -2,14 +2,20 @@
 
 当前项目使用 Vue3 开发，旧版本可参考：
 
-[v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
+[VueNode v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
 
-[v2.x](https://github.com/zhaoyiming0803/VueNode/tree/v2.2.2)
+[VueNode v2.x](https://github.com/zhaoyiming0803/VueNode/tree/v2.2.2)
+
+### v2 到 v3 升级指南：
+
+[测试 demo](https://github.com/zhaoyiming0803/vue3-webpack-demo)
+
+[升级vantUI]https://vant-contrib.gitee.io/vant/v3/#/zh-CN/migrate-from-v2
 
 #### 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
 ### 技术栈
 
-前端：HTML、CSS、Less、ES6(7|8)、Webpack4、Vue CLI 3、Vue.JS2.6.10、Vuex3.1.1、Vue Router3.1.3、Axios0.19.0
+前端：HTML、CSS、Less、ES6(7|8)、Webpack4、@vue/cli@4.5.13、vue.js@3.2.16、vuex@4.0.2、vue-router@4.0.11、axios@0.19.0
 
 后端：Node.js、MySQL
 
