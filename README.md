@@ -1,6 +1,6 @@
 # VueNode
 
-当前项目使用 Vue3 开发，基本能跑起来，更多 Vue3 的新特性会陆续尝试使用。旧版本可参考：
+当前项目使用 Vue3 开发，更多 Vue3 的新特性会陆续尝试使用。旧版本可参考：
 
 - [VueNode v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
 
@@ -33,7 +33,7 @@
 
 - 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
 
-- 待添加：eslint、git commit hook
+- 待完善：eslint、git commit hook、server typescript
 ### 技术栈
 
 - 前端：HTML、CSS、Less、ES6(7|8)、Webpack4、@vue/cli@4.5.13、vue.js@3.2.16、vuex@4.0.2、vue-router@4.0.11、axios@0.19.0
@@ -53,7 +53,7 @@
 
 ### 关于数据库
 
- - 安装mysql数据库，新建数据库tour，然后导入全部数据（/server/tour.sql）
+ - 安装 MySQL 数据库，新建数据库tour，然后导入全部数据（/server/tour.sql）
 
  - 浏览器访问：https://web.0351zhuangxiu.com/tour/ (本地host：127.0.0.1 web.0351zhuangxiu.com)
 
