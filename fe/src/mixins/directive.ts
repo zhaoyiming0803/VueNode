@@ -1,17 +1,17 @@
-let scrollTop: number = 0;
+let scrollTop: number = 0
 
 export const focus = {
-	bind: (el: any) => {
+	mounted: (el: any) => {
 		el.onfocus = (ev: any) => {
-			scrollTop = window.pageYOffset;
+			scrollTop = window.pageYOffset
 		}
 	}
-};
+}
 
 export const blur = {
-	bind: (el: any) => {
+	mounted: (el: any) => {
 		el.onblur = (ev: any) => {
-			window.scrollTo(0, scrollTop);
+			window.scrollTo(0, scrollTop)
 		}
 	}
 }

@@ -28,26 +28,29 @@
 </template>
 
 <script lang="ts" scoped>
-import { Component, Vue } from "vue-property-decorator";
-import Explain from "@/components/header-explain/index.vue";
+import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
+import Explain from "@/components/header-explain/index.vue"
 
-@Component({
+export default defineComponent({
   components: {
     Explain
-  }
-})
-export default class AccountIndex extends Vue {
-  public isAccount: boolean = true;
-  public explainName: string = "欢迎来到锦囊团";
+  },
+  setup () {
+    const router = useRouter()
 
-  private created () {
     if (window.sessionStorage.uid) {
-      this.$router.replace({
+      router.replace({
         path: '/home'
       });
     }
+
+    return {
+      isAccount: true,
+      explainName: '欢迎来到锦囊团'
+    }
   }
-}
+})
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">

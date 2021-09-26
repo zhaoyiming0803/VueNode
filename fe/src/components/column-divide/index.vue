@@ -8,12 +8,15 @@
 </template>
 
 <script lang="ts">
-	import { Vue, Component, Prop } from 'vue-property-decorator';
+	import { defineComponent } from 'vue';
 
-	@Component
-	export default class ColumnDivide extends Vue {
-		@Prop({type: String}) private columnName!: string;
-	}
+	export default defineComponent({
+		props: {
+			columnName: {
+				type: String
+			}
+		}
+	})
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">

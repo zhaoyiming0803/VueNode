@@ -1,16 +1,16 @@
 <template>
   <!-- 个人资料展示组件 -->
   <div class="personal-edit-wraper">
-    <explain :explainName="explainName"></explain>
+    <explain :explainName="state.explainName"></explain>
 
     <!-- 个人信息 -->
     <div class="personal-msg-wraper personal-edit-msg-wraper">
       <div class="personal-edit-head">
         <router-link
           tag="a"
-          :to="{path: '/change-user-thumb', query: {'userId': userId, 'headpic': encodeURIComponent(headpic)}}"
+          :to="{ path: '/change-user-thumb', query: { 'userId': state.userId, 'headpic': encodeURIComponent(state.headpic) } }"
         >
-          <img :src="headpic" width="119" height="119" alt="头像" />
+          <img :src="state.headpic" width="119" height="119" alt="头像" />
         </router-link>
       </div>
     </div>
@@ -19,7 +19,7 @@
     <div class="personal-msg-item-wraper">
       <router-link
         tag="a"
-        :to="{path: '/change-user-name', query: {'userId': userId, 'userName': userName}}"
+        :to="{ path: '/change-user-name', query: { 'userId': state.userId, 'userName': state.userName } }"
         class="white-item-wrpaer item"
         style="margin: 10px auto 15px auto;"
       >
@@ -27,19 +27,19 @@
           <span>用户名称</span>
         </div>
         <div class="content">
-          <span>{{userName}}</span>
+          <span>{{ state.userName }}</span>
         </div>
       </router-link>
       <router-link
         tag="a"
-        :to="{path: '/change-user-sex', query: {'userId': userId, 'userSex': userSex}}"
+        :to="{ path: '/change-user-sex', query: { 'userId': state.userId, 'userSex': state.userSex } }"
         class="white-item-wrpaer item"
       >
         <div class="ico sex">
           <span>性别</span>
         </div>
         <div class="content">
-          <span v-if="userSex==1">男</span>
+          <span v-if="state.userSex == 1">男</span>
           <span v-else>女</span>
         </div>
         <div class="line"></div>
@@ -54,57 +54,68 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { defineComponent, reactive, SetupContext } from 'vue'
 import Explain from "@/components/header-explain/index.vue";
 import { getUserInfo } from "@/api/personal";
+import { Dialog } from 'vant';
+import { useRouter } from 'vue-router';
 
-@Component({
+type Sex = 0 | 1
+
+export default defineComponent({
   components: {
     Explain
-  }
-})
-export default class PersonalEdit extends Vue {
-  private explainName: string = "个人资料修改";
-  private headpic: string = "";
-  private userId: number = 0;
-  private userName: string = "";
-  private userSex: 1 | 0 = 1;
+  },
+  setup(props, context: SetupContext) {
+    const router = useRouter()
+    const userSex: Sex = 1
+    const state = reactive({
+      explainName: '个人资料修改',
+      headpic: '',
+      userId: 0,
+      userName: '',
+      userSex
+    })
 
-  private created() {
-    this.getUserInfo();
-  }
+    _getUserInfo()
 
-  private getUserInfo() {
-    try {
-      const uid = window.sessionStorage.uid;
-      this.userId = uid;
-      getUserInfo(uid)
-        .then(res => {
-          const { code, data, message } = res.data;
-          if (code === 0) {
-            const { user_name, user_sex, user_headpic } = data;
-            this.userName = user_name;
-            this.userSex = user_sex;
-            this.headpic = user_headpic;
-          } else {
-            this.$dialog.alert({ message });
-          }
-        })
-        .catch(error => {
-          this.$dialog.alert({ message: error });
-        });
-    } catch (e) {
-      this.$router.push({ name: "Login" });
+    function _getUserInfo() {
+      try {
+        const uid = window.sessionStorage.uid;
+        state.userId = uid;
+        getUserInfo(uid)
+          .then(res => {
+            const { code, data, message } = res.data;
+            if (code === 0) {
+              const { user_name, user_sex, user_headpic } = data;
+              state.userName = user_name;
+              state.userSex = user_sex;
+              state.headpic = user_headpic;
+            } else {
+              Dialog.alert({ message });
+            }
+          })
+          .catch(error => {
+            Dialog.alert({ message: JSON.stringify(error) });
+          });
+      } catch (e) {
+        router.push({ name: "Login" });
+      }
+    }
+
+    function logOut() {
+      window.sessionStorage.removeItem("uid");
+      router.push({
+        path: "/home"
+      });
+    }
+
+    return {
+      state,
+      logOut
     }
   }
-
-  private logOut() {
-    window.sessionStorage.removeItem("uid");
-    this.$router.push({
-      path: "/home"
-    });
-  }
-}
+})
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
