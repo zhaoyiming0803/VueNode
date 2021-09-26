@@ -1,26 +1,36 @@
-### VueNode
+# VueNode
 
-vue3 版本的正在重构中：https://github.com/zhaoyiming0803/VueNode/tree/VueNode-next
+当前项目使用 Vue3 开发，基本能跑起来，更多 Vue3 的新特性会陆续尝试使用。旧版本可参考：
 
-[1.0版本](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)的 VueNode 是 2017 年做的，单纯是为了做本地测试，所以代码看上去并不是非常舒服。所以趁着 2019 年中秋节放假，把这个项目重构了一遍。主要修改如下：
+[VueNode v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
 
-- 前端使用 TypeScript，个人感觉确实好用，因为其类型校验，在重构过程中还解决了 1.0 版本的几个潜在 Bug。
+[VueNode v2.x](https://github.com/zhaoyiming0803/VueNode/tree/v2.2.2)
+### Vue 从 v2 到 v3 升级指南：
 
-- 项目使用 Vue CLI 3 初始化，在此基础上修改了很多默认配置，更加适合当前项目，性能更优。
+[Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
 
-- 头像上传，文件上传到了七牛云 OSS，节省本地空间，并且能很好的利用 CDN 优势。
+[vuex](https://next.vuex.vuejs.org/guide/)
 
-- 整理了后端接口，使用 async 和 await ，再也不用多层嵌套回调函数了。
+[vue-router](https://next.router.vuejs.org/installation.html)
 
-- 新加了针对前后端部署的详细文档以及 Nginx PM2 配置。
+[升级 vantUI](https://vant-contrib.gitee.io/vant/v3/#/zh-CN/migrate-from-v2)
 
-#### 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
+[测试 demo](https://github.com/zhaoyiming0803/vue3-webpack-demo)
 
+- 先用 vue 官方脚手架初始化一个测试 demo，看下最新的包依赖版本是多少，然后当前项目中也安装相应版本的依赖。
+
+- 将 `fe/src/router/routes.ts` 中的路由都暂时注释掉，新增一个测试页面，然后采用渐进式的方式逐步迁移原有业务代码。
+
+- 将 `fe/src/components` 下的组件都转为 Vue3 的语法。
+
+- 逐步迁移 `fe/src/pages`。
+
+- 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
 ### 技术栈
 
-前端：HTML、CSS、Less、ES6(7|8)、Webpack4、Vue CLI 3、Vue.JS2.6.10、Vuex3.1.1、Vue Router3.1.3、Axios0.19.0
+- 前端：HTML、CSS、Less、ES6(7|8)、Webpack4、@vue/cli@4.5.13、vue.js@3.2.16、vuex@4.0.2、vue-router@4.0.11、axios@0.19.0
 
-后端：Node.js、MySQL
+- 后端：node.js、MySQL
 
 ### 项目本地运行方法
 
@@ -41,18 +51,6 @@ vue3 版本的正在重构中：https://github.com/zhaoyiming0803/VueNode/tree/V
  - 浏览器访问：https://web.0351zhuangxiu.com/tour/ (本地host：127.0.0.1 web.0351zhuangxiu.com)
 
  - 数据库 tour_user 表中的用户默认密码均为123456
-
-### 说明
-
-如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
-
-或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
-
-如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
-
-### 个人微信&QQ：1047832475
-![image](https://zhaoyiming0803.github.io/wechat.png)
-
 ### 目标功能
 
 - [x] 登录、注册、密码修改（100%）
@@ -72,3 +70,14 @@ vue3 版本的正在重构中：https://github.com/zhaoyiming0803/VueNode/tree/V
 ### 项目GIF图
 
 ![gif](https://github.com/zhaoyiming0803/VueNode/blob/v1.0/project.gif?raw=true)
+
+### 说明
+
+如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
+
+或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
+
+如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
+
+### 个人微信&QQ：1047832475
+![wechat](https://github.com/zhaoyiming0803/zhaoyiming0803/raw/master/wechat.jpg)
