@@ -1,15 +1,20 @@
 <template>
   <!-- 获取优惠券 -->
   <div class="get-coupon-wraper">
-    <explain :explainName="explainName"></explain>
+    <explain :explainName="state.explainName"></explain>
 
-    <coupon-brief :coupon="coupon" v-if="coupon.coupon_name"></coupon-brief>
+    <coupon-brief :coupon="state.coupon" v-if="state.coupon.coupon_name"></coupon-brief>
 
     <div class="coupon-bottom-wraper" id="coupon-bottom-wraper">
-      <a href="javascript:;" v-if="showType==1" @click="receiveCoupon" class="coupon-btn">立即领取</a>
+      <a
+        href="javascript:;"
+        v-if="state.showType == 1"
+        @click="_receiveCoupon"
+        class="coupon-btn"
+      >立即领取</a>
 
       <!-- 优惠券使用方法 -->
-      <div v-if="showType==2" class="use-coupon">
+      <div v-if="state.showType == 2" class="use-coupon">
         <div class="quan_line">
           <img src="./images/quan_line.png" width="220" height="50" />
         </div>
@@ -18,7 +23,7 @@
           <p>请务必“长按”保存到手机相册</p>
         </div>
 
-        <column-divide :columnName="columnName"></column-divide>
+        <column-divide :columnName="state.columnName"></column-divide>
         <div class="useway">
           <div class="item">
             <img src="./images/quan_get.png" width="37" height="37" />
@@ -42,26 +47,26 @@
       <coupon-rule></coupon-rule>
 
       <!-- 用户文字和星级评价 -->
-      <coupon-comment :comments="comments"></coupon-comment>
+      <coupon-comment :comments="state.comments"></coupon-comment>
     </div>
 
     <!-- 领取状态 -->
     <div
       class="get-coupon-status"
-      :class="{'dis-block': couponStatus !== '', 'dis-none': couponStatus === ''}"
+      :class="{ 'dis-block': state.couponStatus !== '', 'dis-none': state.couponStatus === '' }"
     >
-      <div class="prompt">{{couponStatus}}</div>
-      <a href="javascript:;" class="btn" v-if="couponMark===0">重新领取</a>
-      <a href="javascript:;" class="btn" v-else-if="couponMark===1" @click="toUse">立即使用</a>
+      <div class="prompt">{{ state.couponStatus }}</div>
+      <a href="javascript:;" class="btn" v-if="state.couponMark === 0">重新领取</a>
+      <a href="javascript:;" class="btn" v-else-if="state.couponMark === 1" @click="toUse">立即使用</a>
       <a href="javascript:;" class="btn">
-        <span v-if="couponMark === 0" @click="receiveCoupon">重新领取</span>
-        <span v-else-if="couponMark === 1" @click="toUse">立即使用</span>
-        <span v-else @click="couponStatus = ''">知道了</span>
+        <span v-if="state.couponMark === 0" @click="_receiveCoupon">重新领取</span>
+        <span v-else-if="state.couponMark === 1" @click="toUse">立即使用</span>
+        <span v-else @click="state.couponStatus = ''">知道了</span>
       </a>
     </div>
 
     <!-- 填写评论 -->
-    <div class="add-comment-wraper" v-if="showType === 2">
+    <div class="add-comment-wraper" v-if="state.showType === 2">
       <div style="margin: 2% 3%;">
         <div class="comment-num clearfix">
           <div class="comment-num-star">
@@ -71,7 +76,7 @@
             </span>
           </div>
           <div class="comment-num-txt">
-            <span id="comment-num-txt">{{starGrade}}</span>分
+            <span id="comment-num-txt">{{ state.starGrade }}</span>分
           </div>
         </div>
         <div class="add-comment clearfix">
@@ -82,14 +87,14 @@
             @focus="amendInpt"
             v-focus
             v-blur
-            v-model.lazy.trim="commentContent"
+            v-model.lazy.trim="state.commentContent"
           />
           <input
             type="button"
             value="发布"
             id="publish-comment"
             class="publish-comment"
-            @click="publishComment"
+            @click="_publishComment"
           />
         </div>
       </div>
@@ -100,7 +105,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { defineComponent, reactive, SetupContext } from 'vue'
+import { LocationQuery, useRoute, useRouter } from 'vue-router'
 
 import Explain from "@/components/header-explain/index.vue";
 import FooterNav from "@/components/footer-nav/index.vue";
@@ -114,6 +120,7 @@ import { focus, blur } from '@/mixins/directive';
 
 import { getCouponDetail, receiveCoupon } from "@/api/coupon";
 import { publishComment, getCouponComment } from "@/api/comment";
+import { Dialog } from 'vant';
 
 interface CouponInterface {
   comment_content: string;
@@ -123,11 +130,18 @@ interface CouponInterface {
   coupon_explain: string;
   coupon_ico_path: string;
   coupon_name: string;
+  coupon_starttime: string
+}
+
+interface Comment {
+  comment_user_phone: string;
+  comment_star: number;
+  comment_content: string;
 }
 
 let scrollTop: number = 0;
 
-@Component({
+export default defineComponent({
   components: {
     Explain,
     FooterNav,
@@ -140,137 +154,156 @@ let scrollTop: number = 0;
   directives: {
     focus,
     blur
-  }
-})
-export default class GetCoupon extends Vue {
-  private explainName: string = "领取优惠券";
-  private coupon: CouponInterface = {
-    comment_content: "",
-    comment_star: 0,
-    comment_user_phone: "",
-    coupon_endtime: "",
-    coupon_explain: "",
-    coupon_ico_path: "",
-    coupon_name: ""
-  };
-  private comments: any[] = [];
-  private couponStatus: string = "";
-  private couponMark: 0 | 1 | 2 = 0;
-  private showType: number = 1;
-  private columnName: string = "参与方式";
-  private starGrade: number = 0;
-  private commentContent: string = "";
-  private couponId: number = 0;
+  },
+  setup(props, context: SetupContext) {
+    const coupon: CouponInterface = {
+      comment_content: "",
+      comment_star: 0,
+      comment_user_phone: "",
+      coupon_endtime: "",
+      coupon_explain: "",
+      coupon_ico_path: "",
+      coupon_name: "",
+      coupon_starttime: ''
+    };
+    const comments: Comment[] = []
+    const couponMark: 0 | 1 | 2 = 0
+    const state = reactive({
+      explainName: '领取优惠券',
+      coupon,
+      comments,
+      couponStatus: '',
+      couponMark,
+      showType: 1,
+      columnName: '参与方式',
+      starGrade: 0,
+      commentContent: '',
+      couponId: 0
+    })
 
-  private created() {
-    const query: any = this.$route.query;
+    const route = useRoute()
+    const router = useRouter()
+
+    const query: any = route.query;
     const showType: number = query.type - 0;
-    this.couponId = query.id - 0;
-    this.getCouponDetail(showType);
-    this.getCouponComment();
-  }
+    state.couponId = query.id - 0;
 
-  private getCouponDetail(showType: number) {
-    getCouponDetail(this.couponId)
-      .then(res => {
-        const { code, data, message } = res.data;
-        if (code === 0) {
-          this.coupon = data;
-          this.showType = showType;
-        } else {
-          this.$dialog.alert({ message });
-        }
-      })
-      .catch(error => {
-        this.$dialog.alert({
-          message: error
-        });
-      });
-  }
+    _getCouponDetail(showType);
+    _getCouponComment();
 
-  private getCouponComment() {
-    getCouponComment(this.couponId)
-      .then(res => {
-        const { code, data, message } = res.data;
-        if (code === 0) this.comments = data;
-        else this.$dialog.alert({ message });
-      })
-      .catch(error => {
-        this.$dialog.alert({ message: error });
-      });
-  }
 
-  private receiveCoupon() {
-    try {
-      const uid: number = window.sessionStorage.uid;
-      if (!uid) {
-        return this.$router.push({
-          path: '/account/login'
-        });
-      }
-      const query: any = this.$route.query;
-      const couponId: number = query.id - 0;
-      receiveCoupon(couponId, uid)
+    function _getCouponDetail(showType: number) {
+      getCouponDetail(state.couponId)
         .then(res => {
           const { code, data, message } = res.data;
-          this.couponStatus = message;
-          this.couponMark = data;
+          if (code === 0) {
+            state.coupon = data;
+            state.showType = showType;
+          } else {
+            Dialog.alert({ message });
+          }
         })
         .catch(error => {
-          this.$dialog.alert({
+          Dialog.alert({
             message: error
           });
         });
-    } catch (e) {
-      this.$router.push({ name: "Login" });
     }
-  }
 
-  private toUse() {
-    this.showType = 2;
-    this.couponStatus = "";
-  }
+    function _getCouponComment() {
+      getCouponComment(state.couponId)
+        .then(res => {
+          const { code, data, message } = res.data;
+          if (code === 0) state.comments = data;
+          else Dialog.alert({ message });
+        })
+        .catch(error => {
+          Dialog.alert({ message: error });
+        });
+    }
 
-  private amendInpt() {
-    // 解决ios系统输入法遮挡input框的问题
-    const timer: number = setTimeout(() => {
-      let oBody = document.body;
-      oBody.scrollTop = oBody.scrollHeight;
-      clearTimeout(timer);
-    }, 500);
-  }
-
-  private publishComment() {
-    try {
-      const uid = window.sessionStorage.uid;
-      const starGrade = this.starGrade;
-      const commentContent = this.commentContent.trim();
-      const query: any = this.$route.query;
-      const couponId = query.id - 0;
-
-      if (commentContent.length) {
-        publishComment(uid, starGrade, commentContent, couponId)
+    function _receiveCoupon() {
+      try {
+        const uid: number = window.sessionStorage.uid;
+        if (!uid) {
+          return router.push({
+            path: '/account/login'
+          });
+        }
+        const query: any = route.query;
+        const couponId: number = query.id - 0;
+        receiveCoupon(couponId, uid)
           .then(res => {
             const { code, data, message } = res.data;
-            this.$dialog.alert({ message });
-            this.showType = 1;
-            this.getCouponComment();
+            state.couponStatus = message;
+            state.couponMark = data;
           })
           .catch(error => {
-            this.$dialog.alert({
+            Dialog.alert({
               message: error
             });
           });
+      } catch (e) {
+        router.push({ name: "Login" });
       }
-    } catch (e) {
-      this.$router.push({ name: "Login" });
     }
-  }
 
-  private changeStar(starGrade: number): void {
-    this.starGrade = starGrade;
-  }
-}
+    function toUse() {
+      state.showType = 2;
+      state.couponStatus = "";
+    }
+
+    function amendInpt() {
+      // 解决ios系统输入法遮挡input框的问题
+      const timer: number = setTimeout(() => {
+        let oBody = document.body;
+        oBody.scrollTop = oBody.scrollHeight;
+        clearTimeout(timer);
+      }, 500);
+    }
+
+    function _publishComment() {
+      try {
+        const uid = window.sessionStorage.uid;
+        const starGrade = state.starGrade;
+        const commentContent = state.commentContent.trim();
+        const query: any = route.query;
+        const couponId = query.id - 0;
+
+        if (commentContent.length) {
+          publishComment(uid, starGrade, commentContent, couponId)
+            .then(res => {
+              const { code, data, message } = res.data;
+              Dialog.alert({ message });
+              state.showType = 1;
+              _getCouponComment();
+            })
+            .catch(error => {
+              Dialog.alert({
+                message: JSON.stringify(error)
+              });
+            });
+        }
+      } catch (e) {
+        router.push({ name: "Login" });
+      }
+    }
+
+    function changeStar(starGrade: number): void {
+      state.starGrade = starGrade;
+    }
+
+    return {
+      state,
+      _getCouponDetail,
+      _receiveCoupon,
+      toUse,
+      amendInpt,
+      _publishComment,
+      changeStar
+    }
+  },
+})
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">

@@ -1,6 +1,6 @@
 <template>
   <div class="global-coupon-list-wraper">
-    <!-- <explain :explainName="state.explainName"></explain> -->
+    <explain :explainName="state.explainName"></explain>
 
     <div class="mb10">
       <div class="condition-wraper">
@@ -85,28 +85,27 @@
     >加载更多</a>
 
     <div v-if="state.couponList.length === 0" style="background-color: white">
-      <!-- <van-skeleton title avatar :row="3" />
       <van-skeleton title avatar :row="3" />
       <van-skeleton title avatar :row="3" />
       <van-skeleton title avatar :row="3" />
-      <van-skeleton title avatar :row="3" />-->
+      <van-skeleton title avatar :row="3" />
+      <van-skeleton title avatar :row="3" />
     </div>
 
-    <!-- <footer-nav></footer-nav> -->
+    <footer-nav></footer-nav>
   </div>
 </template>
 
 <script lang="ts">
-import { reactive, computed, ComputedRef, defineComponent } from 'vue'
+import { reactive, computed, ComputedRef, defineComponent, SetupContext } from 'vue'
 import { useStore } from 'vuex'
 import { StateProps } from '@/store'
 
 import { getCouponsList, getClassifyList, getRegionList } from '@/api/coupon'
 
-// import { Skeleton, Dialog } from 'vant'
-import { Dialog } from 'vant'
-// import Explain from '@/components/header-explain/index.vue'
-// import FooterNav from '@/components/footer-nav/index.vue'
+import { Skeleton, Dialog } from 'vant'
+import Explain from '@/components/header-explain/index.vue'
+import FooterNav from '@/components/footer-nav/index.vue'
 
 type State = {
   explainName: string,
@@ -127,7 +126,7 @@ function _getClassifyList(state: State) {
   })
 }
 
-function _getCouponsList(state: State, context: {}, regionId: number, classifyId: number, currentPage: number) {
+function _getCouponsList(state: State, context: SetupContext, regionId: number, classifyId: number, currentPage: number) {
   getCouponsList(regionId, classifyId, currentPage)
     .then(res => {
       const { code, data, message } = res.data
@@ -155,17 +154,19 @@ function _getRegionList(state: State) {
 
 export default defineComponent({
   components: {
-    // Explain,
-    // FooterNav,
-    // [Skeleton.name]: Skeleton
+    Explain,
+    FooterNav,
+    [Skeleton.name]: Skeleton
   },
 
-  setup(props: {}, context: {}) {
+  setup(props: {}, context: SetupContext) {
     const store = useStore<StateProps>()
     const regionId: ComputedRef<number> = computed(() => store.state.app.regionId)
     const regionName: ComputedRef<string> = computed(() => store.state.app.regionName)
     const classifyId: ComputedRef<number> = computed(() => store.state.app.classifyId)
     const classifyName: ComputedRef<string> = computed(() => store.state.app.classifyName)
+
+    console.log('store: ', store)
 
     const state: State = reactive({
       explainName: '全球优惠',
@@ -196,15 +197,15 @@ export default defineComponent({
         : '全球'
       const currentClassifyName = state.classifyList
         ? state.classifyList[classifyId - 1].classify_name
-        : '购物';
+        : '购物'
 
-      state.currentPage = 1;
-      state.couponList = [];
+      state.currentPage = 1
+      state.couponList = []
 
-      store.commit("changeRegionId", regionId);
-      store.commit("changeRegionName", currentregionName);
-      store.commit("changeClassifyId", classifyId);
-      store.commit("changeClassifyName", currentClassifyName);
+      store.commit("app/changeRegionId", regionId)
+      store.commit("app/changeRegionName", currentregionName)
+      store.commit("app/changeClassifyId", classifyId)
+      store.commit("app/changeClassifyName", currentClassifyName)
 
       _getCouponsList(state, context, regionId, classifyId, state.currentPage)
 
@@ -212,6 +213,7 @@ export default defineComponent({
     }
 
     const loadMore = () => {
+      state.currentPage += 1
       _getCouponsList(state, context, regionId.value, classifyId.value, state.currentPage)
     }
 

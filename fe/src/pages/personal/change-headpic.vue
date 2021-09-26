@@ -1,17 +1,17 @@
 <template>
   <!-- 修改头像 -->
   <div class="change-headpic-wraper" id="haha">
-    <explain :explainName="explainName"></explain>
+    <explain :explainName="state.explainName"></explain>
 
     <div class="white-item-wrpaer" style="border-bottom: 1px solid #efeded">
       <label for="man">头像：</label>
       <upload
         ref="upload"
-        :action="uploadFile"
+        :action="state.uploadFile"
         accept="image/*"
-        :data="{id: userId}"
+        :data="{ id: state.userId }"
         :withCredentials="false"
-        :defaultFile="defaultFile"
+        :defaultFile="state.defaultFile"
         :format="['jpg', 'jpeg', 'png', 'bmp']"
       ></upload>
     </div>
@@ -19,7 +19,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { defineComponent, reactive, SetupContext } from "vue";
+import { useRoute } from "vue-router";
 import Explain from "@/components/header-explain/index.vue";
 import Upload from "@/components/upload/index.vue";
 
@@ -32,29 +33,33 @@ interface File {
   url?: string;
 }
 
-@Component({
+
+export default defineComponent({
   components: {
     Explain,
     Upload
+  },
+  setup(props, context: SetupContext) {
+    const defaultFile: File = { url: "", process: 100 };
+    const state = reactive({
+      explainName: '修改头像',
+      defaultFile,
+      userId: 0,
+      fileMaxLength: 1,
+      uploadFile: 'https://xxx'
+    })
+
+    const route = useRoute()
+
+    const query: any = route.query;
+    state.defaultFile.url = decodeURIComponent(query.headpic);
+    state.userId = query.userId;
+
+    return {
+      state
+    }
   }
 })
-export default class ChangeHeadpic extends Vue {
-  private explainName: string = "修改头像";
-  private defaultFile: File = { url: "", process: 100 };
-  private userId: undefined | number = 0;
-  private fileMaxLength: number = 1;
-
-  private created() {
-    const query: any = this.$route.query;
-    this.defaultFile.url = decodeURIComponent(query.headpic);
-    this.userId = query.userId;
-  }
-
-  private changeHeadpic() {
-    const query: any = this.$route.query;
-    const userId = query.userId;
-  }
-}
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">

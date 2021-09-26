@@ -15,6 +15,12 @@
 
 [升级 vantUI](https://vant-contrib.gitee.io/vant/v3/#/zh-CN/migrate-from-v2)
 
+[Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
+
+[vuex](https://next.vuex.vuejs.org/guide/)
+
+[vue-router](https://next.router.vuejs.org/installation.html)
+
 [测试 demo](https://github.com/zhaoyiming0803/vue3-webpack-demo)
 
 - 先用 vue 官方脚手架初始化一个测试 demo，看下最新的包依赖版本是多少，然后当前项目中也安装相应版本的依赖。

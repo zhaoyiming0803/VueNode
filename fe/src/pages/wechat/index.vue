@@ -5,13 +5,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { defineComponent, onMounted, SetupContext } from "vue";
 import wxAuth from '@/libs/wx/auth';
 
-@Component
-export default class Wechat extends Vue {
-  private mounted () {
-    wxAuth(encodeURIComponent('https://web.0351zhuangxiu.com/tour/auth'));
+export default defineComponent({
+  setup (props, context: SetupContext) {
+    onMounted(() => {
+      wxAuth(encodeURIComponent('https://web.0351zhuangxiu.com/tour/auth'));
+    })
   }
-}
+})
 </script>

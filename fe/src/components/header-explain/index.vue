@@ -6,23 +6,38 @@
 				href="javascript:;" 
 				v-show="!isAccount" 
 				@click="back()">
-			</a>{{explainName}}
+			</a>{{ explainName }}
 		</div>
 	</div>
 </template>
 
 <script lang="ts" scoped>
-  import { Component, Vue, Prop } from 'vue-property-decorator';
+	import { defineComponent } from 'vue'
+	import { useRouter, useRoute } from 'vue-router'
 
-  @Component
-  export default class HeaderExplain extends Vue {
-		@Prop({type: String, required: true}) private explainName!: string;
-		@Prop({type: Boolean, default: false}) private isAccount!: boolean;
+  export default defineComponent({
+		props: {
+			explainName: {
+				type: String,
+				required: true
+			},
+			isAccount: {
+				type: Boolean,
+				default: false
+			}
+		},
+		setup (props: {}, context: {}) {
+			const router = useRouter()
+    	const route = useRoute()
 
-		back () {
-			this.$router.back();
+			function back () {
+				router.back()
+			}
+			return {
+				back
+			}
 		}
-	}
+	})
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
