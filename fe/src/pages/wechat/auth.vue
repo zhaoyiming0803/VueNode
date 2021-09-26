@@ -1,26 +1,31 @@
 <template>
-  <div>
-    {{userInfo}}
-  </div>
+  <div>{{ state.userInfo }}</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { defineComponent, reactive, SetupContext } from "vue";
+import { useRoute } from "vue-router";
 import { authorizeUserInfo } from '@/api/wechat';
 
-@Component
-export default class Auth extends Vue {
-  userInfo: string = '';
+export default defineComponent({
+  setup(props, context: SetupContext) {
+    const state = reactive({
+      userInfo: ''
+    })
 
-  private created () {
-    const query = this.$route.query;
+    const route = useRoute()
+
+    const query = route.query;
     const code = query.code as string;
-    const state = query.state as string;
-    
+
     authorizeUserInfo(code)
       .then(res => {
-        this.userInfo = JSON.stringify(res.data);
+        state.userInfo = JSON.stringify(res.data);
       });
+
+    return {
+      state
+    }
   }
-}
+})
 </script>

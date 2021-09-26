@@ -1,6 +1,6 @@
 <template>
   <div>
-    <explain :explainName="explainName"></explain>
+    <explain :explainName="state.explainName"></explain>
 
     <div class="find-pwd-process">
       <img src="./images/flow1.png" width="100%" height="100%" alt="找回密码第一步" />
@@ -14,7 +14,7 @@
             placeholder="请输入手机号"
             maxlength="11"
             class="phone"
-            v-model.lazy.trim="phone"
+            v-model="state.phone"
             v-focus
             v-blur
           />
@@ -26,11 +26,11 @@
             placeholder="请输入验证码"
             maxlength="6"
             class="code"
-            v-model.lazy.trim="code"
+            v-model="state.code"
             v-focus
             v-blur
           />
-          <count-down :phone="phone"></count-down>
+          <count-down :phone="state.phone"></count-down>
         </p>
         <p>
           <input type="submit" value="下一步" class="account-btn" />
@@ -40,17 +40,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+<script lang="ts" scoped>
+import { defineComponent, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
-import Explain from "@/components/header-explain/index.vue";
-import CountDown from "@/components//count-down/index.vue";
+import { Dialog } from 'vant'
+import Explain from '@/components/header-explain/index.vue'
+import CountDown from '@/components//count-down/index.vue'
 
-import { focus, blur } from "@/mixins/directive";
+import { focus, blur } from '@/mixins/directive'
 
-import { validatePhone } from "@/utils/index";
+import { validatePhone } from '@/utils/index'
 
-@Component({
+export default defineComponent({
   components: {
     Explain,
     CountDown
@@ -58,28 +60,37 @@ import { validatePhone } from "@/utils/index";
   directives: {
     focus,
     blur
-  }
-})
-export default class GetPhoneCode extends Vue {
-  private explainName: string = "找回密码第一步";
-  private phone: string = "";
-  private code: string = "";
+  },
+  setup(props: {}, context: {}) {
+    const router = useRouter()
 
-  private next() {
-    if (!validatePhone(this.phone)) {
-      return this.$dialog.alert({
-        message: "手机号格式不正确，请重新输入！"
-      });
+    const state = reactive({
+      explainName: '找回密码第一步',
+      phone: '',
+      code: ''
+    })
+
+    function next() {
+      if (!validatePhone(state.phone)) {
+        return Dialog.alert({
+          message: '手机号格式不正确，请重新输入！'
+        })
+      }
+
+      router.replace({
+        path: '/account/reset-password',
+        query: {
+          phone: state.phone
+        }
+      })
     }
 
-    this.$router.replace({
-      path: "/account/reset-password",
-      query: {
-        phone: this.phone
-      }
-    });
+    return {
+      state,
+      next
+    }
   }
-}
+})
 </script>
 
 <style lang="less" scoped>

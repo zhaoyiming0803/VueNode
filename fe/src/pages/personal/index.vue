@@ -1,18 +1,18 @@
 <template>
   <!-- 个人中心组件 -->
   <div class="personal-wraper">
-    <explain :explainName="explainName"></explain>
+    <explain :explainName="state.explainName"></explain>
 
     <!-- 个人信息 -->
     <div class="personal-msg-wraper">
       <div class="head">
-        <img :src="userInfo.headpic" width="80" height="80" alt="头像" />
+        <img :src="state.userInfo.headpic" width="80" height="80" alt="头像" />
       </div>
       <div class="phone">
         <img src="./images/phone.png" width="30" height="30" class="phone-ico" alt="手机" />
-        <span class="phone-num">{{userInfo.phone}}</span>
+        <span class="phone-num">{{ state.userInfo.phone }}</span>
       </div>
-      <router-link tag="a" :to="{path: '/personal-edit'}" class="setting"></router-link>
+      <router-link tag="a" :to="{ path: '/personal-edit' }" class="setting"></router-link>
     </div>
 
     <!-- 卡包列表 -->
@@ -22,31 +22,34 @@
       <div class="gift-item">
         <div class="brief" @click="showUnion">
           <span class="gift-ico unionpay-ico"></span>
-          <span class="gift-name">银联优惠({{unionNum}})</span>
-          <span class="flex-ico" :class="{'flex-ico-up': isUnionpay, 'flex-ico-down': !isUnionpay}"></span>
+          <span class="gift-name">银联优惠({{ state.unionNum }})</span>
+          <span
+            class="flex-ico"
+            :class="{ 'flex-ico-up': state.isUnionpay, 'flex-ico-down': !state.isUnionpay }"
+          ></span>
         </div>
         <div
           class="coupon-list-wraper"
-          :class="{'gift-detail-on': isUnionpay, 'gift-detail-off': !isUnionpay}"
+          :class="{ 'gift-detail-on': state.isUnionpay, 'gift-detail-off': !state.isUnionpay }"
         >
           <router-link
-            v-for="(v, k) in unionCouponList"
+            v-for="(v, k) in state.unionCouponList"
             :key="k"
-            :to="{path: '/get-coupon', query: {id: v.id, type: 2}}"
-            :class="{'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2}"
+            :to="{ path: '/get-coupon', query: { id: v.id, type: 2 } }"
+            :class="{ 'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2 }"
           >
             <div class="shop-ico">
               <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{v.coupon_name}}</div>
+              <div class="shop-title">{{ v.coupon_name }}</div>
               <div class="shop-price">
-                <span class="condition">{{v.coupon_explain}}</span>
+                <span class="condition">{{ v.coupon_explain }}</span>
               </div>
             </div>
             <div class="shop-active shop-active-canuse" v-if="v.status === 0">
               <p>已抢</p>
-              <p>{{v.coupon_recived_num}}</p>
+              <p>{{ v.coupon_recived_num }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -63,31 +66,34 @@
       <div class="gift-item">
         <div class="brief" @click="showVisa">
           <span class="gift-ico visa-ico"></span>
-          <span class="gift-name">VISA权益({{visaNum}})</span>
-          <span class="flex-ico" :class="{'flex-ico-up': isVisa, 'flex-ico-down': !isVisa}"></span>
+          <span class="gift-name">VISA权益({{ state.visaNum }})</span>
+          <span
+            class="flex-ico"
+            :class="{ 'flex-ico-up': state.isVisa, 'flex-ico-down': !state.isVisa }"
+          ></span>
         </div>
         <div
           class="coupon-list-wraper"
-          :class="{'gift-detail-on': isVisa, 'gift-detail-off': !isVisa}"
+          :class="{ 'gift-detail-on': state.isVisa, 'gift-detail-off': !state.isVisa }"
         >
           <router-link
-            v-for="(v, k) in visaCouponList"
+            v-for="(v, k) in state.visaCouponList"
             :key="k"
-            :to="{path: '/get-coupon', query: {id: v.id, type: 2}}"
-            :class="{'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2}"
+            :to="{ path: '/get-coupon', query: { id: v.id, type: 2 } }"
+            :class="{ 'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2 }"
           >
             <div class="shop-ico">
               <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{v.coupon_name}}</div>
+              <div class="shop-title">{{ v.coupon_name }}</div>
               <div class="shop-price">
-                <span class="condition">{{v.coupon_explain}}</span>
+                <span class="condition">{{ v.coupon_explain }}</span>
               </div>
             </div>
             <div class="shop-active shop-active-canuse" v-if="v.status === 0">
               <p>已抢</p>
-              <p>{{v.coupon_recived_num}}</p>
+              <p>{{ v.coupon_recived_num }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -104,31 +110,34 @@
       <div class="gift-item">
         <div class="brief" @click="showJinnang">
           <span class="gift-ico jinnang-ico"></span>
-          <span class="gift-name">环球锦囊团优惠({{jinnangNum}})</span>
-          <span class="flex-ico" :class="{'flex-ico-up': isJinnang, 'flex-ico-down': !isJinnang}"></span>
+          <span class="gift-name">环球锦囊团优惠({{ state.jinnangNum }})</span>
+          <span
+            class="flex-ico"
+            :class="{ 'flex-ico-up': state.isJinnang, 'flex-ico-down': !state.isJinnang }"
+          ></span>
         </div>
         <div
           class="coupon-list-wraper"
-          :class="{'gift-detail-on': isJinnang, 'gift-detail-off': !isJinnang}"
+          :class="{ 'gift-detail-on': state.isJinnang, 'gift-detail-off': !state.isJinnang }"
         >
           <router-link
-            v-for="(v, k) in jinnangCouponList"
+            v-for="(v, k) in state.jinnangCouponList"
             :key="k"
-            :to="{path: '/get-coupon', query: {id: v.id, type: 2}}"
-            :class="{'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2}"
+            :to="{ path: '/get-coupon', query: { id: v.id, type: 2 } }"
+            :class="{ 'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2 }"
           >
             <div class="shop-ico">
               <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{v.coupon_name}}</div>
+              <div class="shop-title">{{ v.coupon_name }}</div>
               <div class="shop-price">
-                <span class="condition">{{v.coupon_explain}}</span>
+                <span class="condition">{{ v.coupon_explain }}</span>
               </div>
             </div>
             <div class="shop-active shop-active-canuse" v-if="v.status === 0">
               <p>已抢</p>
-              <p>{{v.coupon_recived_num}}</p>
+              <p>{{ v.coupon_recived_num }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -145,31 +154,34 @@
       <div class="gift-item">
         <div class="brief" @click="showGaodaowu">
           <span class="gift-ico gaodaowu-ico"></span>
-          <span class="gift-name">高岛屋权益({{gaodaowuNum}})</span>
-          <span class="flex-ico" :class="{'flex-ico-up': isGaodaowu, 'flex-ico-down': !isGaodaowu}"></span>
+          <span class="gift-name">高岛屋权益({{ state.gaodaowuNum }})</span>
+          <span
+            class="flex-ico"
+            :class="{ 'flex-ico-up': state.isGaodaowu, 'flex-ico-down': !state.isGaodaowu }"
+          ></span>
         </div>
         <div
           class="coupon-list-wraper"
-          :class="{'gift-detail-on': isGaodaowu, 'gift-detail-off': !isGaodaowu}"
+          :class="{ 'gift-detail-on': state.isGaodaowu, 'gift-detail-off': !state.isGaodaowu }"
         >
           <router-link
-            v-for="(v, k) in gaodaowuCouponList"
+            v-for="(v, k) in state.gaodaowuCouponList"
             :key="k"
-            :to="{path: '/get-coupon', query: {id: v.id, type: 2}}"
-            :class="{'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2}"
+            :to="{ path: '/get-coupon', query: { id: v.id, type: 2 } }"
+            :class="{ 'use-discount-bg': v.status === 0, 'used-bg': v.status === 1, 'past-bg': v.status === 2 }"
           >
             <div class="shop-ico">
               <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{v.coupon_name}}</div>
+              <div class="shop-title">{{ v.coupon_name }}</div>
               <div class="shop-price">
-                <span class="condition">{{v.coupon_explain}}</span>
+                <span class="condition">{{ v.coupon_explain }}</span>
               </div>
             </div>
-            <div class="shop-active shop-active-canuse" v-if="v.status==0">
+            <div class="shop-active shop-active-canuse" v-if="v.status == 0">
               <p>已抢</p>
-              <p>{{v.coupon_recived_num}}</p>
+              <p>{{ v.coupon_recived_num }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -183,16 +195,20 @@
       </div>
     </div>
 
-    <footer-nav :navName="navName"></footer-nav>
+    <footer-nav :navName="state.navName"></footer-nav>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { defineComponent, reactive } from "vue";
+
 import Explain from "@/components/header-explain/index.vue";
 import FooterNav from "@/components/footer-nav/index.vue";
+
 import { getUserInfo } from "@/api/personal";
 import { getCouponRecord, getReceivedCouponList } from "@/api/coupon";
+import router from "@/router";
+import { Dialog } from "vant";
 
 interface UserInfo {
   phone: string;
@@ -213,167 +229,191 @@ interface Coupon {
   status: number;
 }
 
-@Component({
+interface State {
+  explainName: string;
+  navName: string;
+  isUnionpay: boolean;
+  isVisa: boolean;
+  isJinnang: boolean;
+  isGaodaowu: boolean;
+  userInfo: UserInfo
+  unionNum: number;
+  visaNum: number;
+  jinnangNum: number;
+  gaodaowuNum: number;
+  unionCouponList: Coupon[];
+  visaCouponList: Coupon[];
+  jinnangCouponList: Coupon[];
+  gaodaowuCouponList: Coupon[]
+}
+
+export default defineComponent({
   components: {
     Explain,
     FooterNav
-  }
-})
-export default class Personal extends Vue {
-  private explainName: string = "个人中心";
-  private navName: string = "personal";
-  private isUnionpay: boolean = false;
-  private isVisa: boolean = false;
-  private isJinnang: boolean = false;
-  private isGaodaowu: boolean = false;
-  private userInfo: UserInfo = { phone: "", headpic: "" };
-  private unionNum: number = 0;
-  private visaNum: number = 0;
-  private jinnangNum: number = 0;
-  private gaodaowuNum: number = 0;
-  private unionCouponList: Coupon[] = [];
-  private visaCouponList: Coupon[] = [];
-  private jinnangCouponList: Coupon[] = [];
-  private gaodaowuCouponList: Coupon[] = [];
+  },
+  setup(props: {}, context: {}) {
+    const state: State = reactive<State>({
+      explainName: '个人中心',
+      navName: 'personal',
+      isUnionpay: false,
+      isVisa: false,
+      isJinnang: false,
+      isGaodaowu: false,
+      userInfo: { phone: "", headpic: "" },
+      unionNum: 0,
+      visaNum: 0,
+      jinnangNum: 0,
+      gaodaowuNum: 0,
+      unionCouponList: [],
+      visaCouponList: [],
+      jinnangCouponList: [],
+      gaodaowuCouponList: []
+    })
 
-  private created() {
     const uid: number = window.sessionStorage.uid;
     if (uid) {
-      this.getUserInfo(uid);
-      this.getCouponRecord(uid);
+      _getUserInfo(uid);
+      _getCouponRecord(uid);
     } else {
-      this.$router.push({ path: "/account/login" });
+      router.push({ path: "/account/login" });
     }
-  }
 
-  private getUserInfo(id: number) {
-    try {
-      getUserInfo(id)
+    function _getUserInfo(id: number) {
+      try {
+        getUserInfo(id)
+          .then(res => {
+            const { code, data, message } = res.data;
+            if (code === 0) {
+              const { user_headpic, user_phone } = data;
+              state.userInfo.headpic = user_headpic;
+              state.userInfo.phone = user_phone;
+            } else {
+              Dialog.alert({ message });
+            }
+          })
+          .catch(error => {
+            Dialog.alert({
+              message: error
+            });
+          });
+      } catch (e) {
+        router.push({ name: "Login" });
+      }
+    }
+
+    function _getCouponRecord(id: number) {
+      getCouponRecord(id)
         .then(res => {
           const { code, data, message } = res.data;
           if (code === 0) {
-            const { user_headpic, user_phone } = data;
-            this.userInfo.headpic = user_headpic;
-            this.userInfo.phone = user_phone;
+            data.forEach((coupon: CouponRecord): void => {
+              switch (coupon.coupon_type) {
+                case "union":
+                  state.unionNum = coupon.num;
+                  break;
+                case "visa":
+                  state.visaNum = coupon.num;
+                  break;
+                case "jinnang":
+                  state.jinnangNum = coupon.num;
+                  break;
+                case "gaodaowu":
+                  state.gaodaowuNum = coupon.num;
+                  break;
+              }
+            });
           } else {
-            this.$dialog.alert({ message });
+            Dialog.alert({ message });
           }
         })
-        .catch(error => {
-          this.$dialog.alert({
-            message: error
-          });
-        });
-    } catch (e) {
-      this.$router.push({ name: "Login" });
+        .catch(error => Dialog.alert({ message: error }));
     }
-  }
 
-  getCouponRecord(id: number) {
-    getCouponRecord(id)
-      .then(res => {
+    function _getReceivedCouponList(type: "union" | "visa" | "jinnang" | "gaodaowu") {
+      const uid: number = window.sessionStorage.uid;
+      return getReceivedCouponList(uid, type);
+    }
+
+    async function showUnion() {
+      state.isUnionpay = !state.isUnionpay;
+      state.isVisa = state.isJinnang = state.isGaodaowu = false;
+      if (!state.isUnionpay) return;
+
+      try {
+        const res = await _getReceivedCouponList("union");
         const { code, data, message } = res.data;
         if (code === 0) {
-          data.forEach((coupon: CouponRecord): void => {
-            switch (coupon.coupon_type) {
-              case "union":
-                this.unionNum = coupon.num;
-                break;
-              case "visa":
-                this.visaNum = coupon.num;
-                break;
-              case "jinnang":
-                this.jinnangNum = coupon.num;
-                break;
-              case "gaodaowu":
-                this.gaodaowuNum = coupon.num;
-                break;
-            }
-          });
+          state.unionCouponList = data;
         } else {
-          this.$dialog.alert({ message });
+          Dialog.alert({ message });
         }
-      })
-      .catch(error => this.$dialog.alert({ message: error }));
-  }
-
-  private getReceivedCouponList(
-    type: "union" | "visa" | "jinnang" | "gaodaowu"
-  ) {
-    const uid: number = window.sessionStorage.uid;
-    return getReceivedCouponList(uid, type);
-  }
-
-  private async showUnion() {
-    this.isUnionpay = !this.isUnionpay;
-    this.isVisa = this.isJinnang = this.isGaodaowu = false;
-    if (!this.isUnionpay) return;
-
-    try {
-      const res = await this.getReceivedCouponList("union");
-      const { code, data, message } = res.data;
-      if (code === 0) {
-        this.unionCouponList = data;
-      } else {
-        this.$dialog.alert({ message });
+      } catch (e) {
+        Dialog.alert({ message: JSON.stringify(e) });
       }
-    } catch (e) {
-      this.$dialog.alert({ message: e });
+    }
+
+    async function showVisa() {
+      state.isVisa = !state.isVisa;
+      state.isUnionpay = state.isJinnang = state.isGaodaowu = false;
+      if (!state.isVisa) return;
+
+      try {
+        const res = await _getReceivedCouponList("visa");
+        const { code, data, message } = res.data;
+        if (code === 0) {
+          state.visaCouponList = data;
+        } else {
+          Dialog.alert({ message });
+        }
+      } catch (e) {
+        Dialog.alert({ message: JSON.stringify(e) });
+      }
+    }
+
+    async function showJinnang() {
+      state.isJinnang = !state.isJinnang;
+      state.isUnionpay = state.isVisa = state.isGaodaowu = false;
+      if (!state.isJinnang) return;
+      try {
+        const res = await _getReceivedCouponList("jinnang");
+        const { code, data, message } = res.data;
+        if (code === 0) {
+          state.jinnangCouponList = data;
+        } else {
+          Dialog.alert({ message });
+        }
+      } catch (e) {
+        Dialog.alert({ message: JSON.stringify(e) });
+      }
+    }
+
+    async function showGaodaowu() {
+      state.isGaodaowu = !state.isGaodaowu;
+      state.isUnionpay = state.isVisa = state.isJinnang = false;
+      if (!state.isGaodaowu) return;
+      try {
+        const res = await _getReceivedCouponList("gaodaowu");
+        const { code, data, message } = res.data;
+        if (code === 0) {
+          state.gaodaowuCouponList = data;
+        } else {
+          Dialog.alert({ message });
+        }
+      } catch (e) {
+        Dialog.alert({ message: JSON.stringify(e) });
+      }
+    }
+
+    return {
+      state,
+      showUnion,
+      showVisa,
+      showJinnang,
+      showGaodaowu
     }
   }
-
-  private async showVisa() {
-    this.isVisa = !this.isVisa;
-    this.isUnionpay = this.isJinnang = this.isGaodaowu = false;
-    if (!this.isVisa) return;
-
-    try {
-      const res = await this.getReceivedCouponList("visa");
-      const { code, data, message } = res.data;
-      if (code === 0) {
-        this.visaCouponList = data;
-      } else {
-        this.$dialog.alert({ message });
-      }
-    } catch (e) {
-      this.$dialog.alert({ message: e });
-    }
-  }
-
-  private async showJinnang() {
-    this.isJinnang = !this.isJinnang;
-    this.isUnionpay = this.isVisa = this.isGaodaowu = false;
-    if (!this.isJinnang) return;
-    try {
-      const res = await this.getReceivedCouponList("jinnang");
-      const { code, data, message } = res.data;
-      if (code === 0) {
-        this.jinnangCouponList = data;
-      } else {
-        this.$dialog.alert({ message });
-      }
-    } catch (e) {
-      this.$dialog.alert({ message: e });
-    }
-  }
-
-  private async showGaodaowu() {
-    this.isGaodaowu = !this.isGaodaowu;
-    this.isUnionpay = this.isVisa = this.isJinnang = false;
-    if (!this.isGaodaowu) return;
-    try {
-      const res = await this.getReceivedCouponList("gaodaowu");
-      const { code, data, message } = res.data;
-      if (code === 0) {
-        this.gaodaowuCouponList = data;
-      } else {
-        this.$dialog.alert({ message });
-      }
-    } catch (e) {
-      this.$dialog.alert({ message: e });
-    }
-  }
-}
+})
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">

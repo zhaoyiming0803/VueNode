@@ -1,69 +1,77 @@
 <template>
   <div class="global-coupon-list-wraper">
-    <explain :explainName="explainName"></explain>
+    <explain :explainName="state.explainName"></explain>
 
     <div class="mb10">
       <div class="condition-wraper">
-        <a href="javascript:;" class="left-wraper choose-condition" @click="showregionList">
+        <a href="javascript:;" class="left-wraper choose-condition" @click="showRegionList">
           <span>
-            <font>{{regionName}}</font>
+            <font>{{ regionName }}</font>
           </span>
         </a>
         <a href="javascript:;" class="right-wraper choose-condition" @click="showClassifyList">
           <span>
-            <font>{{classifyName}}</font>
+            <font>{{ classifyName }}</font>
           </span>
         </a>
       </div>
 
       <!-- 地区列表 -->
-      <div class="list" id="contry-list" :class="{'dis-block': isRegion, 'dis-none': !isRegion}">
+      <div
+        class="list"
+        id="contry-list"
+        :class="{ 'dis-block': state.isRegion, 'dis-none': !state.isRegion }"
+      >
         <a
           href="javascript:;"
-          v-for="(v, k) in regionList"
+          v-for="(v, k) in state.regionList"
           :key="k"
           @click="showCoupons(v.id, classifyId);"
-          :class="{'this-type': regionId==v.id}"
+          :class="{ 'this-type': regionId == v.id }"
         >
-          <span>{{v.region_name}}</span>
+          <span>{{ v.region_name }}</span>
         </a>
       </div>
 
       <!--分类列表 -->
-      <div class="list" id="classify" :class="{'dis-block': isClassify, 'dis-none': !isClassify}">
+      <div
+        class="list"
+        id="classify"
+        :class="{ 'dis-block': state.isClassify, 'dis-none': !state.isClassify }"
+      >
         <a
           href="javascript:;"
-          v-for="(v, k) in classifyList"
+          v-for="(v, k) in state.classifyList"
           :key="k"
           @click="showCoupons(regionId, v.id);"
-          :class="{'this-type': classifyId==v.id}"
+          :class="{ 'this-type': classifyId == v.id }"
         >
-          <span>{{v.classify_name}}</span>
+          <span>{{ v.classify_name }}</span>
         </a>
       </div>
     </div>
 
     <div class="coupon-list-wraper">
       <router-link
-        v-for="(v, k) in couponList"
+        v-for="(v, k) in state.couponList"
         :key="k"
-        :to="{path: '/get-coupon', query: {id: v.id, type: 1}}"
-        :class="{'use-discount-bg': v.coupon_status==0, 'used-bg': v.coupon_status==1, 'past-bg': v.coupon_status==2}"
+        :to="{ path: '/get-coupon', query: { id: v.id, type: 1 } }"
+        :class="{ 'use-discount-bg': v.coupon_status == 0, 'used-bg': v.coupon_status == 1, 'past-bg': v.coupon_status == 2 }"
       >
         <div class="shop-ico">
           <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
         </div>
         <div class="shop-intro">
-          <div class="shop-title">{{v.coupon_name}}</div>
+          <div class="shop-title">{{ v.coupon_name }}</div>
           <div class="shop-price">
-            <span class="condition">{{v.coupon_explain}}</span>
+            <span class="condition">{{ v.coupon_explain }}</span>
           </div>
         </div>
         <div class="shop-active shop-active-canuse">
           <p>已抢</p>
-          <p>{{v.coupon_recived_num}}</p>
+          <p>{{ v.coupon_recived_num }}</p>
           <span
-            :class="{'use-discount': v.coupon_status==0, 'used': v.coupon_status==1, 'past': v.coupon_status==2}"
+            :class="{ 'use-discount': v.coupon_status == 0, 'used': v.coupon_status == 1, 'past': v.coupon_status == 2 }"
           ></span>
         </div>
       </router-link>
@@ -71,12 +79,12 @@
 
     <a
       href="javascript:;"
-      v-if="couponList.length && couponList.length % 10 === 0"
+      v-if="state.couponList.length && state.couponList.length % 10 === 0"
       class="load-more"
       @click="loadMore"
     >加载更多</a>
 
-    <div v-if="couponList.length === 0" style="background-color: white">
+    <div v-if="state.couponList.length === 0" style="background-color: white">
       <van-skeleton title avatar :row="3" />
       <van-skeleton title avatar :row="3" />
       <van-skeleton title avatar :row="3" />
@@ -89,133 +97,143 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { reactive, computed, ComputedRef, defineComponent, SetupContext } from 'vue'
+import { useStore } from 'vuex'
+import { StateProps } from '@/store'
 
-import { Skeleton } from "vant";
-import Explain from "@/components/header-explain/index.vue";
-import FooterNav from "@/components/footer-nav/index.vue";
+import { getCouponsList, getClassifyList, getRegionList } from '@/api/coupon'
 
-import { getCouponsList, getClassifyList, getRegionList } from "@/api/coupon";
+import { Skeleton, Dialog } from 'vant'
+import Explain from '@/components/header-explain/index.vue'
+import FooterNav from '@/components/footer-nav/index.vue'
 
-@Component({
+type State = {
+  explainName: string,
+  isRegion: boolean,
+  regionList: any[],
+  classifyList: any[],
+  isClassify: boolean,
+  currentPage: number,
+  couponList: any[]
+}
+
+function _getClassifyList(state: State) {
+  getClassifyList().then(res => {
+    const { code, data, message } = res.data
+    if (code === 0) {
+      state.classifyList = data
+    }
+  })
+}
+
+function _getCouponsList(state: State, context: SetupContext, regionId: number, classifyId: number, currentPage: number) {
+  getCouponsList(regionId, classifyId, currentPage)
+    .then(res => {
+      const { code, data, message } = res.data
+      if (code === 0) {
+        state.couponList.push.apply(state.couponList, data)
+      } else {
+        Dialog.alert({ message })
+      }
+    })
+    .catch(error => {
+      Dialog.alert({
+        message: '优惠券列表获取失败，请稍后再试'
+      })
+    })
+}
+
+function _getRegionList(state: State) {
+  getRegionList().then(res => {
+    const { code, data, message } = res.data
+    if (code === 0) {
+      state.regionList = data
+    }
+  })
+}
+
+export default defineComponent({
   components: {
     Explain,
     FooterNav,
     [Skeleton.name]: Skeleton
+  },
+
+  setup(props: {}, context: SetupContext) {
+    const store = useStore<StateProps>()
+    const regionId: ComputedRef<number> = computed(() => store.state.app.regionId)
+    const regionName: ComputedRef<string> = computed(() => store.state.app.regionName)
+    const classifyId: ComputedRef<number> = computed(() => store.state.app.classifyId)
+    const classifyName: ComputedRef<string> = computed(() => store.state.app.classifyName)
+
+    console.log('store: ', store)
+
+    const state: State = reactive({
+      explainName: '全球优惠',
+      isRegion: false,
+      regionList: [],
+      classifyList: [],
+      isClassify: false,
+      currentPage: 1,
+      couponList: []
+    })
+
+    const showRegionList = () => {
+      state.isRegion = true
+      state.isClassify = false
+    }
+
+    const showClassifyList = () => {
+      state.isRegion = false
+      if (!state.classifyList.length) {
+        _getClassifyList(state)
+      }
+      state.isClassify = true
+    }
+
+    const showCoupons = (regionId: number, classifyId: number) => {
+      const currentregionName = state.regionList
+        ? state.regionList[regionId - 1].region_name
+        : '全球'
+      const currentClassifyName = state.classifyList
+        ? state.classifyList[classifyId - 1].classify_name
+        : '购物'
+
+      state.currentPage = 1
+      state.couponList = []
+
+      store.commit("app/changeRegionId", regionId)
+      store.commit("app/changeRegionName", currentregionName)
+      store.commit("app/changeClassifyId", classifyId)
+      store.commit("app/changeClassifyName", currentClassifyName)
+
+      _getCouponsList(state, context, regionId, classifyId, state.currentPage)
+
+      state.isRegion = state.isClassify = false
+    }
+
+    const loadMore = () => {
+      state.currentPage += 1
+      _getCouponsList(state, context, regionId.value, classifyId.value, state.currentPage)
+    }
+
+    _getClassifyList(state)
+    _getCouponsList(state, context, regionId.value, classifyId.value, state.currentPage)
+    _getRegionList(state)
+
+    return {
+      state,
+      regionId,
+      regionName,
+      classifyId,
+      classifyName,
+      showRegionList,
+      showCoupons,
+      loadMore,
+      showClassifyList
+    }
   }
 })
-export default class Home extends Vue {
-  private explainName: string = "全球优惠";
-  private isRegion: boolean = false;
-  private regionList: any[] = [];
-  private classifyList: any[] = [];
-  private isClassify: boolean = false;
-  private currentPage: number = 1;
-  private couponList: any[] = [];
-
-  private get regionId(): number {
-    return this.$store.state.app.regionId;
-  }
-
-  private get regionName(): string {
-    return this.$store.state.app.regionName;
-  }
-
-  private get classifyId(): number {
-    return this.$store.state.app.classifyId;
-  }
-
-  private get classifyName(): string {
-    return this.$store.state.app.classifyName;
-  }
-
-  private created() {
-    this.getClassifyList();
-    this.getCouponsList(this.regionId, this.classifyId, this.currentPage);
-  }
-
-  private getCouponsList(regionId: number, classifyId: number, page: number) {
-    getCouponsList(regionId, classifyId, page)
-      .then(res => {
-        const { code, data, message } = res.data;
-        if (code === 0) {
-          this.couponList.push.apply(this.couponList, data);
-        } else {
-          this.$dialog.alert({ message });
-        }
-      })
-      .catch(error => {
-        this.$dialog.alert({
-          message: "优惠券列表获取失败，请稍后再试"
-        });
-      })
-      .finally(() => {
-        
-      });
-    this.getRegionList();
-  }
-
-  private getRegionList() {
-    getRegionList().then(res => {
-      const { code, data, message } = res.data;
-      if (code === 0) {
-        this.regionList = data;
-      }
-    });
-  }
-
-  private showregionList() {
-    this.isRegion = true;
-    this.isClassify = false;
-  }
-
-  private showClassifyList() {
-    this.isRegion = false;
-    if (!this.classifyList.length) {
-      this.getClassifyList();
-    }
-    this.isClassify = true;
-  }
-
-  private getClassifyList() {
-    getClassifyList().then(res => {
-      const { code, data, message } = res.data;
-      if (code === 0) {
-        this.classifyList = data;
-      }
-    });
-  }
-
-  private showCoupons(regionId: number, classifyId: number) {
-    console.log(this.classifyList);
-    const currentregionName = this.regionList
-      ? this.regionList[regionId - 1].region_name
-      : "全球";
-    const currentClassifyName = this.classifyList
-      ? this.classifyList[classifyId - 1].classify_name
-      : "购物";
-
-    this.currentPage = 1;
-    this.couponList = [];
-
-    this.$store.commit("changeRegionId", regionId);
-    this.$store.commit("changeRegionName", currentregionName);
-    this.$store.commit("changeClassifyId", classifyId);
-    this.$store.commit("changeClassifyName", currentClassifyName);
-
-    this.getCouponsList(this.regionId, this.classifyId, this.currentPage);
-
-    this.isRegion = this.isClassify = false;
-  }
-
-  private loadMore() {
-    this.getCouponsList(
-      this.regionId,
-      this.classifyId,
-      (this.currentPage += 1)
-    );
-  }
-}
 </script>
 
 <style lang="less" scoped>

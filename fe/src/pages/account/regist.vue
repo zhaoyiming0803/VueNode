@@ -1,6 +1,6 @@
 <template>
   <div class="account-container">
-    <form v-on:submit.prevent="regist" class="account-container-form">
+    <form v-on:submit="submitRegist" class="account-container-form">
       <p>
         <span class="phone-ico"></span>
         <input
@@ -8,30 +8,32 @@
           placeholder="请输入手机号"
           maxlength="11"
           class="phone"
-          v-model.lazy.trim="phone"
+          v-model="state.phone"
           v-focus
           v-blur
         />
       </p>
       <p>
         <span class="pwd-ico"></span>
-        <input 
-          type="password" 
-          placeholder="请输入至少6位数的密码" 
-          class="pwd" 
-          v-model.lazy.trim="pwd"
+        <input
+          type="password"
+          placeholder="请输入至少6位数的密码"
+          class="pwd"
+          v-model="state.pwd"
           v-focus
-          v-blur />
+          v-blur
+        />
       </p>
       <p>
         <span class="pwd-ico"></span>
-        <input 
-          type="password" 
-          placeholder="确认密码" 
-          class="pwd" 
-          v-model.lazy.trim="confirmPwd"
+        <input
+          type="password"
+          placeholder="确认密码"
+          class="pwd"
+          v-model="state.confirmPwd"
           v-focus
-          v-blur />
+          v-blur
+        />
       </p>
       <p>
         <input type="submit" value="注	册" class="account-btn" />
@@ -41,62 +43,71 @@
 </template>
 
 <script lang="ts" scoped>
-import { Component, Vue } from "vue-property-decorator";
+import { defineComponent, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { focus, blur } from '@/mixins/directive'
 
-import { focus, blur } from "@/mixins/directive";
+import { regist } from "@/api/auth"
+import { validatePhone, validatePassword } from "@/utils/index"
+import { Dialog } from 'vant'
 
-import { regist } from "@/api/auth";
-import { validatePhone, validatePassword } from "@/utils/index";
-
-@Component({
+export default defineComponent({
   directives: {
     focus,
     blur
+  },
+  setup(props: {}, context: {}) {
+    const router = useRouter()
+
+    const state = reactive({
+      phone: '',
+      pwd: '',
+      confirmPwd: ''
+    })
+
+    function submitRegist() {
+      if (!validatePhone(state.phone)) {
+        return Dialog.alert({
+          message: "手机号码格式不正确，请重新输入！"
+        });
+      }
+
+      if (!validatePassword(state.pwd)) {
+        return Dialog.alert({
+          message: "密码需要至少6位数，请重新输入！"
+        });
+      }
+
+      if (state.pwd !== state.confirmPwd) {
+        return Dialog.alert({
+          message: "两次输入的密码不一致，请重新输入！"
+        });
+      }
+
+      regist(state.phone, state.pwd)
+        .then(res => {
+          const { code, message } = res.data;
+          if (code === 0) {
+            router.replace({
+              path: '/account/login'
+            });
+            Dialog.alert({ message: "注册成功" });
+          } else {
+            Dialog.alert({ message });
+          }
+        })
+        .catch(error => {
+          Dialog.alert({
+            message: error
+          });
+        })
+    }
+    return {
+      state,
+      submitRegist
+    }
   }
 })
-export default class Regist extends Vue {
-  private phone: string = "";
-  private pwd: string = "";
-  private confirmPwd: string = "";
-
-  private regist() {
-    if (!validatePhone(this.phone)) {
-      return this.$dialog.alert({
-        message: "手机号码格式不正确，请重新输入！"
-      });
-    }
-
-    if (!validatePassword(this.pwd)) {
-      return this.$dialog.alert({
-        message: "密码需要至少6位数，请重新输入！"
-      });
-    }
-
-    if (this.pwd !== this.confirmPwd) {
-      return this.$dialog.alert({
-        message: "两次输入的密码不一致，请重新输入！"
-      });
-    }
-
-    regist(this.phone, this.pwd)
-      .then(res => {
-        const { code, message } = res.data;
-        if (code === 0) {
-          this.$router.replace({
-            path: '/account/login'
-          });
-          this.$dialog.alert({ message: "注册成功" });
-        } else {
-          this.$dialog.alert({ message });
-        } 
-      })
-      .catch(error => {
-        this.$dialog.alert({
-          message: error
-        });
-      });
-  }
-}
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">

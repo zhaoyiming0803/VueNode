@@ -1,24 +1,12 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex'
+import app, { StateProps as AppState } from './modules/app'
 
-import app from './app';
+export type StateProps = {
+  app: AppState
+}
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore<StateProps>({
   modules: {
     app
-  },
-
-  state: {
-    
-  },
-
-  mutations: {
-    
-  },
-
-  actions: {
-    
   }
 })

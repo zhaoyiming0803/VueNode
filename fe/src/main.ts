@@ -1,22 +1,25 @@
-import Vue from 'vue';
-import router from './router/index';
-import store from './store/index';
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+// import { Toast, Dialog, Loading } from 'vant'
 
-import App from './App.vue';
-import { Toast, Dialog, Loading  } from 'vant';
+const app = createApp(App)
 
-Vue.use(Toast);
-Vue.use(Dialog);
-Vue.use(Loading);
+app.use(router)
+app.use(store)
 
-Vue.prototype.uploadFile = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8091/tour/user/changeUserHeadpic'
-  : 'https://api.0351zhuangxiu.com/tour/user/changeUserHeadpic'
+// app.use(Toast)
+// app.use(Dialog)
+// app.use(Loading)
 
-Vue.config.productionTip = false;
+app.mount('#app')
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App)
-}).$mount('#app');
+// Vue.prototype.uploadFile = process.env.NODE_ENV === 'development'
+//   ? 'http://localhost:8091/tour/user/changeUserHeadpic'
+//   : 'https://api.0351zhuangxiu.com/tour/user/changeUserHeadpic'
+
+
+
+
+

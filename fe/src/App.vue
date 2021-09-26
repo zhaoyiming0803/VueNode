@@ -4,16 +4,8 @@
   </div>
 </template>
 
-<script lang="ts" scoped>
-  import { Component, Vue } from 'vue-property-decorator';
-  import wechat from '@/libs/wx'
-
-  @Component({})
-  export default class Home extends Vue {
-    mounted () {
-      wechat();
-    }
-  }
+<script lang="ts" setup>
+  
 </script>
 
 <style lang="less">

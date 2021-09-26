@@ -1,4 +1,6 @@
-export default [
+import { RouteRecordRaw } from 'vue-router'
+
+const routes: RouteRecordRaw[] = [
 	{
 		path: '/',
 		redirect: '/home',
@@ -75,4 +77,6 @@ export default [
 		name: 'Auth',
 		component: () => import('@/pages/wechat/auth.vue')
 	}
-];
+]
+
+export default routes

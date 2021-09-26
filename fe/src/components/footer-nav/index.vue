@@ -28,12 +28,14 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue, Prop } from 'vue-property-decorator';
-
-	@Component
-	export default class FooterBar extends Vue {
-		@Prop({type: String}) private navName!: string;
-	}
+	import { defineComponent } from 'vue'
+	export default defineComponent({
+		props: {
+			navName: {
+				type: String
+			}
+		}
+	})
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
