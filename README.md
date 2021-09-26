@@ -2,26 +2,26 @@
 
 当前项目使用 Vue3 开发，基本能跑起来，更多 Vue3 的新特性会陆续尝试使用。旧版本可参考：
 
-[VueNode v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
+- [VueNode v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
 
-[VueNode v2.x](https://github.com/zhaoyiming0803/VueNode/tree/v2.2.2)
+- [VueNode v2.x](https://github.com/zhaoyiming0803/VueNode/tree/v2.2.2)
 ### Vue 从 v2 到 v3 升级指南：
 
-[Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
+- [Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
 
-[vuex](https://next.vuex.vuejs.org/guide/)
+- [vuex](https://next.vuex.vuejs.org/guide/)
 
-[vue-router](https://next.router.vuejs.org/installation.html)
+- [vue-router](https://next.router.vuejs.org/installation.html)
 
-[升级 vantUI](https://vant-contrib.gitee.io/vant/v3/#/zh-CN/migrate-from-v2)
+- [升级 vantUI](https://vant-contrib.gitee.io/vant/v3/#/zh-CN/migrate-from-v2)
 
-[Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
+- [Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
 
-[vuex](https://next.vuex.vuejs.org/guide/)
+- [vuex](https://next.vuex.vuejs.org/guide/)
 
-[vue-router](https://next.router.vuejs.org/installation.html)
+- [vue-router](https://next.router.vuejs.org/installation.html)
 
-[测试 demo](https://github.com/zhaoyiming0803/vue3-webpack-demo)
+- [测试 demo](https://github.com/zhaoyiming0803/vue3-webpack-demo)
 
 - 先用 vue 官方脚手架初始化一个测试 demo，看下最新的包依赖版本是多少，然后当前项目中也安装相应版本的依赖。
 
@@ -80,11 +80,11 @@
 
 ### 说明
 
-如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
+- 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！ ^_^
 
-或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
+- 或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
 
-如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
+- 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
 ### 个人微信&QQ：1047832475
 ![wechat](https://github.com/zhaoyiming0803/zhaoyiming0803/raw/master/wechat.jpg)
