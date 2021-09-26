@@ -1,5 +1,7 @@
 ### VueNode
 
+vue3 版本的正在重构中：https://github.com/zhaoyiming0803/VueNode/tree/VueNode-next
+
 [1.0版本](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)的 VueNode 是 2017 年做的，单纯是为了做本地测试，所以代码看上去并不是非常舒服。所以趁着 2019 年中秋节放假，把这个项目重构了一遍。主要修改如下：
 
 - 前端使用 TypeScript，个人感觉确实好用，因为其类型校验，在重构过程中还解决了 1.0 版本的几个潜在 Bug。
