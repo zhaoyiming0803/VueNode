@@ -32,6 +32,8 @@
 - 逐步迁移 `fe/src/pages`。
 
 - 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
+
+- 待添加：eslint、git commit hook
 ### 技术栈
 
 - 前端：HTML、CSS、Less、ES6(7|8)、Webpack4、@vue/cli@4.5.13、vue.js@3.2.16、vuex@4.0.2、vue-router@4.0.11、axios@0.19.0
