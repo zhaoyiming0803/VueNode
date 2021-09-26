@@ -3,7 +3,7 @@
  * @author zhaoyiming
  * @since  2019/09/14
  */
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const tsImportPluginFactory = require('ts-import-plugin')
 
 const path = require('path')

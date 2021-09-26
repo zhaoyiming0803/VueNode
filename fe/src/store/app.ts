@@ -14,7 +14,7 @@ const state: StateType = {
 	regionName: '全球',
 	classifyId: 1,
   classifyName: '购物'
-};
+}
 
 export default {
   state: state,
@@ -25,19 +25,19 @@ export default {
 
   mutations: {
     changeRegionId (state: StateType, countryId: number) {
-      state.regionId = countryId;
+      state.regionId = countryId
     },
 
     changeRegionName (state: StateType, countryName: string) {
-      state.regionName = countryName;
+      state.regionName = countryName
     },
 
     changeClassifyId (state: StateType, classifyId: number) {
-      state.classifyId = classifyId;
+      state.classifyId = classifyId
     },
 
     changeClassifyName (state: StateType, classifyName: string) {
-      state.classifyName = classifyName;
+      state.classifyName = classifyName
     }
   },
 
