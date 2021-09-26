@@ -14,5 +14,6 @@ module.exports = {
 		? '/tour/'
 		: '/',
 	configureWebpack: config => configure[process.env.NODE_ENV](config),
-	chainWebpack: webpackBaseConfig
+	chainWebpack: webpackBaseConfig,
+	// lintOnSave: false // @vue/cli-plugin-eslint
 };
