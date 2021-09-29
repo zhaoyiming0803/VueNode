@@ -15,8 +15,6 @@
 
 - [升级 vantUI](https://vant-contrib.gitee.io/vant/v3/#/zh-CN/migrate-from-v2)
 
-- [Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
-
 - [vuex](https://next.vuex.vuejs.org/guide/)
 
 - [vue-router](https://next.router.vuejs.org/installation.html)
