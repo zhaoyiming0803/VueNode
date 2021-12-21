@@ -22,4 +22,4 @@ jobs:
         echo "ACCESS_KEY_ID = ${ACCESS_KEY_ID}, ACCESS_KEY_SECRET = ${ACCESS_KEY_SECRET}"
       env:
         ACCESS_KEY_ID: 123456789
-        ACCESS_KEY_SECRET: ${{ github.ACCESS_KEY_SECRET }}
+        ACCESS_KEY_SECRET: ${{ secrets.ACCESS_KEY_SECRET }}
