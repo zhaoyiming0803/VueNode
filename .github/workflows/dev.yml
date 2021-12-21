@@ -19,7 +19,7 @@ jobs:
         node-version: 12
         registry-url: https://registry.npmjs.org/
     - run: |
-        echo 'ACCESS_KEY_ID = $ACCESS_KEY_ID, ACCESS_KEY_SECRET = $ACCESS_KEY_SECRET'
+        echo "ACCESS_KEY_ID = \${ACCESS_KEY_ID}, ACCESS_KEY_SECRET = \${ACCESS_KEY_SECRET}"
       env:
         ACCESS_KEY_ID: ${{ secrets.oss.ACCESS_KEY_ID }}
         ACCESS_KEY_SECRET: ${{ secrets.oss.ACCESS_KEY_SECRET }}
