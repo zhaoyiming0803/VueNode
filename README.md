@@ -36,7 +36,7 @@
 
 - 前端：HTML、CSS、Less、ES6(7|8)、Webpack4、@vue/cli@4.5.13、vue.js@3.2.16、vuex@4.0.2、vue-router@4.0.11、axios@0.19.0
 
-- 后端：node.js、MySQL
+- 后端：Node.js、MySQL
 ### 项目本地运行方法
 
  - git clone https://github.com/zhaoyiming0803/VueNode.git
