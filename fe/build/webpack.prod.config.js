@@ -1,32 +1,21 @@
-const UglifyjsPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin")
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = config => {
-  config.devtool = false;
+  config.devtool = false
 
   config.externals = {
     'vue': 'Vue',
     'vue-router': 'VueRouter',
     'axios': 'axios',
     'vuex': 'Vuex'
-  };
+  }
   
-  config.optimization.minimizer.push(
-    new UglifyjsPlugin({
-      cache: true,
-      parallel: true,
-      sourceMap: false,
-      uglifyOptions: {
-        compress: {
-          drop_console: true
-        }
-      }
-    })
-  );
+  config.optimization.minimizer.push(new TerserPlugin())
 
   config.plugins.push(new CompressionPlugin({
     test: /\.(js|css|html|svg)$/,
     threshold: 10,
     deleteOriginalAssets: false
-  }));
+  }))
 }
