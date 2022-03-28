@@ -4,7 +4,12 @@
     <explain :explainName="state.explainName"></explain>
 
     <div class="find-pwd-process">
-      <img src="./images/flow2.png" width="100%" height="100%" alt="找回密码第二步" />
+      <img
+        src="./images/flow2.png"
+        width="100%"
+        height="100%"
+        alt="找回密码第二步"
+      />
     </div>
     <div class="account-container">
       <form class="account-container-form" v-on:submit="complete">
@@ -41,13 +46,13 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import Explain from "@/components/header-explain/index.vue";
+import Explain from '@/components/header-explain/index.vue'
 
-import { focus, blur } from "@/mixins/directive";
+import { focus, blur } from '@/mixins/directive'
 
-import { validatePhone, validatePassword } from "@/utils/index";
-import { resetPassword } from "@/api/auth";
-import { Dialog } from 'vant';
+import { validatePhone, validatePassword } from '@/utils/index'
+import { resetPassword } from '@/api/auth'
+import { Dialog } from 'vant'
 
 export default defineComponent({
   components: {
@@ -75,35 +80,35 @@ export default defineComponent({
     function complete() {
       if (!validatePassword(state.pwd)) {
         return Dialog.alert({
-          message: "密码至少6位数"
-        });
+          message: '密码至少6位数'
+        })
       }
 
       if (state.pwd !== state.confirmPwd) {
         return Dialog.alert({
-          message: "两次输入的密码不一致，请重新输入！"
-        });
+          message: '两次输入的密码不一致，请重新输入！'
+        })
       }
 
       resetPassword(state.phone, state.pwd)
         .then(res => {
-          const { code, data, message } = res.data;
+          const { code, data, message } = res.data
           if (code === 0) {
             Dialog.alert({
-              message: "密码修改成功"
-            });
-            router.replace({ name: "Login" });
+              message: '密码修改成功'
+            })
+            router.replace({ name: 'Login' })
           } else {
             Dialog.alert({
               message
-            });
+            })
           }
         })
         .catch(error => {
           return Dialog.alert({
             message: error
-          });
-        });
+          })
+        })
     }
 
     return {
@@ -115,7 +120,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
-@import "./tour-app-account.less";
+@import './tour-app-account.less';
 
 .find-pwd-process {
   width: 100%;

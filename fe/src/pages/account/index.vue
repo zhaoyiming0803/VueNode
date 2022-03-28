@@ -5,7 +5,7 @@
     <div class="account-check">
       <router-link
         tag="div"
-        :to="{name: 'Login'}"
+        :to="{ name: 'Login' }"
         replace
         active-class="this-account-model"
         class="account-check-btn"
@@ -14,7 +14,7 @@
       </router-link>
       <router-link
         tag="div"
-        :to="{name: 'Regist'}"
+        :to="{ name: 'Regist' }"
         replace
         active-class="this-account-model"
         class="account-check-btn"
@@ -30,19 +30,19 @@
 <script lang="ts" scoped>
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import Explain from "@/components/header-explain/index.vue"
+import Explain from '@/components/header-explain/index.vue'
 
 export default defineComponent({
   components: {
     Explain
   },
-  setup () {
+  setup() {
     const router = useRouter()
 
     if (window.sessionStorage.uid) {
       router.replace({
         path: '/home'
-      });
+      })
     }
 
     return {

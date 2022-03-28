@@ -47,8 +47,8 @@ import { defineComponent, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { focus, blur } from '@/mixins/directive'
 
-import { regist } from "@/api/auth"
-import { validatePhone, validatePassword } from "@/utils/index"
+import { regist } from '@/api/auth'
+import { validatePhone, validatePassword } from '@/utils/index'
 import { Dialog } from 'vant'
 
 export default defineComponent({
@@ -68,38 +68,38 @@ export default defineComponent({
     function submitRegist() {
       if (!validatePhone(state.phone)) {
         return Dialog.alert({
-          message: "手机号码格式不正确，请重新输入！"
-        });
+          message: '手机号码格式不正确，请重新输入！'
+        })
       }
 
       if (!validatePassword(state.pwd)) {
         return Dialog.alert({
-          message: "密码需要至少6位数，请重新输入！"
-        });
+          message: '密码需要至少6位数，请重新输入！'
+        })
       }
 
       if (state.pwd !== state.confirmPwd) {
         return Dialog.alert({
-          message: "两次输入的密码不一致，请重新输入！"
-        });
+          message: '两次输入的密码不一致，请重新输入！'
+        })
       }
 
       regist(state.phone, state.pwd)
         .then(res => {
-          const { code, message } = res.data;
+          const { code, message } = res.data
           if (code === 0) {
             router.replace({
               path: '/account/login'
-            });
-            Dialog.alert({ message: "注册成功" });
+            })
+            Dialog.alert({ message: '注册成功' })
           } else {
-            Dialog.alert({ message });
+            Dialog.alert({ message })
           }
         })
         .catch(error => {
           Dialog.alert({
             message: error
-          });
+          })
         })
     }
     return {
@@ -111,5 +111,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
-@import "./tour-app-account.less";
+@import './tour-app-account.less';
 </style>

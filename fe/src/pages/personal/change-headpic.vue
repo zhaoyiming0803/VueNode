@@ -19,20 +19,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext } from "vue";
-import { useRoute } from "vue-router";
-import Explain from "@/components/header-explain/index.vue";
-import Upload from "@/components/upload/index.vue";
+import { defineComponent, reactive, SetupContext } from 'vue'
+import { useRoute } from 'vue-router'
+import Explain from '@/components/header-explain/index.vue'
+import Upload from '@/components/upload/index.vue'
 
 // 必须要有对应的声明文件，否则编译不通过
 // import test from '@/libs/test';
 // console.log(test);
 
 interface File {
-  process?: number;
-  url?: string;
+  process?: number
+  url?: string
 }
-
 
 export default defineComponent({
   components: {
@@ -40,7 +39,7 @@ export default defineComponent({
     Upload
   },
   setup(props, context: SetupContext) {
-    const defaultFile: File = { url: "", process: 100 };
+    const defaultFile: File = { url: '', process: 100 }
     const state = reactive({
       explainName: '修改头像',
       defaultFile,
@@ -51,9 +50,9 @@ export default defineComponent({
 
     const route = useRoute()
 
-    const query: any = route.query;
-    state.defaultFile.url = decodeURIComponent(query.headpic);
-    state.userId = query.userId;
+    const query: any = route.query
+    state.defaultFile.url = decodeURIComponent(query.headpic)
+    state.userId = query.userId
 
     return {
       state

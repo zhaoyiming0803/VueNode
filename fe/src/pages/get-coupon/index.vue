@@ -3,7 +3,10 @@
   <div class="get-coupon-wraper">
     <explain :explainName="state.explainName"></explain>
 
-    <coupon-brief :coupon="state.coupon" v-if="state.coupon.coupon_name"></coupon-brief>
+    <coupon-brief
+      :coupon="state.coupon"
+      v-if="state.coupon.coupon_name"
+    ></coupon-brief>
 
     <div class="coupon-bottom-wraper" id="coupon-bottom-wraper">
       <a
@@ -11,7 +14,8 @@
         v-if="state.showType == 1"
         @click="_receiveCoupon"
         class="coupon-btn"
-      >立即领取</a>
+        >立即领取</a
+      >
 
       <!-- 优惠券使用方法 -->
       <div v-if="state.showType == 2" class="use-coupon">
@@ -53,13 +57,26 @@
     <!-- 领取状态 -->
     <div
       class="get-coupon-status"
-      :class="{ 'dis-block': state.couponStatus !== '', 'dis-none': state.couponStatus === '' }"
+      :class="{
+        'dis-block': state.couponStatus !== '',
+        'dis-none': state.couponStatus === ''
+      }"
     >
       <div class="prompt">{{ state.couponStatus }}</div>
-      <a href="javascript:;" class="btn" v-if="state.couponMark === 0">重新领取</a>
-      <a href="javascript:;" class="btn" v-else-if="state.couponMark === 1" @click="toUse">立即使用</a>
+      <a href="javascript:;" class="btn" v-if="state.couponMark === 0"
+        >重新领取</a
+      >
+      <a
+        href="javascript:;"
+        class="btn"
+        v-else-if="state.couponMark === 1"
+        @click="toUse"
+        >立即使用</a
+      >
       <a href="javascript:;" class="btn">
-        <span v-if="state.couponMark === 0" @click="_receiveCoupon">重新领取</span>
+        <span v-if="state.couponMark === 0" @click="_receiveCoupon"
+          >重新领取</span
+        >
         <span v-else-if="state.couponMark === 1" @click="toUse">立即使用</span>
         <span v-else @click="state.couponStatus = ''">知道了</span>
       </a>
@@ -67,7 +84,7 @@
 
     <!-- 填写评论 -->
     <div class="add-comment-wraper" v-if="state.showType === 2">
-      <div style="margin: 2% 3%;">
+      <div style="margin: 2% 3%">
         <div class="comment-num clearfix">
           <div class="comment-num-star">
             <span class="comment-num-star-txt">您的评价</span>
@@ -76,7 +93,8 @@
             </span>
           </div>
           <div class="comment-num-txt">
-            <span id="comment-num-txt">{{ state.starGrade }}</span>分
+            <span id="comment-num-txt">{{ state.starGrade }}</span
+            >分
           </div>
         </div>
         <div class="add-comment clearfix">
@@ -108,38 +126,38 @@
 import { defineComponent, reactive, SetupContext } from 'vue'
 import { LocationQuery, useRoute, useRouter } from 'vue-router'
 
-import Explain from "@/components/header-explain/index.vue";
-import FooterNav from "@/components/footer-nav/index.vue";
-import CouponBrief from "@/components/coupon-brief/index.vue";
-import CouponRule from "@/components/coupon-rule/index.vue";
-import CouponComment from "@/components/coupon-comment/index.vue";
-import Star from "@/components/star/index.vue";
-import ColumnDivide from "@/components/column-divide/index.vue";
+import Explain from '@/components/header-explain/index.vue'
+import FooterNav from '@/components/footer-nav/index.vue'
+import CouponBrief from '@/components/coupon-brief/index.vue'
+import CouponRule from '@/components/coupon-rule/index.vue'
+import CouponComment from '@/components/coupon-comment/index.vue'
+import Star from '@/components/star/index.vue'
+import ColumnDivide from '@/components/column-divide/index.vue'
 
-import { focus, blur } from '@/mixins/directive';
+import { focus, blur } from '@/mixins/directive'
 
-import { getCouponDetail, receiveCoupon } from "@/api/coupon";
-import { publishComment, getCouponComment } from "@/api/comment";
-import { Dialog } from 'vant';
+import { getCouponDetail, receiveCoupon } from '@/api/coupon'
+import { publishComment, getCouponComment } from '@/api/comment'
+import { Dialog } from 'vant'
 
 interface CouponInterface {
-  comment_content: string;
-  comment_star: number;
-  comment_user_phone: string;
-  coupon_endtime: string;
-  coupon_explain: string;
-  coupon_ico_path: string;
-  coupon_name: string;
+  comment_content: string
+  comment_star: number
+  comment_user_phone: string
+  coupon_endtime: string
+  coupon_explain: string
+  coupon_ico_path: string
+  coupon_name: string
   coupon_starttime: string
 }
 
 interface Comment {
-  comment_user_phone: string;
-  comment_star: number;
-  comment_content: string;
+  comment_user_phone: string
+  comment_star: number
+  comment_content: string
 }
 
-let scrollTop: number = 0;
+let scrollTop: number = 0
 
 export default defineComponent({
   components: {
@@ -157,15 +175,15 @@ export default defineComponent({
   },
   setup(props, context: SetupContext) {
     const coupon: CouponInterface = {
-      comment_content: "",
+      comment_content: '',
       comment_star: 0,
-      comment_user_phone: "",
-      coupon_endtime: "",
-      coupon_explain: "",
-      coupon_ico_path: "",
-      coupon_name: "",
+      comment_user_phone: '',
+      coupon_endtime: '',
+      coupon_explain: '',
+      coupon_ico_path: '',
+      coupon_name: '',
       coupon_starttime: ''
-    };
+    }
     const comments: Comment[] = []
     const couponMark: 0 | 1 | 2 = 0
     const state = reactive({
@@ -184,113 +202,112 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
 
-    const query: any = route.query;
-    const showType: number = query.type - 0;
-    state.couponId = query.id - 0;
+    const query: any = route.query
+    const showType: number = query.type - 0
+    state.couponId = query.id - 0
 
-    _getCouponDetail(showType);
-    _getCouponComment();
-
+    _getCouponDetail(showType)
+    _getCouponComment()
 
     function _getCouponDetail(showType: number) {
       getCouponDetail(state.couponId)
         .then(res => {
-          const { code, data, message } = res.data;
+          const { code, data, message } = res.data
           if (code === 0) {
-            state.coupon = data;
-            state.showType = showType;
+            state.coupon = data
+            state.showType = showType
           } else {
-            Dialog.alert({ message });
+            Dialog.alert({ message })
           }
         })
         .catch(error => {
           Dialog.alert({
             message: error
-          });
-        });
+          })
+        })
     }
 
     function _getCouponComment() {
       getCouponComment(state.couponId)
         .then(res => {
-          const { code, data, message } = res.data;
-          if (code === 0) state.comments = data;
-          else Dialog.alert({ message });
+          const { code, data, message } = res.data
+          if (code === 0) state.comments = data
+          else Dialog.alert({ message })
         })
         .catch(error => {
-          Dialog.alert({ message: error });
-        });
+          Dialog.alert({ message: error })
+        })
     }
 
     function _receiveCoupon() {
       try {
-        const uid: number = window.sessionStorage.uid;
+        const uid: number = window.sessionStorage.uid
         if (!uid) {
           return router.push({
             path: '/account/login'
-          });
+          })
         }
-        const query: any = route.query;
-        const couponId: number = query.id - 0;
+        const query: any = route.query
+        const couponId: number = query.id - 0
         receiveCoupon(couponId, uid)
           .then(res => {
-            const { code, data, message } = res.data;
-            state.couponStatus = message;
-            state.couponMark = data;
+            const { code, data, message } = res.data
+            state.couponStatus = message
+            state.couponMark = data
           })
           .catch(error => {
             Dialog.alert({
               message: error
-            });
-          });
+            })
+          })
       } catch (e) {
-        router.push({ name: "Login" });
+        router.push({ name: 'Login' })
       }
     }
 
     function toUse() {
-      state.showType = 2;
-      state.couponStatus = "";
+      state.showType = 2
+      state.couponStatus = ''
     }
 
     function amendInpt() {
       // 解决ios系统输入法遮挡input框的问题
       const timer: number = setTimeout(() => {
-        let oBody = document.body;
-        oBody.scrollTop = oBody.scrollHeight;
-        clearTimeout(timer);
-      }, 500);
+        let oBody = document.body
+        oBody.scrollTop = oBody.scrollHeight
+        clearTimeout(timer)
+      }, 500)
     }
 
     function _publishComment() {
       try {
-        const uid = window.sessionStorage.uid;
-        const starGrade = state.starGrade;
-        const commentContent = state.commentContent.trim();
-        const query: any = route.query;
-        const couponId = query.id - 0;
+        const uid = window.sessionStorage.uid
+        const starGrade = state.starGrade
+        const commentContent = state.commentContent.trim()
+        const query: any = route.query
+        const couponId = query.id - 0
 
         if (commentContent.length) {
           publishComment(uid, starGrade, commentContent, couponId)
             .then(res => {
-              const { code, data, message } = res.data;
-              Dialog.alert({ message });
-              state.showType = 1;
-              _getCouponComment();
+              const { code, data, message } = res.data
+              Dialog.alert({ message })
+              state.showType = 1
+              _getCouponComment()
             })
             .catch(error => {
               Dialog.alert({
                 message: JSON.stringify(error)
-              });
-            });
+              })
+            })
         }
       } catch (e) {
-        router.push({ name: "Login" });
+        router.push({ name: 'Login' })
       }
     }
 
     function changeStar(starGrade: number): void {
-      state.starGrade = starGrade;
+      state.starGrade = starGrade
     }
 
     return {
@@ -302,7 +319,7 @@ export default defineComponent({
       _publishComment,
       changeStar
     }
-  },
+  }
 })
 </script>
 
@@ -357,7 +374,7 @@ export default defineComponent({
   margin-left: -98px;
   width: 197px;
   height: 209px;
-  background-image: url("./images/lingqu.png");
+  background-image: url('./images/lingqu.png');
   background-repeat: no-repeat;
   background-size: 197px 209px;
   .prompt {

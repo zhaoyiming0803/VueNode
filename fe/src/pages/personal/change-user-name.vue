@@ -10,7 +10,7 @@
         placeholder="请输入您的用户名"
         id="username"
         v-model="state.userName"
-        v-on:blur="_changeUserName();"
+        v-on:blur="_changeUserName()"
         v-focus
         v-blur
       />
@@ -19,18 +19,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext } from "vue";
-import { useRoute } from "vue-router";
-import Explain from "@/components/header-explain/index.vue";
+import { defineComponent, reactive, SetupContext } from 'vue'
+import { useRoute } from 'vue-router'
+import Explain from '@/components/header-explain/index.vue'
 
-import { focus, blur } from "@/mixins/directive";
+import { focus, blur } from '@/mixins/directive'
 
-import { changeUserName } from "@/api/personal";
-import { Dialog } from "vant";
+import { changeUserName } from '@/api/personal'
+import { Dialog } from 'vant'
 
 interface Query {
-  userName?: string;
-  userId?: number;
+  userName?: string
+  userId?: number
 }
 
 export default defineComponent({
@@ -49,27 +49,27 @@ export default defineComponent({
 
     const route = useRoute()
 
-    const query: Query = route.query;
-    state.userName = query.userName || "";
+    const query: Query = route.query
+    state.userName = query.userName || ''
 
     function _changeUserName() {
-      const query: Query = route.query;
-      const userId = query.userId !== undefined ? query.userId : 0;
-      const userName = state.userName || "";
+      const query: Query = route.query
+      const userId = query.userId !== undefined ? query.userId : 0
+      const userName = state.userName || ''
       if (!userName.trim()) {
-        return Dialog.alert({ message: "请填写用户昵称" });
+        return Dialog.alert({ message: '请填写用户昵称' })
       }
       if (!userId) {
-        return Dialog.alert({ message: "用户ID不合法" });
+        return Dialog.alert({ message: '用户ID不合法' })
       }
       changeUserName(userId, state.userName)
         .then(res => {
-          const { code, data, message } = res.data;
-          Dialog.alert({ message });
+          const { code, data, message } = res.data
+          Dialog.alert({ message })
         })
         .catch(error => {
-          Dialog.alert({ message: JSON.stringify(error) });
-        });
+          Dialog.alert({ message: JSON.stringify(error) })
+        })
     }
 
     return {

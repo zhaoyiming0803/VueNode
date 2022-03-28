@@ -3,7 +3,12 @@
     <explain :explainName="state.explainName"></explain>
 
     <div class="find-pwd-process">
-      <img src="./images/flow1.png" width="100%" height="100%" alt="找回密码第一步" />
+      <img
+        src="./images/flow1.png"
+        width="100%"
+        height="100%"
+        alt="找回密码第一步"
+      />
     </div>
     <div class="account-container">
       <form class="account-container-form" v-on:submit.prevent="next">
@@ -94,7 +99,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import "./tour-app-account.less";
+@import './tour-app-account.less';
 
 .find-pwd-process {
   width: 100%;

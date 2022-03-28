@@ -24,14 +24,14 @@
       v-if="state.isShowLoading"
       type="spinner"
       color="#1989fa"
-      style="transform: translate(-50%);"
+      style="transform: translate(-50%)"
     ></van-loading>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType, SetupContext, ref } from 'vue';
-import upload from './upload';
+import { defineComponent, reactive, PropType, SetupContext, ref } from 'vue'
+import upload from './upload'
 import { Loading, Dialog } from 'vant'
 
 interface UploadCallback {
@@ -51,7 +51,7 @@ export default defineComponent({
     },
     accept: {
       type: String,
-      default: '',
+      default: ''
     },
     format: {
       type: Array as PropType<string[]>,
@@ -82,23 +82,23 @@ export default defineComponent({
     },
     beforeUpload: {
       type: Function as PropType<UploadCallback>,
-      default: () => { }
+      default: () => {}
     },
     onProgress: {
       type: Function as PropType<UploadCallback>,
-      default: () => { }
+      default: () => {}
     },
     onSuccess: {
       type: Function as PropType<UploadCallback>,
-      default: () => { }
+      default: () => {}
     },
     onError: {
       type: Function as PropType<UploadCallback>,
-      default: () => { }
+      default: () => {}
     },
     onComplete: {
       type: Function as PropType<UploadCallback>,
-      default: () => { }
+      default: () => {}
     }
   },
 
@@ -109,7 +109,7 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const file: File = {
       process: 0,
-        url: ''
+      url: ''
     }
     const state = reactive({
       file,
@@ -123,32 +123,35 @@ export default defineComponent({
     }
 
     function handleChange(e: any) {
-      const [file] = e.target.files;
-      const fileTypeList = props.format.join('、');
-      const fileType: string = file.type.substr(file.type.lastIndexOf('/') + 1);
+      const [file] = e.target.files
+      const fileTypeList = props.format.join('、')
+      const fileType: string = file.type.substr(file.type.lastIndexOf('/') + 1)
 
       if (props.format.indexOf(fileType.toLowerCase()) === -1) {
         return Dialog.alert({
           message: `亲，当前仅支持上传${fileTypeList}等格式的文件`
-        });
+        })
       }
 
-      if (props.maxSize !== 0 && file.size > props.maxSize * Math.pow(1024, 2)) {
+      if (
+        props.maxSize !== 0 &&
+        file.size > props.maxSize * Math.pow(1024, 2)
+      ) {
         return Dialog.alert({
           message: `亲，每个文件最大不能超过${props.maxSize}M`
-        });
+        })
       }
 
       if (props.beforeUpload() === false) {
-        return;
+        return
       }
 
-      _upload(file);
+      _upload(file)
     }
 
-    function _upload(fileSource: (string | Blob)) {
-      const file: File = state.file;
-      state.isShowLoading = true;
+    function _upload(fileSource: string | Blob) {
+      const file: File = state.file
+      state.isShowLoading = true
 
       upload({
         action: props.action,
@@ -159,37 +162,37 @@ export default defineComponent({
         file: fileSource,
         onProgress: (process: number) => {
           file.process = process
-          props.onProgress(process);
+          props.onProgress(process)
         },
         onSuccess: (res: any) => {
-          const url = res.data;
+          const url = res.data
           // 后期要换成oss地址
-          Object.assign(file, { url, process: 100 });
-          props.onSuccess({ url, process: 100 });
-          resetUpload();
+          Object.assign(file, { url, process: 100 })
+          props.onSuccess({ url, process: 100 })
+          resetUpload()
         },
         onError: (res: any) => {
-          Object.assign(file, { url: '', process: 0 });
-          resetUpload();
+          Object.assign(file, { url: '', process: 0 })
+          resetUpload()
           Dialog.alert({
             message: `亲，文件上传失败，请重新操作`
-          });
-          props.onError(res);
+          })
+          props.onError(res)
         },
         onComplete: (res: any) => {
-          props.onComplete(res);
-          state.isShowLoading = false;
+          props.onComplete(res)
+          state.isShowLoading = false
         }
-      });
+      })
     }
 
     function resetUpload() {
       let uploadFile: HTMLInputElement | null = inputRef.value
       if (uploadFile) {
-        (uploadFile as HTMLInputElement).setAttribute('type', 'text');
-        (uploadFile as HTMLInputElement).setAttribute('type', 'file');
+        ;(uploadFile as HTMLInputElement).setAttribute('type', 'text')
+        ;(uploadFile as HTMLInputElement).setAttribute('type', 'file')
       }
-      uploadFile = null;
+      uploadFile = null
     }
 
     return {
@@ -202,7 +205,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import "./styles/upload.less";
+@import './styles/upload.less';
 
 .hide {
   display: none;

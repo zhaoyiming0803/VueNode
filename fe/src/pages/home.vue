@@ -4,12 +4,20 @@
 
     <div class="mb10">
       <div class="condition-wraper">
-        <a href="javascript:;" class="left-wraper choose-condition" @click="showRegionList">
+        <a
+          href="javascript:;"
+          class="left-wraper choose-condition"
+          @click="showRegionList"
+        >
           <span>
             <font>{{ regionName }}</font>
           </span>
         </a>
-        <a href="javascript:;" class="right-wraper choose-condition" @click="showClassifyList">
+        <a
+          href="javascript:;"
+          class="right-wraper choose-condition"
+          @click="showClassifyList"
+        >
           <span>
             <font>{{ classifyName }}</font>
           </span>
@@ -26,7 +34,7 @@
           href="javascript:;"
           v-for="(v, k) in state.regionList"
           :key="k"
-          @click="showCoupons(v.id, classifyId);"
+          @click="showCoupons(v.id, classifyId)"
           :class="{ 'this-type': regionId == v.id }"
         >
           <span>{{ v.region_name }}</span>
@@ -37,13 +45,16 @@
       <div
         class="list"
         id="classify"
-        :class="{ 'dis-block': state.isClassify, 'dis-none': !state.isClassify }"
+        :class="{
+          'dis-block': state.isClassify,
+          'dis-none': !state.isClassify
+        }"
       >
         <a
           href="javascript:;"
           v-for="(v, k) in state.classifyList"
           :key="k"
-          @click="showCoupons(regionId, v.id);"
+          @click="showCoupons(regionId, v.id)"
           :class="{ 'this-type': classifyId == v.id }"
         >
           <span>{{ v.classify_name }}</span>
@@ -56,10 +67,19 @@
         v-for="(v, k) in state.couponList"
         :key="k"
         :to="{ path: '/get-coupon', query: { id: v.id, type: 1 } }"
-        :class="{ 'use-discount-bg': v.coupon_status == 0, 'used-bg': v.coupon_status == 1, 'past-bg': v.coupon_status == 2 }"
+        :class="{
+          'use-discount-bg': v.coupon_status == 0,
+          'used-bg': v.coupon_status == 1,
+          'past-bg': v.coupon_status == 2
+        }"
       >
         <div class="shop-ico">
-          <img :src="v.coupon_ico_path" width="100%" height="100%" :alt="v.coupon_name" />
+          <img
+            :src="v.coupon_ico_path"
+            width="100%"
+            height="100%"
+            :alt="v.coupon_name"
+          />
         </div>
         <div class="shop-intro">
           <div class="shop-title">{{ v.coupon_name }}</div>
@@ -71,7 +91,11 @@
           <p>已抢</p>
           <p>{{ v.coupon_recived_num }}</p>
           <span
-            :class="{ 'use-discount': v.coupon_status == 0, 'used': v.coupon_status == 1, 'past': v.coupon_status == 2 }"
+            :class="{
+              'use-discount': v.coupon_status == 0,
+              used: v.coupon_status == 1,
+              past: v.coupon_status == 2
+            }"
           ></span>
         </div>
       </router-link>
@@ -82,7 +106,8 @@
       v-if="state.couponList.length && state.couponList.length % 10 === 0"
       class="load-more"
       @click="loadMore"
-    >加载更多</a>
+      >加载更多</a
+    >
 
     <div v-if="state.couponList.length === 0" style="background-color: white">
       <van-skeleton title avatar :row="3" />
@@ -97,7 +122,13 @@
 </template>
 
 <script lang="ts">
-import { reactive, computed, ComputedRef, defineComponent, SetupContext } from 'vue'
+import {
+  reactive,
+  computed,
+  ComputedRef,
+  defineComponent,
+  SetupContext
+} from 'vue'
 import { useStore } from 'vuex'
 import { StateProps } from '@/store'
 
@@ -108,12 +139,12 @@ import Explain from '@/components/header-explain/index.vue'
 import FooterNav from '@/components/footer-nav/index.vue'
 
 type State = {
-  explainName: string,
-  isRegion: boolean,
-  regionList: any[],
-  classifyList: any[],
-  isClassify: boolean,
-  currentPage: number,
+  explainName: string
+  isRegion: boolean
+  regionList: any[]
+  classifyList: any[]
+  isClassify: boolean
+  currentPage: number
   couponList: any[]
 }
 
@@ -126,7 +157,13 @@ function _getClassifyList(state: State) {
   })
 }
 
-function _getCouponsList(state: State, context: SetupContext, regionId: number, classifyId: number, currentPage: number) {
+function _getCouponsList(
+  state: State,
+  context: SetupContext,
+  regionId: number,
+  classifyId: number,
+  currentPage: number
+) {
   getCouponsList(regionId, classifyId, currentPage)
     .then(res => {
       const { code, data, message } = res.data
@@ -161,10 +198,18 @@ export default defineComponent({
 
   setup(props: {}, context: SetupContext) {
     const store = useStore<StateProps>()
-    const regionId: ComputedRef<number> = computed(() => store.state.app.regionId)
-    const regionName: ComputedRef<string> = computed(() => store.state.app.regionName)
-    const classifyId: ComputedRef<number> = computed(() => store.state.app.classifyId)
-    const classifyName: ComputedRef<string> = computed(() => store.state.app.classifyName)
+    const regionId: ComputedRef<number> = computed(
+      () => store.state.app.regionId
+    )
+    const regionName: ComputedRef<string> = computed(
+      () => store.state.app.regionName
+    )
+    const classifyId: ComputedRef<number> = computed(
+      () => store.state.app.classifyId
+    )
+    const classifyName: ComputedRef<string> = computed(
+      () => store.state.app.classifyName
+    )
 
     console.log('store: ', store)
 
@@ -202,10 +247,10 @@ export default defineComponent({
       state.currentPage = 1
       state.couponList = []
 
-      store.commit("app/changeRegionId", regionId)
-      store.commit("app/changeRegionName", currentregionName)
-      store.commit("app/changeClassifyId", classifyId)
-      store.commit("app/changeClassifyName", currentClassifyName)
+      store.commit('app/changeRegionId', regionId)
+      store.commit('app/changeRegionName', currentregionName)
+      store.commit('app/changeClassifyId', classifyId)
+      store.commit('app/changeClassifyName', currentClassifyName)
 
       _getCouponsList(state, context, regionId, classifyId, state.currentPage)
 
@@ -214,11 +259,23 @@ export default defineComponent({
 
     const loadMore = () => {
       state.currentPage += 1
-      _getCouponsList(state, context, regionId.value, classifyId.value, state.currentPage)
+      _getCouponsList(
+        state,
+        context,
+        regionId.value,
+        classifyId.value,
+        state.currentPage
+      )
     }
 
     _getClassifyList(state)
-    _getCouponsList(state, context, regionId.value, classifyId.value, state.currentPage)
+    _getCouponsList(
+      state,
+      context,
+      regionId.value,
+      classifyId.value,
+      state.currentPage
+    )
     _getRegionList(state)
 
     return {
@@ -237,7 +294,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@import "../static/less/coupon.less";
+@import '../static/less/coupon.less';
 
 .mb10 {
   margin-bottom: 10px;
@@ -275,7 +332,7 @@ export default defineComponent({
         font {
           display: block;
           margin: 0 auto;
-          background-image: url("../static/images/downarrows.png");
+          background-image: url('../static/images/downarrows.png');
           background-repeat: no-repeat;
           background-size: 12px 12px;
         }
@@ -300,7 +357,7 @@ export default defineComponent({
         display: inline-block;
         width: 118px;
         color: #2577e3;
-        background-image: url("../static/images/check.png");
+        background-image: url('../static/images/check.png');
         background-repeat: no-repeat;
         background-position: 92px 5px;
         background-size: 32px 32px;

@@ -4,13 +4,11 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-  
-</script>
+<script lang="ts" setup></script>
 
 <style lang="less">
-  @import './static/css/tour-app-base.css';
-	body {
-		background: #fafafa;
-	}
+@import './static/css/tour-app-base.css';
+body {
+  background: #fafafa;
+}
 </style>

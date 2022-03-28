@@ -15,12 +15,23 @@
       </p>
       <p>
         <span class="pwd-ico"></span>
-        <input type="password" placeholder="请输入密码" class="pwd" v-model.lazy.trim="state.pwd" />
+        <input
+          type="password"
+          placeholder="请输入密码"
+          class="pwd"
+          v-model.lazy.trim="state.pwd"
+        />
       </p>
       <p>
         <input type="submit" value="登	录" class="account-btn" />
       </p>
-      <router-link tag="a" class="phone-prompt" :to="{ name: 'GetPhoneCode' }" replace>忘记密码</router-link>
+      <router-link
+        tag="a"
+        class="phone-prompt"
+        :to="{ name: 'GetPhoneCode' }"
+        replace
+        >忘记密码</router-link
+      >
     </form>
   </div>
 </template>
@@ -33,7 +44,6 @@ import { focus, blur } from '@/mixins/directive'
 
 import { login } from '@/api/auth'
 import { validatePhone, validatePassword } from '@/utils/index'
-
 
 export default defineComponent({
   directives: {
@@ -51,29 +61,29 @@ export default defineComponent({
     function submitLogin() {
       if (!validatePhone(state.phone)) {
         return Dialog.alert({
-          message: "手机号码格式不正确，请重新输入！"
+          message: '手机号码格式不正确，请重新输入！'
         })
       }
 
       if (!validatePassword(state.pwd)) {
         return Dialog.alert({
-          message: "密码需要至少6位数，请重新输入！"
+          message: '密码需要至少6位数，请重新输入！'
         })
       }
 
       login(state.phone, state.pwd)
         .then(res => {
-          const { code, data, message } = res.data;
+          const { code, data, message } = res.data
           if (code === 0) {
-            window.sessionStorage.uid = data;
-            router.back();
+            window.sessionStorage.uid = data
+            router.back()
           } else {
             Dialog.alert({ message })
           }
         })
         .catch(error => {
-          Dialog.alert({ message: "登录失败" });
-        });
+          Dialog.alert({ message: '登录失败' })
+        })
     }
 
     return {
@@ -85,5 +95,5 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less" rel="stylesheet/less">
-@import "./tour-app-account.less";
+@import './tour-app-account.less';
 </style>
