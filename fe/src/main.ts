@@ -18,8 +18,3 @@ app.mount('#app')
 // Vue.prototype.uploadFile = process.env.NODE_ENV === 'development'
 //   ? 'http://localhost:8091/tour/user/changeUserHeadpic'
 //   : 'https://api.0351zhuangxiu.com/tour/user/changeUserHeadpic'
-
-
-
-
-

@@ -8,6 +8,6 @@ const router = createRouter({
 
 router.afterEach((to, from) => {
   document.title = '锦囊团'
-});
+})
 
 export default router

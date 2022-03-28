@@ -1,4 +1,4 @@
-import HttpRequest from './request';
+import HttpRequest from './request'
 
-export * from './request';
-export default new HttpRequest();
+export * from './request'
+export default new HttpRequest()

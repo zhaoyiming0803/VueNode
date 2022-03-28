@@ -1,3 +1,3 @@
 declare module '@/libs/test' {
-  export function test():number;
+  export function test(): number
 }

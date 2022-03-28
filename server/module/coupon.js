@@ -14,7 +14,11 @@ const db = require('../helper/db')
 router.get('/record', async (req, res) => {
   try {
     const { userId } = req.query
-    const data = await db('select count(coupon_name) as num, coupon_type from tour_coupon where id in (select coupon_id from tour_coupon_user where user_id="' + userId + '") group by coupon_type')
+    const data = await db(
+      'select count(coupon_name) as num, coupon_type from tour_coupon where id in (select coupon_id from tour_coupon_user where user_id="' +
+        userId +
+        '") group by coupon_type'
+    )
     res.json({ code: 0, data, message: '' })
   } catch (e) {
     res.json({ code: -1, data: null, message: e })
@@ -27,7 +31,15 @@ router.get('/record', async (req, res) => {
 router.get('/received', async (req, res) => {
   try {
     const { userId, type } = req.query
-    const receivedCouponList = await db('select a.id, a.coupon_name, a.coupon_explain, a.coupon_ico_path, a.coupon_recived_num, b.status from tour_coupon as a right join tour_coupon_user as b on a.id=b.coupon_id where a.coupon_status=0 and a.coupon_type="' + type + '" and a.id in (select coupon_id from tour_coupon_user where user_id="' + userId + '") and b.user_id="' + userId + '"')
+    const receivedCouponList = await db(
+      'select a.id, a.coupon_name, a.coupon_explain, a.coupon_ico_path, a.coupon_recived_num, b.status from tour_coupon as a right join tour_coupon_user as b on a.id=b.coupon_id where a.coupon_status=0 and a.coupon_type="' +
+        type +
+        '" and a.id in (select coupon_id from tour_coupon_user where user_id="' +
+        userId +
+        '") and b.user_id="' +
+        userId +
+        '"'
+    )
     res.json({ code: 0, data: receivedCouponList, message: '' })
   } catch (e) {
     res.json({ code: -1, data: null, message: '获取失败' })
@@ -40,7 +52,11 @@ router.get('/received', async (req, res) => {
 router.get('/detail', async (req, res) => {
   try {
     const { id } = req.query
-    const [data] = await db('select a.coupon_name, a.coupon_explain, a.coupon_starttime, a.coupon_endtime, a.coupon_ico_path, b.comment_content, b.comment_star, b.comment_user_phone from tour_coupon as a left join tour_comment as b on a.id=b.comment_coupon_id where a.id="' + id + '"')
+    const [data] = await db(
+      'select a.coupon_name, a.coupon_explain, a.coupon_starttime, a.coupon_endtime, a.coupon_ico_path, b.comment_content, b.comment_star, b.comment_user_phone from tour_coupon as a left join tour_comment as b on a.id=b.comment_coupon_id where a.id="' +
+        id +
+        '"'
+    )
     if (data) {
       res.json({ code: 0, data, message: '' })
     } else {
@@ -52,18 +68,34 @@ router.get('/detail', async (req, res) => {
 })
 
 /*
-* 立即获取优惠券
-*/
+ * 立即获取优惠券
+ */
 router.post('/receive', async (req, res) => {
   try {
     const { couponId, userId } = req.body
-    const [id] = await db('select id from tour_coupon_user where coupon_id="' + couponId + '" and user_id="' + userId + '"')
+    const [id] = await db(
+      'select id from tour_coupon_user where coupon_id="' +
+        couponId +
+        '" and user_id="' +
+        userId +
+        '"'
+    )
     if (id) {
       res.json({ code: -1, data: 2, message: '已经领取过了' })
     } else {
-      const { insertId } = await db('insert into tour_coupon_user set coupon_id="' + couponId + '", user_id="' + userId + '"')
+      const { insertId } = await db(
+        'insert into tour_coupon_user set coupon_id="' +
+          couponId +
+          '", user_id="' +
+          userId +
+          '"'
+      )
       if (insertId) {
-        const data = await db('update tour_coupon set coupon_recived_num=coupon_recived_num+1 where id="' + couponId + '"')
+        const data = await db(
+          'update tour_coupon set coupon_recived_num=coupon_recived_num+1 where id="' +
+            couponId +
+            '"'
+        )
         if (data) {
           res.json({ code: 0, data: 1, message: '领取成功' })
         } else {
@@ -81,9 +113,12 @@ router.get('/hot', async (req, res) => {
   const getTime = Date.now()
   const $limit = 'limit 0, 4'
   const $belong = 'coupon_belong_region="' + regionId + '"'
-  const $query = 'select id, coupon_name, coupon_explain, coupon_ico_path from tour_coupon ' + regionId === 1
-    ? $limit
-    : 'where "' + getTime + '" < coupon_endtime and ' + $belong + ' ' + $limit
+  const $query =
+    'select id, coupon_name, coupon_explain, coupon_ico_path from tour_coupon ' +
+      regionId ===
+    1
+      ? $limit
+      : 'where "' + getTime + '" < coupon_endtime and ' + $belong + ' ' + $limit
   try {
     const hotCouponList = await db($query + ' ' + $limit)
     res.json({ code: 0, data: hotCouponList, message: '' })
@@ -110,9 +145,26 @@ router.get('/classify', async (req, res) => {
 router.get('/home', async (req, res) => {
   try {
     const { regionId, classifyId, page } = req.query
-    const couponList = regionId - 0 === 1
-      ? await db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_classify="' + classifyId + '" limit ' + (page - 1) * 10 + ', 10')
-      : await db('select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_belong_region="' + regionId + '" and coupon_classify="' + classifyId + '" limit ' + (page - 1) * 10 + ', 10')
+    let couponList = []
+    if (+regionId === 1) {
+      couponList = await db(
+        'select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_classify="' +
+          classifyId +
+          '" limit ' +
+          (page - 1) * 10 +
+          ', 10'
+      )
+    } else {
+      couponList = await db(
+        'select id, coupon_name, coupon_explain, coupon_ico_path, coupon_status, coupon_recived_num from tour_coupon where coupon_belong_region="' +
+          regionId +
+          '" and coupon_classify="' +
+          classifyId +
+          '" limit ' +
+          (page - 1) * 10 +
+          ', 10'
+      )
+    }
     res.json({ code: 0, data: couponList, message: '' })
   } catch (e) {
     res.json({ code: -1, data: [], message: JSON.stringify(e) })
