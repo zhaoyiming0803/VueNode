@@ -85,4 +85,4 @@
 - 如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
 
 ### 个人微信&QQ：1047832475
-![wechat](https://github.com/zhaoyiming0803/zhaoyiming0803/raw/master/wechat.jpg)
+<img src="https://github.com/zhaoyiming0803/zhaoyiming0803/raw/master/wechat.jpeg" width="200" height="200">
