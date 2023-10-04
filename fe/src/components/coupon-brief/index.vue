@@ -3,17 +3,16 @@
   <div class="coupon-top-wraper">
     <div class="top-ico clearfix">
       <span class="union-ico"></span>
-      <span class="hq-ico"></span>
     </div>
     <div class="coupon-brief">
       <div class="coupon-ico">
-        <img :src="coupon.coupon_ico_path" width="79" height="79" />
+        <img :src="coupon.couponIcoPath" width="79" height="79" />
       </div>
-      <div class="coupon-name">{{ coupon.coupon_name }}</div>
-      <div class="coupon-discounts">{{ coupon.coupon_explain }}</div>
+      <div class="coupon-name">{{ coupon.couponName }}</div>
+      <div class="coupon-discounts">{{ coupon.couponExplain }}</div>
       <div class="coupon-time">
-        活动时间：{{ dateFormate(coupon.coupon_starttime) }}至{{
-          dateFormate(coupon.coupon_endtime)
+        活动时间：{{ dateFormate(coupon.couponStartTime) }}至{{
+          dateFormate(coupon.couponEndTime)
         }}
       </div>
     </div>
@@ -24,14 +23,15 @@
 import { defineComponent, PropType } from 'vue'
 
 interface CouponInterface {
-  comment_content: string
-  comment_star: number
-  comment_user_phone: string
-  coupon_endtime: string
-  coupon_explain: string
-  coupon_ico_path: string
-  coupon_name: string
-  coupon_starttime: string
+  commentContent: string
+  commentStar: number
+  commentUserPhone: string
+  couponEndtime: string
+  couponExplain: string
+  couponIcoPath: string
+  couponName: string
+  couponStartTime: string
+  couponEndTime: string
 }
 
 export default defineComponent({
@@ -86,14 +86,6 @@ export default defineComponent({
       margin: 10px 0 0 10px;
       background-image: url('./images/quan_banklogo.png');
       background-size: 40px 26px;
-    }
-    .hq-ico {
-      width: 83px;
-      height: 17px;
-      float: right;
-      margin: 10px 10px 0 0;
-      background-image: url('./images/quan_logo.png');
-      background-size: 83px 17px;
     }
   }
   .coupon-brief {

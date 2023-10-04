@@ -8,7 +8,7 @@ export const getCouponsList = (
 ): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/tour/coupon/home',
+    url: '/tour/coupon/list',
     params: { regionId, classifyId, page }
   })
 }
@@ -16,7 +16,7 @@ export const getCouponsList = (
 export const getClassifyList = (): AxiosPromise<ResponseData> => {
   return httpRequest.request({
     method: 'get',
-    url: '/tour/coupon/classify'
+    url: '/tour/classify/list'
   })
 }
 

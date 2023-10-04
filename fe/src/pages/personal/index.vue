@@ -60,21 +60,21 @@
           >
             <div class="shop-ico">
               <img
-                :src="v.coupon_ico_path"
+                :src="v.couponIcoPath"
                 width="100%"
                 height="100%"
-                :alt="v.coupon_name"
+                :alt="v.couponName"
               />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{ v.coupon_name }}</div>
+              <div class="shop-title">{{ v.couponName }}</div>
               <div class="shop-price">
-                <span class="condition">{{ v.coupon_explain }}</span>
+                <span class="condition">{{ v.couponExplain }}</span>
               </div>
             </div>
             <div class="shop-active shop-active-canuse" v-if="v.status === 0">
               <p>已抢</p>
-              <p>{{ v.coupon_recived_num }}</p>
+              <p>{{ v.couponReceivedNum }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -119,21 +119,21 @@
           >
             <div class="shop-ico">
               <img
-                :src="v.coupon_ico_path"
+                :src="v.couponIcoPath"
                 width="100%"
                 height="100%"
-                :alt="v.coupon_name"
+                :alt="v.couponName"
               />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{ v.coupon_name }}</div>
+              <div class="shop-title">{{ v.couponName }}</div>
               <div class="shop-price">
-                <span class="condition">{{ v.coupon_explain }}</span>
+                <span class="condition">{{ v.couponExplain }}</span>
               </div>
             </div>
             <div class="shop-active shop-active-canuse" v-if="v.status === 0">
               <p>已抢</p>
-              <p>{{ v.coupon_recived_num }}</p>
+              <p>{{ v.couponReceivedNum }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -178,21 +178,21 @@
           >
             <div class="shop-ico">
               <img
-                :src="v.coupon_ico_path"
+                :src="v.couponIcoPath"
                 width="100%"
                 height="100%"
-                :alt="v.coupon_name"
+                :alt="v.couponName"
               />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{ v.coupon_name }}</div>
+              <div class="shop-title">{{ v.couponName }}</div>
               <div class="shop-price">
-                <span class="condition">{{ v.coupon_explain }}</span>
+                <span class="condition">{{ v.couponExplain }}</span>
               </div>
             </div>
             <div class="shop-active shop-active-canuse" v-if="v.status === 0">
               <p>已抢</p>
-              <p>{{ v.coupon_recived_num }}</p>
+              <p>{{ v.couponReceivedNum }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -237,21 +237,21 @@
           >
             <div class="shop-ico">
               <img
-                :src="v.coupon_ico_path"
+                :src="v.couponIcoPath"
                 width="100%"
                 height="100%"
-                :alt="v.coupon_name"
+                :alt="v.couponName"
               />
             </div>
             <div class="shop-intro">
-              <div class="shop-title">{{ v.coupon_name }}</div>
+              <div class="shop-title">{{ v.couponName }}</div>
               <div class="shop-price">
-                <span class="condition">{{ v.coupon_explain }}</span>
+                <span class="condition">{{ v.couponExplain }}</span>
               </div>
             </div>
             <div class="shop-active shop-active-canuse" v-if="v.status == 0">
               <p>已抢</p>
-              <p>{{ v.coupon_recived_num }}</p>
+              <p>{{ v.couponReceivedNum }}</p>
               <span class="use-discount"></span>
             </div>
             <div class="shop-active" v-if="v.status === 1">
@@ -287,14 +287,14 @@ interface UserInfo {
 
 interface CouponRecord {
   num: number
-  coupon_type: string
+  couponType: string
 }
 
 interface Coupon {
-  coupon_explain: string
-  coupon_ico_path: string
-  coupon_name: string
-  coupon_recived_num: number
+  couponExplain: string
+  couponIcoPath: string
+  couponName: string
+  couponReceivedNum: number
   id: number
   status: number
 }
@@ -353,11 +353,11 @@ export default defineComponent({
       try {
         getUserInfo(id)
           .then(res => {
-            const { code, data, message } = res.data
-            if (code === 0) {
-              const { user_headpic, user_phone } = data
-              state.userInfo.headpic = user_headpic
-              state.userInfo.phone = user_phone
+            const { apiCode, data, message } = res.data
+            if (apiCode === 0) {
+              const { userHeadPic, userPhone } = data
+              state.userInfo.headpic = userHeadPic
+              state.userInfo.phone = userPhone
             } else {
               Dialog.alert({ message })
             }
@@ -375,10 +375,10 @@ export default defineComponent({
     function _getCouponRecord(id: number) {
       getCouponRecord(id)
         .then(res => {
-          const { code, data, message } = res.data
-          if (code === 0) {
+          const { apiCode, data, message } = res.data
+          if (apiCode === 0) {
             data.forEach((coupon: CouponRecord): void => {
-              switch (coupon.coupon_type) {
+              switch (coupon.couponType) {
                 case 'union':
                   state.unionNum = coupon.num
                   break
@@ -414,8 +414,8 @@ export default defineComponent({
 
       try {
         const res = await _getReceivedCouponList('union')
-        const { code, data, message } = res.data
-        if (code === 0) {
+        const { apiCode, data, message } = res.data
+        if (apiCode === 0) {
           state.unionCouponList = data
         } else {
           Dialog.alert({ message })
@@ -432,8 +432,8 @@ export default defineComponent({
 
       try {
         const res = await _getReceivedCouponList('visa')
-        const { code, data, message } = res.data
-        if (code === 0) {
+        const { apiCode, data, message } = res.data
+        if (apiCode === 0) {
           state.visaCouponList = data
         } else {
           Dialog.alert({ message })
@@ -449,8 +449,8 @@ export default defineComponent({
       if (!state.isJinnang) return
       try {
         const res = await _getReceivedCouponList('jinnang')
-        const { code, data, message } = res.data
-        if (code === 0) {
+        const { apiCode, data, message } = res.data
+        if (apiCode === 0) {
           state.jinnangCouponList = data
         } else {
           Dialog.alert({ message })
@@ -466,8 +466,8 @@ export default defineComponent({
       if (!state.isGaodaowu) return
       try {
         const res = await _getReceivedCouponList('gaodaowu')
-        const { code, data, message } = res.data
-        if (code === 0) {
+        const { apiCode, data, message } = res.data
+        if (apiCode === 0) {
           state.gaodaowuCouponList = data
         } else {
           Dialog.alert({ message })

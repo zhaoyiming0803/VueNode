@@ -64,7 +64,7 @@ export default defineComponent({
       }
       changeUserName(userId, state.userName)
         .then(res => {
-          const { code, data, message } = res.data
+          const { apiCode, data, message } = res.data
           Dialog.alert({ message })
         })
         .catch(error => {

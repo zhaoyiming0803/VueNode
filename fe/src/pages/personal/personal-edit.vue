@@ -97,12 +97,12 @@ export default defineComponent({
         state.userId = uid
         getUserInfo(uid)
           .then(res => {
-            const { code, data, message } = res.data
-            if (code === 0) {
-              const { user_name, user_sex, user_headpic } = data
-              state.userName = user_name
-              state.userSex = user_sex
-              state.headpic = user_headpic
+            const { apiCode, data, message } = res.data
+            if (apiCode === 0) {
+              const { userName, userSex, userHeadPic } = data
+              state.userName = userName
+              state.userSex = userSex
+              state.headpic = userHeadPic
             } else {
               Dialog.alert({ message })
             }

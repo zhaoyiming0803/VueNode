@@ -37,7 +37,7 @@
           @click="showCoupons(v.id, classifyId)"
           :class="{ 'this-type': regionId == v.id }"
         >
-          <span>{{ v.region_name }}</span>
+          <span>{{ v.regionName }}</span>
         </a>
       </div>
 
@@ -57,7 +57,7 @@
           @click="showCoupons(regionId, v.id)"
           :class="{ 'this-type': classifyId == v.id }"
         >
-          <span>{{ v.classify_name }}</span>
+          <span>{{ v.classifyName }}</span>
         </a>
       </div>
     </div>
@@ -68,33 +68,33 @@
         :key="k"
         :to="{ path: '/get-coupon', query: { id: v.id, type: 1 } }"
         :class="{
-          'use-discount-bg': v.coupon_status == 0,
-          'used-bg': v.coupon_status == 1,
-          'past-bg': v.coupon_status == 2
+          'use-discount-bg': v.couponStatus == 0,
+          'used-bg': v.couponStatus == 1,
+          'past-bg': v.couponStatus == 2
         }"
       >
         <div class="shop-ico">
           <img
-            :src="v.coupon_ico_path"
+            :src="v.couponIcoPath"
             width="100%"
             height="100%"
-            :alt="v.coupon_name"
+            :alt="v.couponName"
           />
         </div>
         <div class="shop-intro">
-          <div class="shop-title">{{ v.coupon_name }}</div>
+          <div class="shop-title">{{ v.couponName }}</div>
           <div class="shop-price">
-            <span class="condition">{{ v.coupon_explain }}</span>
+            <span class="condition">{{ v.couponExplain }}</span>
           </div>
         </div>
         <div class="shop-active shop-active-canuse">
           <p>已抢</p>
-          <p>{{ v.coupon_recived_num }}</p>
+          <p>{{ v.couponReceivedNum }}</p>
           <span
             :class="{
-              'use-discount': v.coupon_status == 0,
-              used: v.coupon_status == 1,
-              past: v.coupon_status == 2
+              'use-discount': v.couponStatus == 0,
+              used: v.couponStatus == 1,
+              past: v.couponStatus == 2
             }"
           ></span>
         </div>
@@ -103,7 +103,7 @@
 
     <a
       href="javascript:;"
-      v-if="state.couponList.length && state.couponList.length % 10 === 0"
+      v-if="state.isShowLoadMore"
       class="load-more"
       @click="loadMore"
       >加载更多</a
@@ -146,12 +146,13 @@ type State = {
   isClassify: boolean
   currentPage: number
   couponList: any[]
+  isShowLoadMore: boolean
 }
 
 function _getClassifyList(state: State) {
   getClassifyList().then(res => {
-    const { code, data, message } = res.data
-    if (code === 0) {
+    const { apiCode, data } = res.data
+    if (apiCode === 0) {
       state.classifyList = data
     }
   })
@@ -166,9 +167,12 @@ function _getCouponsList(
 ) {
   getCouponsList(regionId, classifyId, currentPage)
     .then(res => {
-      const { code, data, message } = res.data
-      if (code === 0) {
+      const { apiCode, data, message } = res.data
+      if (apiCode === 0) {
         state.couponList.push.apply(state.couponList, data)
+        if (!data.length) {
+          state.isShowLoadMore = false
+        }
       } else {
         Dialog.alert({ message })
       }
@@ -182,8 +186,8 @@ function _getCouponsList(
 
 function _getRegionList(state: State) {
   getRegionList().then(res => {
-    const { code, data, message } = res.data
-    if (code === 0) {
+    const { apiCode, data } = res.data
+    if (apiCode === 0) {
       state.regionList = data
     }
   })
@@ -211,8 +215,6 @@ export default defineComponent({
       () => store.state.app.classifyName
     )
 
-    console.log('store: ', store)
-
     const state: State = reactive({
       explainName: '全球优惠',
       isRegion: false,
@@ -220,7 +222,8 @@ export default defineComponent({
       classifyList: [],
       isClassify: false,
       currentPage: 1,
-      couponList: []
+      couponList: [],
+      isShowLoadMore: true
     })
 
     const showRegionList = () => {
@@ -238,10 +241,10 @@ export default defineComponent({
 
     const showCoupons = (regionId: number, classifyId: number) => {
       const currentregionName = state.regionList
-        ? state.regionList[regionId - 1].region_name
+        ? state.regionList[regionId - 1].regionName
         : '全球'
       const currentClassifyName = state.classifyList
-        ? state.classifyList[classifyId - 1].classify_name
+        ? state.classifyList[classifyId - 1].classifyName
         : '购物'
 
       state.currentPage = 1

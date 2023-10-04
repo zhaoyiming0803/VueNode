@@ -6,7 +6,7 @@ import axios, {
 } from 'axios'
 
 export interface ResponseData {
-  code: number
+  apiCode: number
   data?: any
   message: string
 }

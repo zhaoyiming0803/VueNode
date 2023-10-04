@@ -63,9 +63,9 @@ export default defineComponent({
 
       getPhoneCode(props.phone)
         .then(res => {
-          const { code, data, message } = res.data
+          const { apiCode, data, message } = res.data
           Dialog.alert({
-            message: code === 0 ? `短信验证码：${data}` : message
+            message: apiCode === 0 ? `短信验证码：${data}` : message
           })
         })
         .catch(error => {

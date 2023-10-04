@@ -1,6 +1,6 @@
 <template>
   <div class="account-container">
-    <form class="account-container-form" v-on:submit="submitLogin">
+    <form class="account-container-form">
       <p>
         <span class="phone-ico"></span>
         <input
@@ -23,7 +23,7 @@
         />
       </p>
       <p>
-        <input type="submit" value="登	录" class="account-btn" />
+        <input type="button" @click="submitLogin" value="登	录" class="account-btn" />
       </p>
       <router-link
         tag="a"
@@ -73,8 +73,8 @@ export default defineComponent({
 
       login(state.phone, state.pwd)
         .then(res => {
-          const { code, data, message } = res.data
-          if (code === 0) {
+          const { apiCode, data, message } = res.data
+          if (apiCode === 0) {
             window.sessionStorage.uid = data
             router.back()
           } else {

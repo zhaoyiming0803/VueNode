@@ -5,6 +5,7 @@
 - [VueNode v1.x](https://github.com/zhaoyiming0803/VueNode/tree/v1.0)
 
 - [VueNode v2.x](https://github.com/zhaoyiming0803/VueNode/tree/v2.2.2)
+
 ### Vue 从 v2 到 v3 升级指南：
 
 - [Vue 官方升级指南](https://v3.cn.vuejs.org/guide/migration/introduction.html)
@@ -29,14 +30,14 @@
 
 - 逐步迁移 `fe/src/pages`。
 
-- 注：此项目纯属个人爱好及代码测试，如果需要完整的相关服务，可以去锦囊团官网。
+- 注：此项目纯属个人爱好及代码测试。
 
-- 待完善：eslint、git commit hook、server typescript
 ### 技术栈
 
 - 前端：HTML、CSS、Less、ES6(7|8)、Webpack4、@vue/cli@4.5.13、vue.js@3.2.16、vuex@4.0.2、vue-router@4.0.11、axios@0.19.0
 
-- 后端：Node.js、MySQL
+- 后端：Node.js（Koa.js）、MySQL、TypeORM
+
 ### 项目本地运行方法
 
  - git clone https://github.com/zhaoyiming0803/VueNode.git
@@ -56,6 +57,7 @@
  - 浏览器访问：https://web.0351zhuangxiu.com/tour/ (本地host：127.0.0.1 web.0351zhuangxiu.com)
 
  - 数据库 tour_user 表中的用户默认密码均为123456
+
 ### 目标功能
 
 - [x] 登录、注册、密码修改（100%）

@@ -68,7 +68,7 @@ export default defineComponent({
         }
         changeUserSex(userId, userSex)
           .then(res => {
-            const { code, data, message } = res.data
+            const { apiCode, data, message } = res.data
             Dialog.alert({ message })
           })
           .catch(error => {

@@ -92,8 +92,8 @@ export default defineComponent({
 
       resetPassword(state.phone, state.pwd)
         .then(res => {
-          const { code, data, message } = res.data
-          if (code === 0) {
+          const { apiCode, data, message } = res.data
+          if (apiCode === 0) {
             Dialog.alert({
               message: '密码修改成功'
             })

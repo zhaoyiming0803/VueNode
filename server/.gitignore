@@ -1,7 +1,6 @@
-*.log*
-.cache
-.DS_Store
-.idea
-.vscode
-node_modules
-yarn.lock
+.idea/
+.vscode/
+node_modules/
+dist/
+tmp/
+temp/

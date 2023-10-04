@@ -5,19 +5,19 @@
 
     <template v-if="comments.length">
       <div v-for="(v, k) in comments" :key="k" class="comment-item">
-        <template v-if="v.comment_user_phone">
+        <template v-if="v.commentUserPhone">
           <div class="comment-item-top clearfix">
-            <div class="phone">{{ truncatePhone(v.comment_user_phone) }}</div>
+            <div class="phone">{{ truncatePhone(v.commentUserPhone) }}</div>
             <div class="star">
               <img
-                v-for="(value, key) in v.comment_star"
+                v-for="(value, key) in v.commentStar"
                 :key="key"
                 src="./images/star.png"
                 width="15"
                 height="15"
               />
               <img
-                v-for="(value, key) in 5 - v.comment_star"
+                v-for="(value, key) in 5 - v.commentStar"
                 :key="key"
                 src="./images/notclickstar.png"
                 width="15"
@@ -26,7 +26,7 @@
             </div>
           </div>
         </template>
-        <div class="comment-item-bottom">{{ v.comment_content }}</div>
+        <div class="comment-item-bottom">{{ v.commentContent }}</div>
       </div>
     </template>
 
@@ -39,9 +39,9 @@ import { defineComponent, reactive, PropType } from 'vue'
 import ColumnDivide from '../column-divide/index.vue'
 
 interface Column {
-  comment_user_phone: string
-  comment_star: number
-  comment_content: string
+  commentUserPhone: string
+  commentStar: number
+  commentContent: string
 }
 
 export default defineComponent({

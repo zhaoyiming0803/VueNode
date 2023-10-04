@@ -5,7 +5,7 @@
 
     <coupon-brief
       :coupon="state.coupon"
-      v-if="state.coupon.coupon_name"
+      v-if="state.coupon.couponName"
     ></coupon-brief>
 
     <div class="coupon-bottom-wraper" id="coupon-bottom-wraper">
@@ -93,7 +93,7 @@
             </span>
           </div>
           <div class="comment-num-txt">
-            <span id="comment-num-txt">{{ state.starGrade }}</span
+            <span id="comment-num-txt">{{ state.commentStar }}</span
             >分
           </div>
         </div>
@@ -124,7 +124,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext } from 'vue'
-import { LocationQuery, useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import Explain from '@/components/header-explain/index.vue'
 import FooterNav from '@/components/footer-nav/index.vue'
@@ -141,20 +141,20 @@ import { publishComment, getCouponComment } from '@/api/comment'
 import { Dialog } from 'vant'
 
 interface CouponInterface {
-  comment_content: string
-  comment_star: number
-  comment_user_phone: string
-  coupon_endtime: string
-  coupon_explain: string
-  coupon_ico_path: string
-  coupon_name: string
-  coupon_starttime: string
+  commentContent: string
+  commentStar: number
+  commentUserPhone: string
+  couponEndTime: string
+  couponExplain: string
+  couponIcoPath: string
+  couponName: string
+  couponStartTime: string
 }
 
 interface Comment {
-  comment_user_phone: string
-  comment_star: number
-  comment_content: string
+  commentUserPhone: string
+  commentStar: number
+  commentContent: string
 }
 
 let scrollTop: number = 0
@@ -175,14 +175,14 @@ export default defineComponent({
   },
   setup(props, context: SetupContext) {
     const coupon: CouponInterface = {
-      comment_content: '',
-      comment_star: 0,
-      comment_user_phone: '',
-      coupon_endtime: '',
-      coupon_explain: '',
-      coupon_ico_path: '',
-      coupon_name: '',
-      coupon_starttime: ''
+      commentContent: '',
+      commentStar: 0,
+      commentUserPhone: '',
+      couponEndTime: '',
+      couponExplain: '',
+      couponIcoPath: '',
+      couponName: '',
+      couponStartTime: ''
     }
     const comments: Comment[] = []
     const couponMark: 0 | 1 | 2 = 0
@@ -194,7 +194,7 @@ export default defineComponent({
       couponMark,
       showType: 1,
       columnName: '参与方式',
-      starGrade: 0,
+      commentStar: 0,
       commentContent: '',
       couponId: 0
     })
@@ -212,8 +212,8 @@ export default defineComponent({
     function _getCouponDetail(showType: number) {
       getCouponDetail(state.couponId)
         .then(res => {
-          const { code, data, message } = res.data
-          if (code === 0) {
+          const { apiCode, data, message } = res.data
+          if (apiCode === 0) {
             state.coupon = data
             state.showType = showType
           } else {
@@ -230,8 +230,8 @@ export default defineComponent({
     function _getCouponComment() {
       getCouponComment(state.couponId)
         .then(res => {
-          const { code, data, message } = res.data
-          if (code === 0) state.comments = data
+          const { apiCode, data, message } = res.data
+          if (apiCode === 0) state.comments = data
           else Dialog.alert({ message })
         })
         .catch(error => {
@@ -249,9 +249,9 @@ export default defineComponent({
         }
         const query: any = route.query
         const couponId: number = query.id - 0
-        receiveCoupon(couponId, uid)
+        receiveCoupon(+couponId, +uid)
           .then(res => {
-            const { code, data, message } = res.data
+            const { apiCode, data, message } = res.data
             state.couponStatus = message
             state.couponMark = data
           })
@@ -282,15 +282,15 @@ export default defineComponent({
     function _publishComment() {
       try {
         const uid = window.sessionStorage.uid
-        const starGrade = state.starGrade
+        const commentStar = state.commentStar
         const commentContent = state.commentContent.trim()
         const query: any = route.query
         const couponId = query.id - 0
 
         if (commentContent.length) {
-          publishComment(uid, starGrade, commentContent, couponId)
+          publishComment(+uid, +commentStar, commentContent, +couponId)
             .then(res => {
-              const { code, data, message } = res.data
+              const { apiCode, data, message } = res.data
               Dialog.alert({ message })
               state.showType = 1
               _getCouponComment()
@@ -306,8 +306,8 @@ export default defineComponent({
       }
     }
 
-    function changeStar(starGrade: number): void {
-      state.starGrade = starGrade
+    function changeStar(commentStar: number): void {
+      state.commentStar = commentStar
     }
 
     return {

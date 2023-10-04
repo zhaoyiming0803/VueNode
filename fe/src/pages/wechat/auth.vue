@@ -16,9 +16,9 @@ export default defineComponent({
     const route = useRoute()
 
     const query = route.query
-    const code = query.code as string
+    const apiCode = query.apiCode as string
 
-    authorizeUserInfo(code).then(res => {
+    authorizeUserInfo(apiCode).then(res => {
       state.userInfo = JSON.stringify(res.data)
     })
 

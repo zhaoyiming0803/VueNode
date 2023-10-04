@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "tour",
-      "script": "./index.js",
+      "script": "./dist/index.js",
       "watch": false,
       "node_args": "--harmony",
       "merge_logs": false,

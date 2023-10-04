@@ -1,24 +1,39 @@
 {
-  "name": "server",
-  "version": "3.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "TypeORMDemoWithKoa",
+  "version": "0.0.1",
+  "description": "Awesome project developed with TypeORM.",
+  "type": "commonjs",
   "scripts": {
-    "start": "nodemon index.js",
-    "lint": "eslint --ext .js */**.js",
-    "lint:fix": "eslint --fix --ext .js helper/**.js module/**.js"
+    "dev": "nodemon --watch src --exec 'ts-node' src/index.ts",
+    "build": "tsc",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:create": "typeorm migration:create",
+    "migration:run": "npx typeorm-ts-node-esm -d ./src/data-source.ts migration:run",
+    "lint": "eslint --ext .ts src/**",
+    "lint:fix": "eslint --fix --ext .ts src/**"
+  },
+  "dependencies": {
+    "@koa/router": "^12.0.0",
+    "class-validator": "^0.14.0",
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.1",
+    "mysql": "^2.14.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.17"
   },
   "devDependencies": {
-    "body-parser": "^1.19.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "express": "^4.17.1",
-    "multer": "^1.4.2",
-    "mysql": "^2.17.1",
-    "nodemon": "^2.0.15",
-    "prettier": "^2.6.1",
-    "qiniu": "^7.2.2"
-  },
-  "author": "zhaoyiming0803",
-  "license": "ISC"
+    "@types/koa": "^2.13.9",
+    "@types/koa__router": "^12.0.1",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
+    "ts-node": "10.7.0",
+    "typescript": "4.5.2"
+  }
 }

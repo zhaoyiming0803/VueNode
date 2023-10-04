@@ -123,6 +123,9 @@ export default defineComponent({
     }
 
     function handleChange(e: any) {
+      return Dialog.alert({ 
+        message: '待 CDN 完善后即可更新头像'
+      })
       const [file] = e.target.files
       const fileTypeList = props.format.join('、')
       const fileType: string = file.type.substr(file.type.lastIndexOf('/') + 1)

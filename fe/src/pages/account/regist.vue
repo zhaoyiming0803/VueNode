@@ -1,6 +1,6 @@
 <template>
   <div class="account-container">
-    <form v-on:submit="submitRegist" class="account-container-form">
+    <form class="account-container-form">
       <p>
         <span class="phone-ico"></span>
         <input
@@ -36,7 +36,7 @@
         />
       </p>
       <p>
-        <input type="submit" value="注	册" class="account-btn" />
+        <input type="button" @click="submitRegist" value="注	册" class="account-btn" />
       </p>
     </form>
   </div>
@@ -86,8 +86,8 @@ export default defineComponent({
 
       regist(state.phone, state.pwd)
         .then(res => {
-          const { code, message } = res.data
-          if (code === 0) {
+          const { apiCode, message } = res.data
+          if (apiCode === 0) {
             router.replace({
               path: '/account/login'
             })

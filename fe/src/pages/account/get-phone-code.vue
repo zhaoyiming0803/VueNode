@@ -25,13 +25,13 @@
           />
         </p>
         <p>
-          <span class="code-ico"></span>
+          <span class="apiCode-ico"></span>
           <input
             type="text"
             placeholder="请输入验证码"
             maxlength="6"
-            class="code"
-            v-model="state.code"
+            class="apiCode"
+            v-model="state.apiCode"
             v-focus
             v-blur
           />
@@ -72,7 +72,7 @@ export default defineComponent({
     const state = reactive({
       explainName: '找回密码第一步',
       phone: '',
-      code: ''
+      apiCode: ''
     })
 
     function next() {
