@@ -1,5 +1,7 @@
 # VueNode
 
+> The best way to learn is to read books and official documents, as well as open source codes in GitHub, and then write test demos.
+
 English | [简体中文](./README-zh_CN.md)
 
 VueNode is developed using Vue3 & Node.js, and the old version can refer to:

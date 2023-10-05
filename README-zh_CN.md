@@ -1,5 +1,7 @@
 # VueNode
 
+> 最好的学习方法是阅读书籍和官方文档，以及 GitHub 开源代码，然后编写测试代码。
+
 简体中文 | [English](./README.md)
 
 当前项目使用 Vue3 & Node.js 开发，旧版本可参考：
