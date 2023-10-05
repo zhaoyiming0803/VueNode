@@ -61,8 +61,6 @@
             <div class="shop-ico">
               <img
                 :src="v.couponIcoPath"
-                width="100%"
-                height="100%"
                 :alt="v.couponName"
               />
             </div>
